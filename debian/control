@@ -13,7 +13,7 @@ Build-Depends: debhelper (>= 10),
 	libassimp-dev,
 	libavcodec-dev, libavformat-dev, libavutil-dev, libswscale-dev,
 	libcv-bridge-dev,
-	libdc1394-dev [linux-any],
+	libdc1394-22-dev [linux-any],
 	libeigen3-dev,
 	libfreenect-dev,
 	libftdi1-dev,
@@ -23,7 +23,6 @@ Build-Depends: debhelper (>= 10),
 	libicu-dev,
 	libjpeg-dev,
 	libjsoncpp-dev,
-	libnanoflann-dev,
 	libnav-msgs-dev,
 	liboctomap-dev,
 	libopencv-dev,
@@ -33,7 +32,6 @@ Build-Depends: debhelper (>= 10),
 	librosbag-storage-dev,
 	libroscpp-dev,
 	libsensor-msgs-dev,
-	libsimpleini-dev,
 	libstd-srvs-dev,
 	libstereo-msgs-dev,
 	libsuitesparse-dev,
@@ -404,8 +402,8 @@ Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
 Depends: ${misc:Depends},libmrpt-math2.4 (= ${binary:Version}),
          libsuitesparse-dev, libeigen3-dev, libmrpt-serialization-dev,
-         libmrpt-random-dev, libmrpt-system-dev, libnanoflann-dev,
-		 libmrpt-common-dev
+         libmrpt-random-dev, libmrpt-system-dev,
+         libmrpt-common-dev
 Description: Mobile Robot Programming Toolkit - math development package
  This package provides headers and libraries for development.
 
