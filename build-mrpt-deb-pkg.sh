@@ -58,7 +58,7 @@ git remote get-url upstream > /dev/null 2>&1 || GIT_MUST_ADD_UPSTREAM=1
 echo "GIT_MUST_ADD_UPSTREAM: $GIT_MUST_ADD_UPSTREAM"
 if [ "$GIT_MUST_ADD_UPSTREAM" == "1" ];
 then
-	git remote add upstream git@github.com:MRPT/mrpt.git
+	git remote add upstream https://github.com/MRPT/mrpt.git
 fi
 
 git fetch --all
