@@ -102,7 +102,7 @@ OUT_DIR=$HOME/mrpt_release/$MRPT_RELEASE_NAME
 # Export the debian/ directory from the "APPEND_LINUX_DISTRO" branch:
 git archive --format=tar origin/${APPEND_LINUX_DISTRO} debian | tar -x -C "${OUT_DIR}"
 
-EMAIL4DEB="Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>"
+EMAIL4DEB="Jose Luis Blanco (University of Malaga) <joseluisblancoc@gmail.com>"
 DEBCHANGE_CMD="--newversion 1:${MRPT_FULL_VERSION}-1"
 echo "Changing to a new Debian version: ${DEBCHANGE_CMD}"
 echo "Adding a new entry to debian/changelog for distribution ${APPEND_LINUX_DISTRO}"
