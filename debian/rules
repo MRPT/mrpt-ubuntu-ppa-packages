@@ -38,6 +38,9 @@ CMAKE_FLAGS = \
 %:
 	dh $@ --buildsystem=cmake
 
+override_dh_auto_configure:
+	dh_auto_configure -- $(CMAKE_FLAGS)
+
 # For future use?
 #override_dh_auto_build-arch:
 #	dh_auto_build -O--buildsystem=cmake
