@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-gui.so
+usr/lib/*/cmake/mrpt-gui/*
+usr/include/mrpt/gui/

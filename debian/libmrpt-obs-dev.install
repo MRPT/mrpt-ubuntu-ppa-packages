@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-obs.so
+usr/lib/*/cmake/mrpt-obs/*
+usr/include/mrpt/obs/

@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-tfest.so
+usr/lib/*/cmake/mrpt-tfest/*
+usr/include/mrpt/tfest/

@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-graphs.so
+usr/lib/*/cmake/mrpt-graphs/*
+usr/include/mrpt/graphs/

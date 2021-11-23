@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-math.so
+usr/lib/*/cmake/mrpt-math/*
+usr/include/mrpt/math/

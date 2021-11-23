@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-rrti.so
+usr/lib/*/cmake/mrpt-rrti/*
+usr/include/mrpt/rrti/

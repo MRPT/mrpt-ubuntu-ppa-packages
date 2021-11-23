@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-ros1bridge.so
+usr/lib/*/cmake/mrpt-ros1bridge/*
+usr/include/mrpt/ros1bridge/

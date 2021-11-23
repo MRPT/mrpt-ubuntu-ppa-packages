@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-nav.so
+usr/lib/*/cmake/mrpt-nav/*
+usr/include/mrpt/nav/

@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-io.so
+usr/lib/*/cmake/mrpt-io/*
+usr/include/mrpt/io/

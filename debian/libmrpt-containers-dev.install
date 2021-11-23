@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-containers.so
+usr/lib/*/cmake/mrpt-containers/*
+usr/include/mrpt/containers/

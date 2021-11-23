@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-maps.so
+usr/lib/*/cmake/mrpt-maps/*
+usr/include/mrpt/maps/

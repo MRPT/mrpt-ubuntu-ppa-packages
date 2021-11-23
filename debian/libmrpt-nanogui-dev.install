@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-nanogui.so
+usr/lib/*/cmake/mrpt-nanogui/*
+usr/include/mrpt/nanogui/

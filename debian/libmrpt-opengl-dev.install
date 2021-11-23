@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-opengl.so
+usr/lib/*/cmake/mrpt-opengl/*
+usr/include/mrpt/opengl/

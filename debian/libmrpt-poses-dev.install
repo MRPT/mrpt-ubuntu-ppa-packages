@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-poses.so
+usr/lib/*/cmake/mrpt-poses/*
+usr/include/mrpt/poses/
