@@ -23,7 +23,6 @@ Build-Depends: debhelper (>= 10),
 	libicu-dev,
 	libjpeg-dev,
 	libjsoncpp-dev,
-	libnanoflann-dev,
 	libnav-msgs-dev,
 	liboctomap-dev,
 	libopencv-dev,
@@ -404,7 +403,7 @@ Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
 Depends: ${misc:Depends},libmrpt-math2.4 (= ${binary:Version}),
          libsuitesparse-dev, libeigen3-dev, libmrpt-serialization-dev,
-         libmrpt-random-dev, libmrpt-system-dev, libnanoflann-dev,
+         libmrpt-random-dev, libmrpt-system-dev,
 		 libmrpt-common-dev
 Description: Mobile Robot Programming Toolkit - math development package
  This package provides headers and libraries for development.
