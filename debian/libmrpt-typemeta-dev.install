@@ -1,2 +1,2 @@
-usr/lib/*/cmake/mrpt-typemeta/*
+usr/lib/*/cmake/mrpt-typemeta usr/share/cmake/mrpt-typemeta
 usr/include/mrpt/typemeta/
