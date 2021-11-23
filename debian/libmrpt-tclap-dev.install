@@ -1,3 +1,2 @@
-usr/lib/*/libmrpt-tclap.so
 usr/lib/*/cmake/mrpt-tclap/*
 usr/include/mrpt/tclap/
