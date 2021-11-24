@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-kinematics.so
+usr/lib/*/cmake/mrpt-kinematics/*
+usr/include/mrpt/kinematics/

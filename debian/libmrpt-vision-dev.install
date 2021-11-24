@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-vision.so
+usr/lib/*/cmake/mrpt-vision/*
+usr/include/mrpt/vision/

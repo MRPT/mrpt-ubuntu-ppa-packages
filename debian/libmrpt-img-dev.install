@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-img.so
+usr/lib/*/cmake/mrpt-img/*
+usr/include/mrpt/img/

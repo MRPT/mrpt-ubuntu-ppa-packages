@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-core.so
+usr/lib/*/cmake/mrpt-core/*
+usr/include/mrpt/core/

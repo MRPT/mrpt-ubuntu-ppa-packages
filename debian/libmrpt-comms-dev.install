@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-comms.so
+usr/lib/*/cmake/mrpt-comms/*
+usr/include/mrpt/comms/

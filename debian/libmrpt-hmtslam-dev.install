@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-hmtslam.so
+usr/lib/*/cmake/mrpt-hmtslam/*
+usr/include/mrpt/hmtslam/

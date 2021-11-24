@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-serialization.so
+usr/lib/*/cmake/mrpt-serialization/*
+usr/include/mrpt/serialization/

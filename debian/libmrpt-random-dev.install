@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-random.so
+usr/lib/*/cmake/mrpt-random/*
+usr/include/mrpt/random/

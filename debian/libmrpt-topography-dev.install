@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-topography.so
+usr/lib/*/cmake/mrpt-topography/*
+usr/include/mrpt/topography/

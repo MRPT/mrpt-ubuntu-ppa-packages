@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt-hwdrivers.so
+usr/lib/*/cmake/mrpt-hwdrivers/*
+usr/include/mrpt/hwdrivers/
