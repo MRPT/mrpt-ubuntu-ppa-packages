@@ -38,6 +38,7 @@ CMAKE_FLAGS = \
 %:
 	dh $@ --buildsystem=cmake
 
+# Forward the CMAKE_FLAGS flags above to cmake:
 override_dh_auto_configure:
 	dh_auto_configure -- $(CMAKE_FLAGS)
 

@@ -1,2 +1,5 @@
 usr/bin/*
 usr/share/man/*
+usr/share/applications/*
+usr/share/metainfo/*
+usr/share/pixmaps/*
