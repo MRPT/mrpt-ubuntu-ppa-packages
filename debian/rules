@@ -4,6 +4,9 @@
 
 include /usr/share/dpkg/architecture.mk
 
+# Required to avoid hardening-no-bindnow lintian message:
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
 # default: dont build expensive caller graphs with dot in the documentation pkg
 export MRPT_genCALLERGRAPHS=NO
 
