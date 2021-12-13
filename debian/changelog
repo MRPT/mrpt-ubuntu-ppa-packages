@@ -1,4 +1,4 @@
-mrpt (1:2.4.0~20211117-0118-git-5c2c69a6~focal-1) focal; urgency=medium
+mrpt (1:?.?.?~20211117-0118-git-5c2c69a6~focal-1) focal; urgency=medium
 
   * Remove build-dep on debhelper.
   * Bump Debian standars to 4.6.0.
