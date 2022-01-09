@@ -55,3 +55,6 @@ override_dh_auto_build-indep:
 
 	# clean useless doxygen files:
 	find $(CURDIR)/doc/ -name '*.md5' | xargs -I FIL rm FIL
+
+override_dh_auto_test:
+	dh_auto_build -O--buildsystem=cmake -- $(MRPT_TEST_TARGET)
