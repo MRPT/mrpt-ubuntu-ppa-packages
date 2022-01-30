@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 set -e
 
 
@@ -11,7 +11,7 @@ DO_REMOVE_LOCK=1
 # Make sure we cleanup lockfile on exit:
 function cleanup
 {
-	if [ "$DO_REMOVE_LOCK" == "1" ]; then 
+	if [ "$DO_REMOVE_LOCK" == "1" ]; then
 		rm $LOCKFILE
 	fi
 }
@@ -19,7 +19,7 @@ trap cleanup EXIT
 
 # Check for another active session:
 if [ -f $LOCKFILE ]; then
-	# There is a lock file. Honor it and exit... unless it's really old, 
+	# There is a lock file. Honor it and exit... unless it's really old,
 	# which might indicate a dangling script (?).
 	if [ "$(( $(date +"%s") - $(stat -c "%Y" $LOCKFILE) ))" -gt "7200" ]; then
 		# too old: reset lock file
@@ -90,3 +90,6 @@ rm -fr $HOME/mrpt_ubuntu
 cd $HOME/mrpt-master
 git clean -d -x -f >/dev/null
 
+# self update:
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+(cd $SCRIPT_DIR && git pull)
