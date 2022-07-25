@@ -74,12 +74,12 @@ if [ "$CURSHA" != "$LASTSHA" ]; then
     MRPT_PKG_EXPORTED_SUBMODULES="nanoflann" ./build-mrpt-deb-pkg.sh  -s -g $GITBRANCH -d focal
     (cd $HOME/mrpt_release && dput $PPA_URL *.changes)
 
-    # u21.10 impish:
-    ./build-mrpt-deb-pkg.sh  -s -g $GITBRANCH -d impish
-    (cd $HOME/mrpt_release && dput $PPA_URL *.changes)
-
     # u22.04 jammy
     ./build-mrpt-deb-pkg.sh  -s -g $GITBRANCH -d jammy
+    (cd $HOME/mrpt_release && dput $PPA_URL *.changes)
+
+    # u22.10 kinetic
+    ./build-mrpt-deb-pkg.sh  -s -g $GITBRANCH -d kinetic
     (cd $HOME/mrpt_release && dput $PPA_URL *.changes)
 
     # Save new commit sha:
