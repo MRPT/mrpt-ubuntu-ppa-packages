@@ -542,7 +542,7 @@ Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
 Depends: ${misc:Depends},libmrpt-math2.5 (= ${binary:Version}),
          libsuitesparse-dev, libeigen3-dev, libmrpt-serialization-dev,
-         libmrpt-random-dev, libmrpt-system-dev, libnanoflann-dev,
+         libmrpt-random-dev, libmrpt-system-dev,
          libmrpt-common-dev
 Description: ${source:Synopsis} - math development package
  ${source:Extended-Description}
