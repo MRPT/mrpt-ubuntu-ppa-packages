@@ -1,5 +1,5 @@
 usr/lib/*/libmrpt-math.so
 usr/lib/*/cmake/mrpt-math/*
 usr/include/mrpt/math/
-usr/share/cmake/nanoflann
+usr/share/nanoflann/cmake/
 usr/include/nanoflann.hpp
