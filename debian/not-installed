@@ -1,0 +1,2 @@
+usr/lib/*/cmake/mrpt_*/*.cmake
+usr/lib/*/libmrpt*.a
