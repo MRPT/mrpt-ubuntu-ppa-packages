@@ -34,6 +34,10 @@ ifneq (,$(findstring mips,$(DEB_HOST_ARCH)))
   export DEB_CXXFLAGS_MAINT_APPEND += -g1
 endif
 
+# Exact version, needed for the Built-Using field:
+robotofontversion := $(shell dpkg-query -W -f '$${Version}' fonts-roboto-fontface)
+mrptversion2digits := $(shell find debian -name "libmrpt-nanogui?.?.install" | sed 's/^.*[^0-9]\([0-9]*\.[0-9]*\)\..*$$/\1/')
+
 CMAKE_FLAGS = \
 	-DMRPT_ALLOW_LGPLV3=ON \
 	$(CMAKE_ARCH_FLAGS)
@@ -44,6 +48,10 @@ CMAKE_FLAGS = \
 # Forward the CMAKE_FLAGS flags above to cmake:
 override_dh_auto_configure:
 	dh_auto_configure -- $(CMAKE_FLAGS)
+
+execute_before_dh_gencontrol:
+	echo "Using $(robotofontversion) as fonts-roboto-fontface version for debian/libmrpt-nanogui$(mrptversion2digits).substvars"
+	echo 'fonts-roboto-fontface:version=$(robotofontversion)' >> debian/libmrpt-nanogui$(mrptversion2digits).substvars
 
 # For future use?
 #override_dh_auto_build-arch:
