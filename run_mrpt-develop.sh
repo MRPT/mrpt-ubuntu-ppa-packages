@@ -44,7 +44,7 @@ cd $HOME/mrpt
 git clean -d -x -f >/dev/null
 git checkout . >/dev/null
 git pull > /dev/null
-git submodule update --init --recursive
+git submodule update --init --recursive > /dev/null
 
 # Check if there are new commit(s)?
 CURSHA=`git rev-parse HEAD`
@@ -95,4 +95,4 @@ git clean -d -x -f >/dev/null
 
 # self update:
 SCRIPT_DIR=$( cd -- "$( dirname -- $(realpath "${BASH_SOURCE[0]}") )" &> /dev/null && pwd )
-(cd $SCRIPT_DIR && git pull)
+(cd $SCRIPT_DIR && git pull > /dev/null)
