@@ -41,8 +41,8 @@ fi
 # Get latest MRPT script:
 cd $HOME/mrpt
 
-git clean -d -x -f >/dev/null
-git checkout . >/dev/null
+git clean -d -x -f > /dev/null
+git checkout . > /dev/null
 git pull > /dev/null
 git submodule update --init --recursive > /dev/null
 
@@ -91,7 +91,7 @@ rm -fr $HOME/mrpt_debian
 rm -fr $HOME/mrpt_release
 rm -fr $HOME/mrpt_ubuntu
 cd $HOME/mrpt
-git clean -d -x -f >/dev/null
+git clean -d -x -f > /dev/null
 
 # self update:
 SCRIPT_DIR=$( cd -- "$( dirname -- $(realpath "${BASH_SOURCE[0]}") )" &> /dev/null && pwd )
