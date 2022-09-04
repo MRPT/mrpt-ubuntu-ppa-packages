@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-set -x
+#set -x
 
 # to fix gpg ioctl error msg
 export GPG_TTY=$(tty)
@@ -43,8 +43,8 @@ fi
 cd $HOME/mrpt-master
 
 git clean -d -x -f > /dev/null
-git checkout . > /dev/null
-git pull > /dev/null
+git checkout . > /dev/null 2>&1
+git pull > /dev/null  2>&1
 git submodule update --init --recursive > /dev/null
 
 # Check if there are new commit(s)?
