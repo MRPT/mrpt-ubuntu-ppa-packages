@@ -24,7 +24,7 @@ endif
 
 # Unit tests can be run with target "test_legacy", or "test_gdb", which shows stack
 # traces on failure:
-MRPT_TEST_TARGET = test_gdb
+MRPT_TEST_TARGET = run_tests_mrpt_opengl_gdb
 
 # Debug info from the cmake scripts
 export VERBOSE = 1
