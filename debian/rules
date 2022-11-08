@@ -41,6 +41,7 @@ mrptversion2digits := $(shell find debian -name "libmrpt-nanogui?.?.install" | s
 CMAKE_FLAGS = \
 	-DMRPT_ALLOW_LGPLV3=ON \
 	-DMRPT_TUNE_NATIVE=OFF \
+	-DMRPT_OPENGL_PROFILER=ON \
 	$(CMAKE_ARCH_FLAGS)
 
 %:
