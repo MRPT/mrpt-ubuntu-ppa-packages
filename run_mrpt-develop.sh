@@ -82,6 +82,10 @@ if [ "$CURSHA" != "$LASTSHA" ]; then
     ./build-mrpt-deb-pkg.sh  -s -g $GITBRANCH -d kinetic
     (cd $HOME/mrpt_release && dput $PPA_URL *.changes)
 
+    # u23.04 lunar
+    ./build-mrpt-deb-pkg.sh  -s -g $GITBRANCH -d lunar
+    (cd $HOME/mrpt_release && dput $PPA_URL *.changes)
+
     # Save new commit sha:
     echo $CURSHA > $SHA_CACHE_FILE
 fi
