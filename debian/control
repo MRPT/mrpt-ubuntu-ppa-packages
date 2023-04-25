@@ -72,7 +72,7 @@ Description: ${source:Synopsis} - examples
  .
  Commented C++ examples for MRPT libraries.
 
-Package: libmrpt-apps2.8
+Package: libmrpt-apps2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -89,7 +89,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-apps2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-apps2.9 (= ${binary:Version}),
          libmrpt-slam-dev, libmrpt-gui-dev, libmrpt-tclap-dev
 Description: ${source:Synopsis} - apps development package
  ${source:Extended-Description}
@@ -97,7 +97,7 @@ Description: ${source:Synopsis} - apps development package
  Library wrapping several MRPT front-end applications.
  This package provides headers and libraries for development.
 
-Package: libmrpt-bayes2.8
+Package: libmrpt-bayes2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -114,7 +114,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-bayes2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-bayes2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-math-dev, libmrpt-config-dev
 Description: ${source:Synopsis} - bayes development package
  ${source:Extended-Description}
@@ -123,7 +123,7 @@ Description: ${source:Synopsis} - bayes development package
  This package provides headers and libraries for development.
 
 
-Package: libmrpt-comms2.8
+Package: libmrpt-comms2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -140,7 +140,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-comms2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-comms2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-io-dev
 Description: ${source:Synopsis} - comms development package
  ${source:Extended-Description}
@@ -148,7 +148,7 @@ Description: ${source:Synopsis} - comms development package
  Communication utilities: serial port, sockets, nodelets.
  This package provides headers and libraries for development.
 
-Package: libmrpt-config2.8
+Package: libmrpt-config2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -165,7 +165,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-config2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-config2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-core-dev,libmrpt-system-dev,libmrpt-expr-dev
 Description: ${source:Synopsis} - config development package
  ${source:Extended-Description}
@@ -173,7 +173,7 @@ Description: ${source:Synopsis} - config development package
  Configuration files utilities, providing an extension of the INI file format.
  This package provides headers and libraries for development.
 
-Package: libmrpt-containers2.8
+Package: libmrpt-containers2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -190,7 +190,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-containers2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-containers2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-core-dev
 Description: ${source:Synopsis} - containers development package
  ${source:Extended-Description}
@@ -198,7 +198,7 @@ Description: ${source:Synopsis} - containers development package
  A C++17 YAML class, and many other generic C++ container classes.
  This package provides headers and libraries for development.
 
-Package: libmrpt-core2.8
+Package: libmrpt-core2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -215,7 +215,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-core2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-core2.9 (= ${binary:Version}),
          libmrpt-common-dev
 Description: ${source:Synopsis} - core development package
  ${source:Extended-Description}
@@ -223,7 +223,7 @@ Description: ${source:Synopsis} - core development package
  Core functionality for all MRPT libraries.
  This package provides headers and libraries for development.
 
-Package: libmrpt-detectors2.8
+Package: libmrpt-detectors2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -240,7 +240,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-detectors2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-detectors2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-gui-dev,libmrpt-slam-dev
 Description: ${source:Synopsis} - detectors development package
  ${source:Extended-Description}
@@ -248,7 +248,7 @@ Description: ${source:Synopsis} - detectors development package
  Vision-based detector algorithms and wrappers.
  This package provides headers and libraries for development.
 
-Package: libmrpt-expr2.8
+Package: libmrpt-expr2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -265,7 +265,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-expr2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-expr2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-core-dev
 Description: ${source:Synopsis} - expr development package
  ${source:Extended-Description}
@@ -273,7 +273,7 @@ Description: ${source:Synopsis} - expr development package
  A wrapper on the expr library for dynamic mathematical expression evaluation.
  This package provides headers and libraries for development.
 
-Package: libmrpt-graphs2.8
+Package: libmrpt-graphs2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -290,7 +290,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-graphs2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-graphs2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-opengl-dev,libmrpt-poses-dev
 Description: ${source:Synopsis} - graphs development package
  ${source:Extended-Description}
@@ -298,7 +298,7 @@ Description: ${source:Synopsis} - graphs development package
  Generic graph containers and algorithms (Dijkstra, visitors, etc.).
  This package provides headers and libraries for development.
 
-Package: libmrpt-graphslam2.8
+Package: libmrpt-graphslam2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -315,7 +315,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-graphslam2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-graphslam2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-gui-dev,libmrpt-slam-dev
 Description: ${source:Synopsis} - graphslam development package
  ${source:Extended-Description}
@@ -323,7 +323,7 @@ Description: ${source:Synopsis} - graphslam development package
  Graph-SLAM implementations for pose networks.
  This package provides headers and libraries for development.
 
-Package: libmrpt-gui2.8
+Package: libmrpt-gui2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -334,7 +334,7 @@ Description: ${source:Synopsis} - gui library
  GUI utilities for displaying 2D and 3D graphics.
  This package provides the binary library file.
 
-Package: libmrpt-nanogui2.8
+Package: libmrpt-nanogui2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -352,7 +352,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-gui2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-gui2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-opengl-dev, libmrpt-nanogui-dev
 Description: ${source:Synopsis} - gui development package
  ${source:Extended-Description}
@@ -366,7 +366,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-nanogui2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-nanogui2.9 (= ${binary:Version}),
          libglfw3-dev
 Description: ${source:Synopsis} - nanogui development package
  ${source:Extended-Description}
@@ -374,7 +374,7 @@ Description: ${source:Synopsis} - nanogui development package
  Fork of the nanogui library for use into MRPT GUI classes.
  This package provides headers and libraries for development.
 
-Package: libmrpt-hwdrivers2.8
+Package: libmrpt-hwdrivers2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -391,7 +391,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-hwdrivers2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-hwdrivers2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-comms-dev, libmrpt-gui-dev,
          libmrpt-maps-dev, libmrpt-vision-dev
 Description: ${source:Synopsis} - hwdrivers development package
@@ -400,7 +400,7 @@ Description: ${source:Synopsis} - hwdrivers development package
  Classes to interface several sensors usually used in robotics.
  This package provides headers and libraries for development.
 
-Package: libmrpt-img2.8
+Package: libmrpt-img2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -417,7 +417,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-img2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-img2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-io-dev, libmrpt-math-dev,
          libmrpt-config-dev
 Description: ${source:Synopsis} - img development package
@@ -426,7 +426,7 @@ Description: ${source:Synopsis} - img development package
  A wrapper and extension to opencv image containers.
  This package provides headers and libraries for development.
 
-Package: libmrpt-io2.8
+Package: libmrpt-io2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -443,7 +443,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-io2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-io2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-system-dev
 Description: ${source:Synopsis} - io development package
  ${source:Extended-Description}
@@ -451,7 +451,7 @@ Description: ${source:Synopsis} - io development package
  Classes for file I/O.
  This package provides headers and libraries for development.
 
-Package: libmrpt-kinematics2.8
+Package: libmrpt-kinematics2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -468,7 +468,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-kinematics2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-kinematics2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-opengl-dev
 Description: ${source:Synopsis} - kinematics development package
  ${source:Extended-Description}
@@ -476,7 +476,7 @@ Description: ${source:Synopsis} - kinematics development package
  Classes representing robotic arm and mobile robot kinematics.
  This package provides headers and libraries for development.
 
-Package: libmrpt-maps2.8
+Package: libmrpt-maps2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -493,7 +493,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-maps2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-maps2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-obs-dev, libmrpt-graphs-dev
 Description: ${source:Synopsis} - maps development package
  ${source:Extended-Description}
@@ -501,7 +501,7 @@ Description: ${source:Synopsis} - maps development package
  Different metric map classes used in mobile robotics.
  This package provides headers and libraries for development.
 
-Package: libmrpt-math2.8
+Package: libmrpt-math2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -518,7 +518,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-math2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-math2.9 (= ${binary:Version}),
          libsuitesparse-dev, libeigen3-dev, libmrpt-serialization-dev,
          libmrpt-random-dev, libmrpt-system-dev, libnanoflann-dev,
          libmrpt-common-dev
@@ -528,7 +528,7 @@ Description: ${source:Synopsis} - math development package
  Geometry and mathematical utilities, tailored to mobile robotics.
  This package provides headers and libraries for development.
 
-Package: libmrpt-nav2.8
+Package: libmrpt-nav2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -545,7 +545,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-nav2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-nav2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-kinematics-dev, libmrpt-maps-dev
 Description: ${source:Synopsis} - nav development package
  ${source:Extended-Description}
@@ -553,7 +553,7 @@ Description: ${source:Synopsis} - nav development package
  Autonomous navigation algorithms for mobile robots.
  This package provides headers and libraries for development.
 
-Package: libmrpt-obs2.8
+Package: libmrpt-obs2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -570,7 +570,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-obs2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-obs2.9 (= ${binary:Version}),
         libmrpt-common-dev, libmrpt-opengl-dev, libmrpt-tfest-dev
 Description: ${source:Synopsis} - obs development package
  ${source:Extended-Description}
@@ -578,7 +578,7 @@ Description: ${source:Synopsis} - obs development package
  Classes representing different kinds of sensor observations in robotics.
  This package provides headers and libraries for development.
 
-Package: libmrpt-opengl2.8
+Package: libmrpt-opengl2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -595,7 +595,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-opengl2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-opengl2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-poses-dev, libmrpt-img-dev
 Description: ${source:Synopsis} - opengl development package
  ${source:Extended-Description}
@@ -603,7 +603,7 @@ Description: ${source:Synopsis} - opengl development package
  Graphic primitives and 3D rendering engine tailored for robotics applications.
  This package provides headers and libraries for development.
 
-Package: libmrpt-poses2.8
+Package: libmrpt-poses2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -621,7 +621,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-poses2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-poses2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-bayes-dev
 Description: ${source:Synopsis} - poses development package
  ${source:Extended-Description}
@@ -630,7 +630,7 @@ Description: ${source:Synopsis} - poses development package
  probabilistic distributions over them and Lie group utilities.
  This package provides headers and libraries for development.
 
-Package: libmrpt-random2.8
+Package: libmrpt-random2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -647,7 +647,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-random2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-random2.9 (= ${binary:Version}),
          libmrpt-common-dev
 Description: ${source:Synopsis} - random development package
  ${source:Extended-Description}
@@ -655,7 +655,7 @@ Description: ${source:Synopsis} - random development package
  Portable pseudorandom generators and probability distribution utilities.
  This package provides headers and libraries for development.
 
-Package: libmrpt-rtti2.8
+Package: libmrpt-rtti2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -672,7 +672,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-rtti2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-rtti2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-core-dev, libmrpt-typemeta-dev
 Description: ${source:Synopsis} - rtti development package
  ${source:Extended-Description}
@@ -680,7 +680,7 @@ Description: ${source:Synopsis} - rtti development package
  Portable RTTI library.
  This package provides headers and libraries for development.
 
-Package: libmrpt-ros1bridge2.8
+Package: libmrpt-ros1bridge2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -697,7 +697,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-ros1bridge2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-ros1bridge2.9 (= ${binary:Version}),
         libmrpt-maps-dev, libgeometry-msgs-dev, libroscpp-dev,
         libsensor-msgs-dev, libstereo-msgs-dev, libtf2-msgs-dev, librosbag-storage-dev,
         libcv-bridge-dev, libtf2-dev
@@ -707,7 +707,7 @@ Description: ${source:Synopsis} - ros1bridge development package
  Converters between MRPT and ROS1 classes.
  This package provides headers and libraries for development.
 
-Package: libmrpt-serialization2.8
+Package: libmrpt-serialization2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -725,7 +725,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-serialization2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-serialization2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-rtti-dev
 Description: ${source:Synopsis} - serialization development package
  ${source:Extended-Description}
@@ -734,7 +734,7 @@ Description: ${source:Synopsis} - serialization development package
  plain-text storage formats.
  This package provides headers and libraries for development.
 
-Package: libmrpt-slam2.8
+Package: libmrpt-slam2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -751,7 +751,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-slam2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-slam2.9 (= ${binary:Version}),
         libmrpt-common-dev, libmrpt-maps-dev, libmrpt-vision-dev
 Description: ${source:Synopsis} - slam development package
  ${source:Extended-Description}
@@ -759,7 +759,7 @@ Description: ${source:Synopsis} - slam development package
  A collection of SLAM algorithms for mobile robot mapping.
  This package provides headers and libraries for development.
 
-Package: libmrpt-system2.8
+Package: libmrpt-system2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -776,7 +776,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-system2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-system2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-typemeta-dev, libmrpt-containers-dev
 Description: ${source:Synopsis} - system development package
  ${source:Extended-Description}
@@ -797,7 +797,7 @@ Description: ${source:Synopsis} - tclap development package
  Forked version of the tclap library for use in mrpt applications.
  This package provides a header-only  library.
 
-Package: libmrpt-tfest2.8
+Package: libmrpt-tfest2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -815,7 +815,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-tfest2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-tfest2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-poses-dev
 Description: ${source:Synopsis} - tfest development package
  ${source:Extended-Description}
@@ -824,7 +824,7 @@ Description: ${source:Synopsis} - tfest development package
  poses from sets of pairwise point correspondences.
  This package provides headers and libraries for development.
 
-Package: libmrpt-topography2.8
+Package: libmrpt-topography2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -841,7 +841,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-topography2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-topography2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-obs-dev
 Description: ${source:Synopsis} - topography development package
  ${source:Extended-Description}
@@ -863,7 +863,7 @@ Description: ${source:Synopsis} - typemeta development package
  types to text conversion, etc.
  This package provides a header-only  library.
 
-Package: libmrpt-vision2.8
+Package: libmrpt-vision2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -880,7 +880,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-vision2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-vision2.9 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-obs-dev
 Description: ${source:Synopsis} - vision development package
  ${source:Extended-Description}
@@ -888,7 +888,7 @@ Description: ${source:Synopsis} - vision development package
  Computer vision algorithms.
  This package provides headers and libraries for development.
 
-Package: libmrpt-vision-lgpl2.8
+Package: libmrpt-vision-lgpl2.9
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -905,7 +905,7 @@ Architecture: any
 Multi-Arch: same
 Breaks: libmrpt-dev (<< 1:2)
 Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-vision2.8 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-vision2.9 (= ${binary:Version}),
          libmrpt-vision-dev
 Description: ${source:Synopsis} - vision-lgpl development package
  ${source:Extended-Description}
