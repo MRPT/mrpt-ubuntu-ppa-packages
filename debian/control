@@ -374,31 +374,6 @@ Description: ${source:Synopsis} - nanogui development package
  Fork of the nanogui library for use into MRPT GUI classes.
  This package provides headers and libraries for development.
 
-Package: libmrpt-hmtslam2.8
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - hmtslam library
- ${source:Extended-Description}
- .
- Hybrid Metric Topological (HMT) SLAM reference implementation.
- This package provides the binary library file.
-
-Package: libmrpt-hmtslam-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Breaks: libmrpt-dev (<< 1:2)
-Replaces: libmrpt-dev (<< 1:2)
-Depends: ${misc:Depends},libmrpt-hmtslam2.8 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-graphslam-dev
-Description: ${source:Synopsis} - hmtslam development package
- ${source:Extended-Description}
- .
- Hybrid Metric Topological (HMT) SLAM reference implementation.
- This package provides headers and libraries for development.
-
 Package: libmrpt-hwdrivers2.8
 Section: libs
 Architecture: any
@@ -966,7 +941,6 @@ Depends: ${misc:Depends},
          libmrpt-graphslam-dev (>= ${binary:Version}),
          libmrpt-gui-dev (>= ${binary:Version}),
          libmrpt-nanogui-dev (>= ${binary:Version}),
-         libmrpt-hmtslam-dev (>= ${binary:Version}),
          libmrpt-hwdrivers-dev (>= ${binary:Version}),
          libmrpt-img-dev (>= ${binary:Version}),
          libmrpt-io-dev (>= ${binary:Version}),
