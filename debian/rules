@@ -41,7 +41,6 @@ mrptversion2digits := $(shell find debian -name "libmrpt-nanogui?.?.install" | s
 CMAKE_FLAGS = \
 	-DMRPT_ALLOW_LGPLV3=ON \
 	-DMRPT_TUNE_NATIVE=OFF \
-	-DMRPT_DISABLE_PYTHON_BINDINGS=ON \
 	$(CMAKE_ARCH_FLAGS)
 
 %:
@@ -55,11 +54,10 @@ execute_before_dh_gencontrol:
 	echo "Using $(robotofontversion) as fonts-roboto-fontface version for debian/libmrpt-nanogui$(mrptversion2digits).substvars"
 	echo 'fonts-roboto-fontface:version=$(robotofontversion)' >> debian/libmrpt-nanogui$(mrptversion2digits).substvars
 
-# For future use?
 #override_dh_auto_build-arch:
 #	dh_auto_build -O--buildsystem=cmake
 #	# Python bindings:
-#	dh_python3 --package=python3-mrpt
+#	dh_python3 --package=python3-pymrpt
 
 override_dh_auto_build-indep:
 	# Build doc targets:
