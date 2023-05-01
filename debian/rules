@@ -54,11 +54,10 @@ execute_before_dh_gencontrol:
 	echo "Using $(robotofontversion) as fonts-roboto-fontface version for debian/libmrpt-nanogui$(mrptversion2digits).substvars"
 	echo 'fonts-roboto-fontface:version=$(robotofontversion)' >> debian/libmrpt-nanogui$(mrptversion2digits).substvars
 
-# For future use?
 #override_dh_auto_build-arch:
 #	dh_auto_build -O--buildsystem=cmake
 #	# Python bindings:
-#	dh_python3 --package=python3-mrpt
+#	dh_python3 --package=python3-pymrpt
 
 override_dh_auto_build-indep:
 	# Build doc targets:
