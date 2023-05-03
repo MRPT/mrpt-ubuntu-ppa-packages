@@ -48,11 +48,6 @@ Copyright: 2005-2022, Jose-Luis Blanco-Claraco
          2005-2021, MAPIR group, University of Malaga
 License: BSD-3-clause
 
-Files: cmakemodules/Findlibusb-1.0.cmake
-Copyright: 2008, Kyle Machulis <kyle@nonpolynomial.com>
-         2006, Andreas Schneider <mail@cynapses.org>
-License: BSD-3-clause
-
 Files: cmakemodules/FindEGL.cmake
 Copyright: 2014, Alex Merry <alex.merry@kde.org>
            2014, Martin Gräßlin <mgraesslin@kde.org>
