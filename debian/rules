@@ -5,7 +5,7 @@
 include /usr/share/dpkg/architecture.mk
 
 # Required to avoid hardening-no-bindnow lintian message:
-export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all,optimize=+lto
 
 # default: dont build expensive caller graphs with dot in the documentation pkg
 export MRPT_genCALLERGRAPHS=NO
@@ -36,7 +36,7 @@ endif
 
 # Exact version, needed for the Built-Using field:
 robotofontversion := $(shell dpkg-query -W -f '$${Version}' fonts-roboto-fontface)
-mrptversion2digits := $(shell find debian -name "libmrpt-nanogui?.?.install" | sed 's/^.*[^0-9]\([0-9]*\.[0-9]*\)\..*$$/\1/')
+mrptversion2digits := $(shell find debian -name "libmrpt-nanogui?.*.install" | sed 's/^.*[^0-9]\([0-9]*\.[0-9]*\)\..*$$/\1/')
 
 CMAKE_FLAGS = \
 	-DMRPT_ALLOW_LGPLV3=ON \
@@ -54,19 +54,25 @@ execute_before_dh_gencontrol:
 	echo "Using $(robotofontversion) as fonts-roboto-fontface version for debian/libmrpt-nanogui$(mrptversion2digits).substvars"
 	echo 'fonts-roboto-fontface:version=$(robotofontversion)' >> debian/libmrpt-nanogui$(mrptversion2digits).substvars
 
-#override_dh_auto_build-arch:
-#	dh_auto_build -O--buildsystem=cmake
-#	# Python bindings:
-#	dh_python3 --package=python3-pymrpt
+override_dh_auto_build-arch:
+	dh_auto_build -O--buildsystem=cmake
+	# Python bindings:
+	dh_python3 --package=python3-pymrpt
 
 override_dh_auto_build-indep:
 	# Build doc targets:
+	# For both, arch dependent and independent targets, build "all".
+	# This is to prevent future "make install" or "make test" to fail due to
+	# not built targets.
 	dh_auto_build -O--buildsystem=cmake -- \
 		man_pages_all \
-		documentation_psgz_guides
+		documentation_psgz_guides \
+		all
 
 	# clean useless doxygen files:
 	find $(CURDIR)/doc/ -name '*.md5' | xargs -I FIL rm FIL
 
 override_dh_auto_test:
 	dh_auto_build -O--buildsystem=cmake -- $(MRPT_TEST_TARGET)
+	# After running the python tests, we can strip the rpath of pymrpt:
+	find . -name "pymrpt.*.so" | xargs -I FIL chrpath --delete FIL
