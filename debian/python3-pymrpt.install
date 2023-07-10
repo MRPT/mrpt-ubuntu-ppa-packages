@@ -1,1 +1,6 @@
-usr/lib/python*
+usr/lib/python3/dist-packages/mrpt/py.typed
+usr/lib/python3/dist-packages/mrpt-*.dist-info/
+usr/lib/python3/dist-packages/mrpt/*.so
+usr/lib/python3/dist-packages/mrpt/*.py
+usr/lib/python3/dist-packages/mrpt/*.pyi
+usr/lib/python3/dist-packages/mrpt/pymrpt/

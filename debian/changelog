@@ -1,10 +1,256 @@
-mrpt (1:2.4.0~20211117-0118-git-5c2c69a6~focal-1) focal; urgency=medium
+mrpt (1:2.10.0+ds-1) unstable; urgency=medium
+
+  * update install files and d/control for 2.10 version
+  * Add new python3-pymrpt package
+  * d/copyright: Remove file now not shipped upstream
+  * d/watch: Update to handle two-digits versions
+  * Fix build errors with gcc-13 (Closes: #1037783)
+  * d/control: Remove obsolete Breaks/Replace entries
+  * d/control: Fix wrong package name (Closes: #1035446)
+  * Removed the binary and "-dev" packages for mrpt-hmtslam (library
+    deleted upstream).
+  * New upstream version 2.10.0+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sun, 09 Jul 2023 10:08:05 +0200
+
+mrpt (1:2.6.0+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.6.0+ds
+  * Update d/* files for the 2.6 package suffix
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Thu, 12 Jan 2023 19:38:22 +0100
+
+mrpt (1:2.5.8+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.5.8+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sat, 07 Jan 2023 19:54:26 +0100
+
+mrpt (1:2.5.7+ds-1) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Remove constraints unnecessary since buster (oldstable)
+
+  [ Jose Luis Blanco Claraco ]
+  * New upstream version 2.5.7+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Fri, 25 Nov 2022 18:19:48 +0100
+
+mrpt (1:2.5.6+ds-1) unstable; urgency=medium
+
+  * Adapt changed build-dep name freeglut-dev to libglut-dev
+  * Remove debian/patches
+  * New upstream version 2.5.6+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sat, 12 Nov 2022 08:39:12 +0100
+
+mrpt (1:2.5.5+ds-2) unstable; urgency=medium
+
+  * Add patch to disable invalid unit tests on 32bit ARM architectures.
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Tue, 25 Oct 2022 01:00:39 +0200
+
+mrpt (1:2.5.5+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.5.5+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Wed, 19 Oct 2022 10:14:46 +0200
+
+mrpt (1:2.5.4+ds-1) unstable; urgency=medium
+
+  * fix uscan after recent github web change
+  * New upstream version 2.5.4+ds
+  * delete patches (not merged upstream)
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sat, 24 Sep 2022 12:46:03 +0200
+
+mrpt (1:2.5.3+ds-4) unstable; urgency=medium
+
+  * Disable MRPT_TUNE_NATIVE (-mtune=native)
+  * Patch from upstream: Do not explicitly add the -O3 flag.
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Fri, 16 Sep 2022 22:21:44 +0000
+
+mrpt (1:2.5.3+ds-3) unstable; urgency=medium
+
+  * Add patch to fix FTBFS in hppa build servers (Closes: #1019878).
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Thu, 15 Sep 2022 21:46:37 +0200
+
+mrpt (1:2.5.3+ds-2) unstable; urgency=medium
+
+  * Upgrade build-dep to wxWidgets 3.2 (Closes: #1019770).
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Thu, 15 Sep 2022 02:57:48 +0200
+
+mrpt (1:2.5.3+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.5.3+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Tue, 06 Sep 2022 15:59:06 +0200
+
+mrpt (1:2.5.2+ds-2) unstable; urgency=medium
+
+  * Disable building embedded version of libfreenect
+  * Remove d/patches (already integrated upstream)
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Tue, 30 Aug 2022 16:17:25 +0200
+
+mrpt (1:2.5.2+ds-1) unstable; urgency=medium
+
+  * Fix and enable builds with LTO optimizations (Closes: #1015550).
+  * Remove libfreenect as build dependency.
+  * New upstream version 2.5.2+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Tue, 30 Aug 2022 09:45:27 +0200
+
+mrpt (1:2.5.1+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.5.1+ds
+  * Add patch to fix FTBFS error on i386.
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Thu, 19 Aug 2022 22:47:00 +0200
+
+mrpt (1:2.5.0+ds-2) unstable; urgency=medium
+
+  * Team upload.
+  * Upload to unstable.
+
+ -- Jochen Sprickerhof <jspricke@debian.org>  Fri, 22 Jul 2022 08:04:27 +0200
+
+mrpt (1:2.5.0+ds-1) experimental; urgency=medium
+
+  * New upstream version 2.5.0+ds
+  * Update to 2.5 major-minor version
+  * Newer standards version
+  * Remove d/patches, now integrated upstream
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Mon, 18 Jul 2022 01:48:13 +0200
+
+mrpt (1:2.4.9+ds-4) unstable; urgency=medium
+
+  * Team upload.
+  * Fix ROS 1 detection logic
+
+ -- Jochen Sprickerhof <jspricke@debian.org>  Fri, 17 Jun 2022 16:13:50 +0200
+
+mrpt (1:2.4.9+ds-3) unstable; urgency=medium
+
+  * Team upload.
+  * Add patch for new class-loader/pluginlib
+
+ -- Jochen Sprickerhof <jspricke@debian.org>  Fri, 17 Jun 2022 15:39:47 +0200
+
+mrpt (1:2.4.9+ds-2) unstable; urgency=medium
+
+  * Add patch fixing build farm timeouts
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Fri, 17 Jun 2022 08:13:44 +0200
+
+mrpt (1:2.4.9+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.4.9+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Wed, 08 Jun 2022 00:04:55 +0200
+
+mrpt (1:2.4.8+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.4.8+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sun, 29 May 2022 23:58:27 +0200
+
+mrpt (1:2.4.4+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.4.4+ds
+  * Remove debian/patches since they were already integrated upstream.
+
+ -- Jose Luis Blanco-Claraco <joseluisblancoc@gmail.com>  Sat, 07 May 2022 08:44:46 +0200
+
+mrpt (1:2.4.3+ds-1) unstable; urgency=medium
+
+  * Exclude libfyaml from upstream release tarballs (added via build-dep)
+  * Add libfyaml-dev as a build-dep.
+  * Remove former patches for failing unit tests (already integrated upstream in 2.4.3)
+  * Add patches from upstream to allow detecting and using libfyaml-dev
+  * New upstream version 2.4.3+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sun, 27 Feb 2022 23:57:30 +0100
+
+mrpt (1:2.4.2+ds-2) unstable; urgency=medium
+
+  [ Jose Luis Blanco Claraco ]
+  * Add patches to avoid MIPS & PPC test crash.
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sat, 05 Feb 2022 10:04:19 +0100
+
+mrpt (1:2.4.2+ds-1) unstable; urgency=medium
+
+  [ Jose Luis Blanco Claraco ]
+  * Fix FTBFS with ffmpeg 5.0 (Closes: #1004585)
+  * New upstream version 2.4.2+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Thu, 03 Feb 2022 13:37:09 +0100
+
+mrpt (1:2.4.1+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.4.1+ds
+  * d/copyrigh: remove the llvm files excluded files (deleted upstream)
+  * Remove d/patches: they were upstream commits, not needed anymore now.
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Wed, 05 Jan 2022 06:28:53 +0100
+
+mrpt (1:2.4.0+ds-4) unstable; urgency=medium
+
+  [ Jose Luis Blanco Claraco ]
+  * Add "Multi-Arch:" to all packages.
+  * Fix arch independent builds.
+  * Revert expat->mit for metadata XML files.
+  * Simplify and fix d/rules for -A builds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Tue, 28 Dec 2021 15:51:00 +0100
+
+mrpt (1:2.4.0+ds-3) unstable; urgency=medium
+
+  [ Jose Luis Blanco Claraco ]
+  * fix arch all builds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Tue, 28 Dec 2021 02:56:38 +0100
+
+mrpt (1:2.4.0+ds-2) unstable; urgency=medium
+
+  [ Jose Luis Blanco Claraco ]
+  * consistent name spelling
+  * Release to unstable.
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sat, 25 Dec 2021 11:19:35 +0100
+
+mrpt (1:2.4.0+ds-1) experimental; urgency=medium
+
+  [ Jochen Sprickerhof ]
+  * Update some metadata
+  * Fix duplicate R³
+  * Drop wrong Vcs entries
+
+  [ Jose Luis Blanco Claraco ]
+  * Add AUTHORS file, referenced in d/copyright
+  * Bump debhelper-compat to v13
+  * simplify d/rules
+  * Remove obsolete build dependencies.
+  * Update d/control package version numbers.
+  * Make dh_missing to ignore private libraries
+  * install mime types
+  * Enforce hardening=+all
+  * New upstream version 2.4.0+ds (repacking to exclude 3rdparty libraries)
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Thu, 16 Dec 2021 09:47:32 +0000
+
+mrpt (1:2.2.0-2) unstable; urgency=medium
 
   * Remove build-dep on debhelper.
   * Bump Debian standars to 4.6.0.
   * Add more fields to debian/control.
 
- -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Wed, 17 Nov 2021 00:26:44 +0100
+ -- José Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sat, 16 Oct 2021 22:46:00 +0200
 
 mrpt (1:2.2.0-1) experimental; urgency=medium
 

@@ -1,2 +1,3 @@
 usr/lib/*/cmake/mrpt_*/*.cmake
 usr/lib/*/libmrpt*.a
+usr/lib/python3/dist-packages/mrpt/__pycache__/
