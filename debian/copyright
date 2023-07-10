@@ -14,8 +14,8 @@ Files-Excluded: 3rdparty/glew
               3rdparty/nanogui/resources/Roboto-*.ttf
 
 Files: *
-Copyright: 2005-2022, Jose-Luis Blanco-Claraco
-         2012-2022, University of Almeria
+Copyright: 2005-2023, Jose-Luis Blanco-Claraco
+         2012-2023, University of Almeria
          2022, Miguel Castillón (University of Girona)
          2016-2019, Hunter Laux
          2016-2019, Nikos Koukis (National Technical University of Athens)
