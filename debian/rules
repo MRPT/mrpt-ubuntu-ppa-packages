@@ -22,17 +22,20 @@ else
 CMAKE_ARCH_FLAGS = -DMRPT_AUTODETECT_SIMD=OFF
 endif
 
+# Avoid memory exhaustion on build farms for mips* archs
+ifneq (,$(findstring mips,$(DEB_HOST_ARCH)))
+# Avoid LTO in python module:
+CMAKE_ARCH_FLAGS += -DMRPT_PYBIND11_WITH_LTO=OFF
+# Minimize debug symbols:
+export DEB_CXXFLAGS_MAINT_APPEND += -g1
+endif
+
 # Unit tests can be run with target "test_legacy", or "test_gdb", which shows stack
 # traces on failure:
 MRPT_TEST_TARGET = test_legacy
 
 # Debug info from the cmake scripts
 export VERBOSE = 1
-
-# Avoid running out of memory on mipsel,mips64el
-ifneq (,$(findstring mips,$(DEB_HOST_ARCH)))
-  export DEB_CXXFLAGS_MAINT_APPEND += -g1
-endif
 
 # Exact version, needed for the Built-Using field:
 robotofontversion := $(shell dpkg-query -W -f '$${Version}' fonts-roboto-fontface)
@@ -44,7 +47,7 @@ CMAKE_FLAGS = \
 	$(CMAKE_ARCH_FLAGS)
 
 %:
-	dh $@ --buildsystem=cmake
+	dh $@ --with python3 --buildsystem=cmake
 
 # Forward the CMAKE_FLAGS flags above to cmake:
 override_dh_auto_configure:

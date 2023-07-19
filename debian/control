@@ -957,8 +957,7 @@ Description: ${source:Synopsis} - Console and GUI applications
 Package: python3-pymrpt
 Section: python
 Architecture: any
-Multi-Arch: same
-Depends: python3, ${misc:Depends}, ${python3:Depends}, ${shlibs:Depends}
+Depends: ${misc:Depends}, ${python3:Depends}, ${shlibs:Depends}
 Description: Python wrapper for MRPT
  ${source:Extended-Description}
  .
