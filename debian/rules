@@ -46,8 +46,10 @@ CMAKE_FLAGS = \
 	-DMRPT_TUNE_NATIVE=OFF \
 	$(CMAKE_ARCH_FLAGS)
 
+export PYBUILD_SYSTEM=cmake
+
 %:
-	dh $@ --with python3 --buildsystem=cmake
+	dh $@ --buildsystem=pybuild
 
 # Forward the CMAKE_FLAGS flags above to cmake:
 override_dh_auto_configure:
