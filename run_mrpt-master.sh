@@ -66,10 +66,6 @@ if [ "$CURSHA" != "$LASTSHA" ]; then
     git clone https://github.com/MRPT/mrpt-ubuntu-ppa-packages.git
     cd mrpt-ubuntu-ppa-packages
 
-    # u18.04 bionic:
-    MRPT_PKG_EXPORTED_SUBMODULES="nanoflann simpleini" ./build-mrpt-deb-pkg.sh  -s -g $GITBRANCH -d bionic
-    (cd $HOME/mrpt_release && dput $PPA_URL *.changes)
-
     # u20.04 focal:
     MRPT_PKG_EXPORTED_SUBMODULES="nanoflann" ./build-mrpt-deb-pkg.sh  -s -g $GITBRANCH -d focal
     (cd $HOME/mrpt_release && dput $PPA_URL *.changes)
@@ -80,6 +76,10 @@ if [ "$CURSHA" != "$LASTSHA" ]; then
 
     # u23.04 lunar:
     ./build-mrpt-deb-pkg.sh  -s -g $GITBRANCH -d lunar
+    (cd $HOME/mrpt_release && dput $PPA_URL *.changes)
+
+    # u23.10 mantic:
+    ./build-mrpt-deb-pkg.sh  -s -g $GITBRANCH -d mantic
     (cd $HOME/mrpt_release && dput $PPA_URL *.changes)
 
     # Save new commit sha:
