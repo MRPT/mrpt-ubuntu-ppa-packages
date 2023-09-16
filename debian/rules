@@ -52,18 +52,9 @@ export PYBUILD_CONFIGURE_ARGS=$(CMAKE_FLAGS)
 %:
 	dh $@ --buildsystem=pybuild
 
-# Forward the CMAKE_FLAGS flags above to cmake:
-override_dh_auto_configure:
-	dh_auto_configure
-
 execute_before_dh_gencontrol:
 	echo "Using $(robotofontversion) as fonts-roboto-fontface version for debian/libmrpt-nanogui$(mrptversion2digits).substvars"
 	echo 'fonts-roboto-fontface:version=$(robotofontversion)' >> debian/libmrpt-nanogui$(mrptversion2digits).substvars
-
-override_dh_auto_build-arch:
-	dh_auto_build
-	# Python bindings:
-	dh_python3 --package=python3-pymrpt
 
 override_dh_auto_build-indep:
 	# Build doc targets:
