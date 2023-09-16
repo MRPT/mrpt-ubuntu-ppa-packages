@@ -43,28 +43,23 @@ CMAKE_FLAGS = \
 	-DMRPT_TUNE_NATIVE=OFF \
 	$(CMAKE_ARCH_FLAGS)
 
-%:
-	dh $@ --buildsystem=cmake
+export PYBUILD_SYSTEM=cmake
+export PYBUILD_CONFIGURE_ARGS=$(CMAKE_FLAGS)
 
-# Forward the CMAKE_FLAGS flags above to cmake:
-override_dh_auto_configure:
-	dh_auto_configure -- $(CMAKE_FLAGS)
+%:
+	dh $@ --buildsystem=pybuild
 
 execute_before_dh_gencontrol:
 	echo "Using $(robotofontversion) as fonts-roboto-fontface version for debian/libmrpt-nanogui$(mrptversion2digits).substvars"
 	echo 'fonts-roboto-fontface:version=$(robotofontversion)' >> debian/libmrpt-nanogui$(mrptversion2digits).substvars
-
-override_dh_auto_build-arch:
-	dh_auto_build -O--buildsystem=cmake
-	# Python bindings:
-	dh_python3 --package=python3-pymrpt
 
 override_dh_auto_build-indep:
 	# Build doc targets:
 	# For both, arch dependent and independent targets, build "all".
 	# This is to prevent future "make install" or "make test" to fail due to
 	# not built targets.
-	dh_auto_build -O--buildsystem=cmake -- \
+	# -O--buildsystem=cmake
+	dh_auto_build \
 		man_pages_all \
 		documentation_psgz_guides \
 		all
@@ -73,6 +68,7 @@ override_dh_auto_build-indep:
 	find $(CURDIR)/doc/ -name '*.md5' | xargs -I FIL rm FIL
 
 override_dh_auto_test:
-	dh_auto_build -O--buildsystem=cmake -- $(MRPT_TEST_TARGET)
+	# -O--buildsystem=cmake
+	dh_auto_build $(MRPT_TEST_TARGET)
 	# After running the python tests, we can strip the rpath of pymrpt:
 	find . -name "pymrpt.*.so" | xargs -I FIL chrpath --delete FIL
