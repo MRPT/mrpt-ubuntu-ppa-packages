@@ -82,6 +82,10 @@ if [ "$CURSHA" != "$LASTSHA" ]; then
     ./build-mrpt-deb-pkg.sh  -s -g $GITBRANCH -d mantic
     (cd $HOME/mrpt_release && dput $PPA_URL *.changes)
 
+    # u24.04 noble
+    ./build-mrpt-deb-pkg.sh  -s -g $GITBRANCH -d noble
+    (cd $HOME/mrpt_release && dput $PPA_URL *.changes)
+
     # Save new commit sha:
     echo $CURSHA > $SHA_CACHE_FILE
 fi
