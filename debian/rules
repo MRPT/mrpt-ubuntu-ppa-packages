@@ -20,19 +20,17 @@ ifeq ($(DEB_HOST_ARCH),amd64)
 CMAKE_ARCH_FLAGS = -DMRPT_AUTODETECT_SIMD=OFF -DENABLE_SSE2=ON -DENABLE_SSE3=ON
 else
 CMAKE_ARCH_FLAGS = -DMRPT_AUTODETECT_SIMD=OFF
-endif
 
-# Unit tests can be run with target "test_legacy", or "test_gdb", which shows stack
-# traces on failure:
-MRPT_TEST_TARGET = test_legacy
+# Avoid memory exhaustion on build farms for mips* archs
+ifneq (,$(findstring mips,$(DEB_HOST_ARCH)))
+# Avoid LTO in python module:
+CMAKE_ARCH_FLAGS += -DMRPT_PYBIND11_WITH_LTO=OFF
+# Minimize debug symbols:
+export DEB_CXXFLAGS_MAINT_APPEND += -g1
+endif
 
 # Debug info from the cmake scripts
 export VERBOSE = 1
-
-# Avoid running out of memory on mipsel,mips64el
-ifneq (,$(findstring mips,$(DEB_HOST_ARCH)))
-  export DEB_CXXFLAGS_MAINT_APPEND += -g1
-endif
 
 # Exact version, needed for the Built-Using field:
 robotofontversion := $(shell dpkg-query -W -f '$${Version}' fonts-roboto-fontface)
@@ -40,39 +38,39 @@ mrptversion2digits := $(shell find debian -name "libmrpt-nanogui?.*.install" | s
 
 CMAKE_FLAGS = \
 	-DMRPT_ALLOW_LGPLV3=ON \
+	-DMRPT_WITH_KINECT=OFF \
 	-DMRPT_TUNE_NATIVE=OFF \
 	$(CMAKE_ARCH_FLAGS)
 
 %:
-	dh $@ --buildsystem=cmake
-
-# Forward the CMAKE_FLAGS flags above to cmake:
-override_dh_auto_configure:
-	dh_auto_configure -- $(CMAKE_FLAGS)
+	dh $@ --buildsystem=pybuild
 
 execute_before_dh_gencontrol:
 	echo "Using $(robotofontversion) as fonts-roboto-fontface version for debian/libmrpt-nanogui$(mrptversion2digits).substvars"
 	echo 'fonts-roboto-fontface:version=$(robotofontversion)' >> debian/libmrpt-nanogui$(mrptversion2digits).substvars
-
-override_dh_auto_build-arch:
-	dh_auto_build -O--buildsystem=cmake
-	# Python bindings:
-	dh_python3 --package=python3-pymrpt
 
 override_dh_auto_build-indep:
 	# Build doc targets:
 	# For both, arch dependent and independent targets, build "all".
 	# This is to prevent future "make install" or "make test" to fail due to
 	# not built targets.
-	dh_auto_build -O--buildsystem=cmake -- \
+	dh_auto_build \
 		man_pages_all \
-		documentation_psgz_guides \
 		all
 
 	# clean useless doxygen files:
 	find $(CURDIR)/doc/ -name '*.md5' | xargs -I FIL rm FIL
 
-override_dh_auto_test:
-	dh_auto_build -O--buildsystem=cmake -- $(MRPT_TEST_TARGET)
+execute_after_dh_auto_test:
 	# After running the python tests, we can strip the rpath of pymrpt:
 	find . -name "pymrpt.*.so" | xargs -I FIL chrpath --delete FIL
+
+execute_after_dh_auto_install:
+	# Manually merge the different pymrpt*.so files from:
+	# - debian/tmp/usr/lib/python3.*/{mrpt,mrpt-2.11.3.dist-info}
+	# into: 
+	# - debian/tmp/usr/lib/python3/dist-packages/*
+	#
+	mkdir -p debian/tmp/usr/lib/python3/dist-packages/
+	cp -rv debian/tmp/usr/lib/python3.*/mrpt* debian/tmp/usr/lib/python3/dist-packages/
+	rm -fr debian/tmp/usr/lib/python3.*/mrpt*
