@@ -20,7 +20,6 @@ ifeq ($(DEB_HOST_ARCH),amd64)
 CMAKE_ARCH_FLAGS = -DMRPT_AUTODETECT_SIMD=OFF -DENABLE_SSE2=ON -DENABLE_SSE3=ON
 else
 CMAKE_ARCH_FLAGS = -DMRPT_AUTODETECT_SIMD=OFF
-endif
 
 # Avoid memory exhaustion on build farms for mips* archs
 ifneq (,$(findstring mips,$(DEB_HOST_ARCH)))
@@ -29,10 +28,6 @@ CMAKE_ARCH_FLAGS += -DMRPT_PYBIND11_WITH_LTO=OFF
 # Minimize debug symbols:
 export DEB_CXXFLAGS_MAINT_APPEND += -g1
 endif
-
-# Unit tests can be run with target "test_legacy", or "test_gdb", which shows stack
-# traces on failure:
-MRPT_TEST_TARGET = test_legacy
 
 # Debug info from the cmake scripts
 export VERBOSE = 1
@@ -43,11 +38,9 @@ mrptversion2digits := $(shell find debian -name "libmrpt-nanogui?.*.install" | s
 
 CMAKE_FLAGS = \
 	-DMRPT_ALLOW_LGPLV3=ON \
+	-DMRPT_WITH_KINECT=OFF \
 	-DMRPT_TUNE_NATIVE=OFF \
 	$(CMAKE_ARCH_FLAGS)
-
-export PYBUILD_SYSTEM=cmake
-export PYBUILD_CONFIGURE_ARGS=$(CMAKE_FLAGS)
 
 %:
 	dh $@ --buildsystem=pybuild
@@ -61,17 +54,23 @@ override_dh_auto_build-indep:
 	# For both, arch dependent and independent targets, build "all".
 	# This is to prevent future "make install" or "make test" to fail due to
 	# not built targets.
-	# -O--buildsystem=cmake
 	dh_auto_build \
 		man_pages_all \
-		documentation_psgz_guides \
 		all
 
 	# clean useless doxygen files:
 	find $(CURDIR)/doc/ -name '*.md5' | xargs -I FIL rm FIL
 
-override_dh_auto_test:
-	# -O--buildsystem=cmake
-	dh_auto_build $(MRPT_TEST_TARGET)
+execute_after_dh_auto_test:
 	# After running the python tests, we can strip the rpath of pymrpt:
 	find . -name "pymrpt.*.so" | xargs -I FIL chrpath --delete FIL
+
+execute_after_dh_auto_install:
+	# Manually merge the different pymrpt*.so files from:
+	# - debian/tmp/usr/lib/python3.*/{mrpt,mrpt-2.11.3.dist-info}
+	# into: 
+	# - debian/tmp/usr/lib/python3/dist-packages/*
+	#
+	mkdir -p debian/tmp/usr/lib/python3/dist-packages/
+	cp -rv debian/tmp/usr/lib/python3.*/mrpt* debian/tmp/usr/lib/python3/dist-packages/
+	rm -fr debian/tmp/usr/lib/python3.*/mrpt*
