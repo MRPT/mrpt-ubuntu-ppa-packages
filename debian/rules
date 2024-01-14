@@ -20,6 +20,7 @@ ifeq ($(DEB_HOST_ARCH),amd64)
 CMAKE_ARCH_FLAGS = -DMRPT_AUTODETECT_SIMD=OFF -DENABLE_SSE2=ON -DENABLE_SSE3=ON
 else
 CMAKE_ARCH_FLAGS = -DMRPT_AUTODETECT_SIMD=OFF
+endif
 
 # Avoid memory exhaustion on build farms for mips* archs
 ifneq (,$(findstring mips,$(DEB_HOST_ARCH)))
