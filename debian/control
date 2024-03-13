@@ -952,12 +952,3 @@ Description: ${source:Synopsis} - Console and GUI applications
   - 3d-rotation-converter: A GUI tool to convert between different SO(3)
      rotation parameterizations (quaternions, Euler angles, etc.)
 
-Package: python3-pymrpt
-Section: python
-Architecture: any
-Multi-Arch: allowed
-Depends: ${misc:Depends}, ${python3:Depends}, ${shlibs:Depends}
-Description: Python wrapper for MRPT
- ${source:Extended-Description}
- .
- This package contains a Python 3 wrapper for the C++ MRPT libraries.

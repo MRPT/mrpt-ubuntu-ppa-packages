@@ -60,7 +60,7 @@ execute_before_dh_gencontrol:
 override_dh_auto_build-arch:
 	dh_auto_build -O--buildsystem=cmake
 	# Python bindings:
-	dh_python3 --package=python3-pymrpt
+	#dh_python3 --package=python3-pymrpt
 
 override_dh_auto_build-indep:
 	# Build doc targets:
