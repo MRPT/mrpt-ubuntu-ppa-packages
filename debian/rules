@@ -65,7 +65,6 @@ override_dh_auto_build-indep:
 	# -O--buildsystem=cmake
 	dh_auto_build \
 		man_pages_all \
-		documentation_psgz_guides \
 		all
 
 	# clean useless doxygen files:
