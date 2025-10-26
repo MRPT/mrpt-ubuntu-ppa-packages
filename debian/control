@@ -66,7 +66,7 @@ Description: ${source:Synopsis} - examples
  .
  Commented C++ examples for MRPT libraries.
 
-Package: libmrpt-apps2.13
+Package: libmrpt-apps2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -81,7 +81,7 @@ Package: libmrpt-apps-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-apps2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-apps2.15 (= ${binary:Version}),
          libmrpt-slam-dev, libmrpt-gui-dev, libmrpt-tclap-dev
 Description: ${source:Synopsis} - apps development package
  ${source:Extended-Description}
@@ -89,7 +89,7 @@ Description: ${source:Synopsis} - apps development package
  Library wrapping several MRPT front-end applications.
  This package provides headers and libraries for development.
 
-Package: libmrpt-bayes2.13
+Package: libmrpt-bayes2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -104,7 +104,7 @@ Package: libmrpt-bayes-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-bayes2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-bayes2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-math-dev, libmrpt-config-dev
 Description: ${source:Synopsis} - bayes development package
  ${source:Extended-Description}
@@ -113,7 +113,7 @@ Description: ${source:Synopsis} - bayes development package
  This package provides headers and libraries for development.
 
 
-Package: libmrpt-comms2.13
+Package: libmrpt-comms2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -128,7 +128,7 @@ Package: libmrpt-comms-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-comms2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-comms2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-io-dev
 Description: ${source:Synopsis} - comms development package
  ${source:Extended-Description}
@@ -136,7 +136,7 @@ Description: ${source:Synopsis} - comms development package
  Communication utilities: serial port, sockets, nodelets.
  This package provides headers and libraries for development.
 
-Package: libmrpt-config2.13
+Package: libmrpt-config2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -151,7 +151,7 @@ Package: libmrpt-config-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-config2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-config2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-core-dev,libmrpt-system-dev,libmrpt-expr-dev
 Description: ${source:Synopsis} - config development package
  ${source:Extended-Description}
@@ -159,7 +159,7 @@ Description: ${source:Synopsis} - config development package
  Configuration files utilities, providing an extension of the INI file format.
  This package provides headers and libraries for development.
 
-Package: libmrpt-containers2.13
+Package: libmrpt-containers2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -174,7 +174,7 @@ Package: libmrpt-containers-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-containers2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-containers2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-core-dev
 Description: ${source:Synopsis} - containers development package
  ${source:Extended-Description}
@@ -182,7 +182,7 @@ Description: ${source:Synopsis} - containers development package
  A C++17 YAML class, and many other generic C++ container classes.
  This package provides headers and libraries for development.
 
-Package: libmrpt-core2.13
+Package: libmrpt-core2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -197,7 +197,7 @@ Package: libmrpt-core-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-core2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-core2.15 (= ${binary:Version}),
          libmrpt-common-dev
 Description: ${source:Synopsis} - core development package
  ${source:Extended-Description}
@@ -205,7 +205,7 @@ Description: ${source:Synopsis} - core development package
  Core functionality for all MRPT libraries.
  This package provides headers and libraries for development.
 
-Package: libmrpt-expr2.13
+Package: libmrpt-expr2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -220,7 +220,7 @@ Package: libmrpt-expr-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-expr2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-expr2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-core-dev
 Description: ${source:Synopsis} - expr development package
  ${source:Extended-Description}
@@ -228,7 +228,7 @@ Description: ${source:Synopsis} - expr development package
  A wrapper on the expr library for dynamic mathematical expression evaluation.
  This package provides headers and libraries for development.
 
-Package: libmrpt-graphs2.13
+Package: libmrpt-graphs2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -243,7 +243,7 @@ Package: libmrpt-graphs-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-graphs2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-graphs2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-opengl-dev,libmrpt-poses-dev
 Description: ${source:Synopsis} - graphs development package
  ${source:Extended-Description}
@@ -251,7 +251,7 @@ Description: ${source:Synopsis} - graphs development package
  Generic graph containers and algorithms (Dijkstra, visitors, etc.).
  This package provides headers and libraries for development.
 
-Package: libmrpt-graphslam2.13
+Package: libmrpt-graphslam2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -266,7 +266,7 @@ Package: libmrpt-graphslam-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-graphslam2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-graphslam2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-gui-dev,libmrpt-slam-dev
 Description: ${source:Synopsis} - graphslam development package
  ${source:Extended-Description}
@@ -274,7 +274,7 @@ Description: ${source:Synopsis} - graphslam development package
  Graph-SLAM implementations for pose networks.
  This package provides headers and libraries for development.
 
-Package: libmrpt-gui2.13
+Package: libmrpt-gui2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -285,7 +285,7 @@ Description: ${source:Synopsis} - gui library
  GUI utilities for displaying 2D and 3D graphics.
  This package provides the binary library file.
 
-Package: libmrpt-nanogui2.13
+Package: libmrpt-nanogui2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -301,7 +301,7 @@ Package: libmrpt-gui-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-gui2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-gui2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-opengl-dev, libmrpt-nanogui-dev
 Description: ${source:Synopsis} - gui development package
  ${source:Extended-Description}
@@ -313,7 +313,7 @@ Package: libmrpt-nanogui-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-nanogui2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-nanogui2.15 (= ${binary:Version}),
          libglfw3-dev
 Description: ${source:Synopsis} - nanogui development package
  ${source:Extended-Description}
@@ -321,7 +321,7 @@ Description: ${source:Synopsis} - nanogui development package
  Fork of the nanogui library for use into MRPT GUI classes.
  This package provides headers and libraries for development.
 
-Package: libmrpt-hwdrivers2.13
+Package: libmrpt-hwdrivers2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -336,7 +336,7 @@ Package: libmrpt-hwdrivers-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-hwdrivers2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-hwdrivers2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-comms-dev, libmrpt-gui-dev,
          libmrpt-maps-dev, libmrpt-vision-dev
 Description: ${source:Synopsis} - hwdrivers development package
@@ -345,7 +345,7 @@ Description: ${source:Synopsis} - hwdrivers development package
  Classes to interface several sensors usually used in robotics.
  This package provides headers and libraries for development.
 
-Package: libmrpt-img2.13
+Package: libmrpt-img2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -360,7 +360,7 @@ Package: libmrpt-img-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-img2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-img2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-io-dev, libmrpt-math-dev,
          libmrpt-config-dev
 Description: ${source:Synopsis} - img development package
@@ -369,7 +369,7 @@ Description: ${source:Synopsis} - img development package
  A wrapper and extension to opencv image containers.
  This package provides headers and libraries for development.
 
-Package: libmrpt-io2.13
+Package: libmrpt-io2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -384,7 +384,7 @@ Package: libmrpt-io-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-io2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-io2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-system-dev
 Description: ${source:Synopsis} - io development package
  ${source:Extended-Description}
@@ -392,7 +392,7 @@ Description: ${source:Synopsis} - io development package
  Classes for file I/O.
  This package provides headers and libraries for development.
 
-Package: libmrpt-kinematics2.13
+Package: libmrpt-kinematics2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -407,7 +407,7 @@ Package: libmrpt-kinematics-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-kinematics2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-kinematics2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-opengl-dev
 Description: ${source:Synopsis} - kinematics development package
  ${source:Extended-Description}
@@ -415,7 +415,7 @@ Description: ${source:Synopsis} - kinematics development package
  Classes representing robotic arm and mobile robot kinematics.
  This package provides headers and libraries for development.
 
-Package: libmrpt-maps2.13
+Package: libmrpt-maps2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -430,7 +430,7 @@ Package: libmrpt-maps-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-maps2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-maps2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-obs-dev, libmrpt-graphs-dev
 Description: ${source:Synopsis} - maps development package
  ${source:Extended-Description}
@@ -438,7 +438,7 @@ Description: ${source:Synopsis} - maps development package
  Different metric map classes used in mobile robotics.
  This package provides headers and libraries for development.
 
-Package: libmrpt-math2.13
+Package: libmrpt-math2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -453,7 +453,7 @@ Package: libmrpt-math-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-math2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-math2.15 (= ${binary:Version}),
          libsuitesparse-dev, libeigen3-dev, libmrpt-serialization-dev,
          libmrpt-random-dev, libmrpt-system-dev, libnanoflann-dev,
          libmrpt-common-dev
@@ -463,7 +463,7 @@ Description: ${source:Synopsis} - math development package
  Geometry and mathematical utilities, tailored to mobile robotics.
  This package provides headers and libraries for development.
 
-Package: libmrpt-nav2.13
+Package: libmrpt-nav2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -478,7 +478,7 @@ Package: libmrpt-nav-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-nav2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-nav2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-kinematics-dev, libmrpt-maps-dev
 Description: ${source:Synopsis} - nav development package
  ${source:Extended-Description}
@@ -486,7 +486,7 @@ Description: ${source:Synopsis} - nav development package
  Autonomous navigation algorithms for mobile robots.
  This package provides headers and libraries for development.
 
-Package: libmrpt-obs2.13
+Package: libmrpt-obs2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -501,7 +501,7 @@ Package: libmrpt-obs-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-obs2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-obs2.15 (= ${binary:Version}),
         libmrpt-common-dev, libmrpt-opengl-dev, libmrpt-tfest-dev
 Description: ${source:Synopsis} - obs development package
  ${source:Extended-Description}
@@ -509,7 +509,7 @@ Description: ${source:Synopsis} - obs development package
  Classes representing different kinds of sensor observations in robotics.
  This package provides headers and libraries for development.
 
-Package: libmrpt-opengl2.13
+Package: libmrpt-opengl2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -524,7 +524,7 @@ Package: libmrpt-opengl-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-opengl2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-opengl2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-poses-dev, libmrpt-img-dev
 Description: ${source:Synopsis} - opengl development package
  ${source:Extended-Description}
@@ -532,7 +532,7 @@ Description: ${source:Synopsis} - opengl development package
  Graphic primitives and 3D rendering engine tailored for robotics applications.
  This package provides headers and libraries for development.
 
-Package: libmrpt-poses2.13
+Package: libmrpt-poses2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -548,7 +548,7 @@ Package: libmrpt-poses-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-poses2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-poses2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-bayes-dev
 Description: ${source:Synopsis} - poses development package
  ${source:Extended-Description}
@@ -557,7 +557,7 @@ Description: ${source:Synopsis} - poses development package
  probabilistic distributions over them and Lie group utilities.
  This package provides headers and libraries for development.
 
-Package: libmrpt-random2.13
+Package: libmrpt-random2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -572,7 +572,7 @@ Package: libmrpt-random-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-random2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-random2.15 (= ${binary:Version}),
          libmrpt-common-dev
 Description: ${source:Synopsis} - random development package
  ${source:Extended-Description}
@@ -580,7 +580,7 @@ Description: ${source:Synopsis} - random development package
  Portable pseudorandom generators and probability distribution utilities.
  This package provides headers and libraries for development.
 
-Package: libmrpt-rtti2.13
+Package: libmrpt-rtti2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -595,7 +595,7 @@ Package: libmrpt-rtti-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-rtti2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-rtti2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-core-dev, libmrpt-typemeta-dev
 Description: ${source:Synopsis} - rtti development package
  ${source:Extended-Description}
@@ -603,7 +603,7 @@ Description: ${source:Synopsis} - rtti development package
  Portable RTTI library.
  This package provides headers and libraries for development.
 
-Package: libmrpt-serialization2.13
+Package: libmrpt-serialization2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -619,7 +619,7 @@ Package: libmrpt-serialization-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-serialization2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-serialization2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-rtti-dev
 Description: ${source:Synopsis} - serialization development package
  ${source:Extended-Description}
@@ -628,7 +628,7 @@ Description: ${source:Synopsis} - serialization development package
  plain-text storage formats.
  This package provides headers and libraries for development.
 
-Package: libmrpt-slam2.13
+Package: libmrpt-slam2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -643,7 +643,7 @@ Package: libmrpt-slam-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-slam2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-slam2.15 (= ${binary:Version}),
         libmrpt-common-dev, libmrpt-maps-dev, libmrpt-vision-dev
 Description: ${source:Synopsis} - slam development package
  ${source:Extended-Description}
@@ -651,7 +651,7 @@ Description: ${source:Synopsis} - slam development package
  A collection of SLAM algorithms for mobile robot mapping.
  This package provides headers and libraries for development.
 
-Package: libmrpt-system2.13
+Package: libmrpt-system2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -666,7 +666,7 @@ Package: libmrpt-system-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-system2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-system2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-typemeta-dev, libmrpt-containers-dev
 Description: ${source:Synopsis} - system development package
  ${source:Extended-Description}
@@ -685,7 +685,7 @@ Description: ${source:Synopsis} - tclap development package
  Forked version of the tclap library for use in mrpt applications.
  This package provides a header-only  library.
 
-Package: libmrpt-tfest2.13
+Package: libmrpt-tfest2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -701,7 +701,7 @@ Package: libmrpt-tfest-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-tfest2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-tfest2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-poses-dev
 Description: ${source:Synopsis} - tfest development package
  ${source:Extended-Description}
@@ -710,7 +710,7 @@ Description: ${source:Synopsis} - tfest development package
  poses from sets of pairwise point correspondences.
  This package provides headers and libraries for development.
 
-Package: libmrpt-topography2.13
+Package: libmrpt-topography2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -725,7 +725,7 @@ Package: libmrpt-topography-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-topography2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-topography2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-obs-dev
 Description: ${source:Synopsis} - topography development package
  ${source:Extended-Description}
@@ -745,7 +745,7 @@ Description: ${source:Synopsis} - typemeta development package
  types to text conversion, etc.
  This package provides a header-only  library.
 
-Package: libmrpt-vision2.13
+Package: libmrpt-vision2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -760,7 +760,7 @@ Package: libmrpt-vision-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-vision2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-vision2.15 (= ${binary:Version}),
          libmrpt-common-dev, libmrpt-obs-dev
 Description: ${source:Synopsis} - vision development package
  ${source:Extended-Description}
@@ -768,7 +768,7 @@ Description: ${source:Synopsis} - vision development package
  Computer vision algorithms.
  This package provides headers and libraries for development.
 
-Package: libmrpt-vision-lgpl2.13
+Package: libmrpt-vision-lgpl2.15
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -783,7 +783,7 @@ Package: libmrpt-vision-lgpl-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-vision-lgpl2.13 (= ${binary:Version}),
+Depends: ${misc:Depends},libmrpt-vision-lgpl2.15 (= ${binary:Version}),
          libmrpt-vision-dev
 Description: ${source:Synopsis} - vision-lgpl development package
  ${source:Extended-Description}
