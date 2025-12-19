@@ -1,0 +1,17 @@
+# MRPT PPA Publisher Cron Jobs
+# Runs every 12 hours, offset by 50 minutes between jobs
+
+# Environment variables for cron
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+HOME=/root
+LOCKFILE=/var/cache/mrpt-ppa/mrptppa.lock
+SHA_CACHE_FILE=/var/cache/mrpt-ppa/mrptppa.sha
+
+# MRPT develop branch - runs at 00:00 and 12:00
+00 */12 * * * root /scripts/run_mrpt-develop.sh >> /var/log/mrpt-ppa/develop.log 2>&1
+
+# MRPT master branch - runs at 00:50 and 12:50
+50 */12 * * * root /scripts/run_mrpt-master.sh >> /var/log/mrpt-ppa/master.log 2>&1
+
+# Keep a blank line at the end

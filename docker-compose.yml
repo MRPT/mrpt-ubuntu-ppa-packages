@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+  mrpt-ppa-publisher:
+    build: .
+    container_name: mrpt-ppa-publisher
+    restart: unless-stopped
+
+    environment:
+      - MAILTO=jlblanco@ual.es
+      - PPA_URL=ppa:joseluisblancoc/mrpt
+      - TZ=Europe/Madrid # Adjust to your timezone
+
+    volumes:
+      # GPG keys - mount from host (ensure proper permissions)
+      - ${HOST_GPG_DIR:-./gpg-keys}:/root/.gnupg:ro
+
+      # Dput configuration
+      - ${HOST_DPUT_CONFIG:-./dput.cf}:/root/.dput.cf:ro
+
+      # SSH keys (if needed for git operations)
+      - ${HOST_SSH_DIR:-./ssh-keys}:/root/.ssh:ro
+
+      # Persistent cache for SHA tracking and lock files
+      - mrpt-ppa-cache:/var/cache/mrpt-ppa
+
+      # Logs (optional, for easy access)
+      - mrpt-ppa-logs:/var/log/mrpt-ppa
+
+      # MRPT repository (optional - can be in container or persistent)
+      - mrpt-repo:/home/mrpt
+
+    # Network mode (default bridge is fine for outbound connections)
+    network_mode: bridge
+
+    # Resource limits (adjust as needed)
+    deploy:
+      resources:
+        limits:
+          cpus: "4.0"
+          memory: 8G
+        reservations:
+          cpus: "2.0"
+          memory: 2G
+
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  mrpt-ppa-cache:
+    driver: local
+  mrpt-ppa-logs:
+    driver: local
+  mrpt-repo:
+    driver: local
