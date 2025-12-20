@@ -36,6 +36,19 @@ RUN apt-get update && apt-get install -y \
     msmtp \
     msmtp-mta \
     mailutils \
+    # LaTeX and documentation tools
+    texlive \
+    texlive-latex-extra \
+    texlive-fonts-recommended \
+    texlive-fonts-extra \
+    texlive-science \
+    latexmk \
+    doxygen \
+    graphviz \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y \
+    tofrodos \
     && rm -rf /var/lib/apt/lists/*
 
 # Create working directories
@@ -60,6 +73,9 @@ RUN chmod 0644 /etc/cron.d/mrpt-ppa \
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+# Create necessary log directory
+RUN mkdir -p /var/log/mrpt-ppa
+
 # Environment variables with defaults
 ENV MAILTO="jlblanco@ual.es"
 ENV PPA_URL="ppa:joseluisblancoc/mrpt"
@@ -69,4 +85,7 @@ ENV HOME=/root
 VOLUME ["/root/.gnupg", "/var/cache/mrpt-ppa", "/root/.ssh"]
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["cron", "-f"]
+
+# Keep container running with cron in foreground
+CMD ["/bin/bash", "-c", "service cron start && tail -f /var/log/mrpt-ppa/*.log /var/log/cron.log 2>/dev/null || tail -f /dev/null"]
+

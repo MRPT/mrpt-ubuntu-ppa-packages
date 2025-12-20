@@ -27,7 +27,10 @@ if [ -d "/root/.gnupg" ]; then
     # Set proper permissions for GPG directory (might be needed if mounted)
     chmod 700 /root/.gnupg || true
     chmod 600 /root/.gnupg/* 2>/dev/null || true
-    
+
+    # Kill any existing GPG agent from host that might be using old version
+    gpgconf --kill gpg-agent 2>/dev/null || true
+
     # List available keys
     echo "Available GPG keys:"
     gpg --list-secret-keys || echo "Warning: No secret keys found!"
@@ -37,22 +40,52 @@ else
 fi
 
 # Configure GPG agent
-cat > /root/.gnupg/gpg-agent.conf <<EOF
+if [ ! -f /root/.gnupg/gpg-agent.conf ]; then
+    # Try to create gpg-agent.conf, but don't fail if read-only
+    cat > /root/.gnupg/gpg-agent.conf 2>/dev/null <<EOF || echo "Note: GPG directory is read-only, skipping gpg-agent.conf creation"
 default-cache-ttl 34560000
 max-cache-ttl 34560000
 allow-preset-passphrase
 EOF
+else
+    echo "gpg-agent.conf already exists"
+fi
 
-# Start GPG agent
+# Restart GPG agent with container's version
+gpgconf --kill gpg-agent 2>/dev/null || true
 gpg-agent --daemon --allow-preset-passphrase 2>/dev/null || true
 
 # Check dput configuration
 echo "Checking dput configuration..."
 if [ -f "/root/.dput.cf" ]; then
     echo "dput configuration found"
+elif [ -d "/root/.dput.cf" ]; then
+    echo "Warning: /root/.dput.cf is a directory (Docker created it because source file didn't exist)"
+    echo "Removing directory and creating dput configuration file..."
+    rmdir /root/.dput.cf 2>/dev/null || rm -rf /root/.dput.cf
+    cat > /root/.dput.cf <<EOF
+[DEFAULT]
+method = ftp
+hash = md5
+allow_unsigned_uploads = 0
+run_lintian = 0
+run_dinstall = 0
+check_version = 0
+scp_compress = 0
+post_upload_command =
+pre_upload_command =
+passive_ftp = 1
+default_host_main =
+
+[${PPA_URL}]
+fqdn = ppa.launchpad.net
+method = ftp
+incoming = ~joseluisblancoc/ubuntu/mrpt/
+login = anonymous
+allow_unsigned_uploads = 0
+EOF
 else
-    echo "Warning: dput configuration not found at /root/.dput.cf"
-    echo "Creating basic dput configuration..."
+    echo "dput configuration not found, creating default configuration..."
     cat > /root/.dput.cf <<EOF
 [DEFAULT]
 method = ftp
@@ -111,12 +144,29 @@ if [ -f "${LOCKFILE}" ]; then
     rm -f "${LOCKFILE}"
 fi
 
+# Ensure cron directory exists
+mkdir -p /var/log
+
 # Test cron is working
 echo "Setting up cron..."
-service cron start || true
+if ! service cron start; then
+    echo "ERROR: Failed to start cron service"
+    echo "Trying alternative cron startup..."
+    /usr/sbin/cron || {
+        echo "ERROR: Cannot start cron daemon"
+        exit 1
+    }
+fi
 
 # Create a log symlink for easier access
 ln -sf /var/log/cron.log /var/log/mrpt-ppa/cron.log 2>/dev/null || true
+
+# Verify cron is running
+if pgrep cron > /dev/null; then
+    echo "Cron daemon is running (PID: $(pgrep cron))"
+else
+    echo "WARNING: Cron daemon may not be running properly"
+fi
 
 echo "=========================================="
 echo "Container initialization complete!"
@@ -129,3 +179,4 @@ echo ""
 
 # Execute the CMD (cron -f) or any other command passed
 exec "$@"
+
