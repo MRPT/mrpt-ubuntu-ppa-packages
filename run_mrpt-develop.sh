@@ -66,16 +66,16 @@ if [ "$CURSHA" != "$LASTSHA" ]; then
     git clone https://github.com/MRPT/mrpt-ubuntu-ppa-packages.git
     cd mrpt-ubuntu-ppa-packages
 
-    # u20.04 focal:
-    MRPT_PKG_EXPORTED_SUBMODULES="nanoflann" ./build-mrpt-deb-pkg.sh  -s -g $GITBRANCH -d focal
-    (cd $HOME/mrpt_release && dput $PPA_URL *.changes)
-
     # u22.04 jammy
     ./build-mrpt-deb-pkg.sh  -s -g $GITBRANCH -d jammy
     (cd $HOME/mrpt_release && dput $PPA_URL *.changes)
 
     # u24.04 noble
     ./build-mrpt-deb-pkg.sh  -s -g $GITBRANCH -d noble
+    (cd $HOME/mrpt_release && dput $PPA_URL *.changes)
+
+    # u26.04 resolute
+    ./build-mrpt-deb-pkg.sh  -s -g $GITBRANCH -d resolute
     (cd $HOME/mrpt_release && dput $PPA_URL *.changes)
 
     # Save new commit sha:
