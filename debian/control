@@ -54,7 +54,8 @@ Build-Depends: debhelper-compat (= 13),
 	pybind11-dev,
 	python3-all-dev,
 	python3-pip,
-	python3-setuptools
+	python3-setuptools,
+	libzstd-dev
 Standards-Version: 4.6.2
 Homepage: https://www.mrpt.org/
 Vcs-Git: https://salsa.debian.org/robotics-team/mrpt.git
