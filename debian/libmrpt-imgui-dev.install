@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt_imgui.so
+usr/include/mrpt/imgui/
+usr/lib/*/mrpt_imgui/cmake/

@@ -1,3 +1,6 @@
-usr/lib/*/libmrpt-core.so
-usr/lib/*/cmake/mrpt-core/*
+usr/lib/*/libmrpt_core.so
 usr/include/mrpt/core/
+usr/lib/*/mrpt_core/cmake/
+usr/include/mrpt/3rdparty/spimpl.h
+usr/include/mrpt/registerAllClasses.h
+usr/include/mrpt/version.h

@@ -1,3 +1,4 @@
-usr/lib/*/libmrpt-maps.so
-usr/lib/*/cmake/mrpt-maps/*
+usr/lib/*/libmrpt_maps.so
 usr/include/mrpt/maps/
+usr/include/mrpt/maps.h
+usr/lib/*/mrpt_maps/cmake/

@@ -1,3 +1,4 @@
-usr/lib/*/libmrpt-nav.so
-usr/lib/*/cmake/mrpt-nav/*
+usr/lib/*/libmrpt_nav.so
 usr/include/mrpt/nav/
+usr/include/mrpt/nav.h
+usr/lib/*/mrpt_nav/cmake/

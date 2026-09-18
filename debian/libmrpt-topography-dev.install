@@ -1,3 +1,4 @@
-usr/lib/*/libmrpt-topography.so
-usr/lib/*/cmake/mrpt-topography/*
+usr/lib/*/libmrpt_topography.so
 usr/include/mrpt/topography/
+usr/include/mrpt/topography.h
+usr/lib/*/mrpt_topography/cmake/

@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt_libapps_cli.so
+usr/include/mrpt/apps_cli/
+usr/lib/*/mrpt_libapps_cli/cmake/

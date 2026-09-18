@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt_viz.so
+usr/include/mrpt/viz/
+usr/lib/*/mrpt_viz/cmake/

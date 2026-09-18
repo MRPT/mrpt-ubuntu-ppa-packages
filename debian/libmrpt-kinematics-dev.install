@@ -1,3 +1,4 @@
-usr/lib/*/libmrpt-kinematics.so
-usr/lib/*/cmake/mrpt-kinematics/*
+usr/lib/*/libmrpt_kinematics.so
 usr/include/mrpt/kinematics/
+usr/include/mrpt/kinematics.h
+usr/lib/*/mrpt_kinematics/cmake/

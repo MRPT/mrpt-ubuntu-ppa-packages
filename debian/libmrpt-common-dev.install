@@ -1,5 +1,3 @@
-usr/share/mrpt/mrpt-config.cmake
-usr/share/mrpt/mrpt-config-version.cmake
-usr/include/mrpt/config.h
-usr/include/mrpt/mrpt_paths_config.h
-usr/include/mrpt/version.h
+usr/share/mrpt_common/cmake/
+usr/share/mrpt_common/common_headers/
+usr/share/mrpt_common/common_sources/

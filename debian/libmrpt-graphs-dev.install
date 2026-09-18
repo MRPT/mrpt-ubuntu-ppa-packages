@@ -1,3 +1,4 @@
-usr/lib/*/libmrpt-graphs.so
-usr/lib/*/cmake/mrpt-graphs/*
+usr/lib/*/libmrpt_graphs.so
 usr/include/mrpt/graphs/
+usr/include/mrpt/graphs.h
+usr/lib/*/mrpt_graphs/cmake/

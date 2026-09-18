@@ -1,0 +1,3 @@
+# The example datasets ship plain-text ground-truth and README files that are
+# data consumed by MRPT applications at runtime, not package documentation.
+mrpt-common: package-contains-documentation-outside-usr-share-doc *usr/share/mrpt_data/*
