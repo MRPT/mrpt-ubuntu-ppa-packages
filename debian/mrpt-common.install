@@ -1,2 +1,2 @@
-usr/share/mrpt/config_files/*
-usr/share/mrpt/datasets/*
+usr/share/mrpt_data/config_files/
+usr/share/mrpt_data/datasets/

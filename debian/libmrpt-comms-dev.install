@@ -1,3 +1,4 @@
-usr/lib/*/libmrpt-comms.so
-usr/lib/*/cmake/mrpt-comms/*
+usr/lib/*/libmrpt_comms.so
 usr/include/mrpt/comms/
+usr/include/mrpt/comms.h
+usr/lib/*/mrpt_comms/cmake/

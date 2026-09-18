@@ -1,80 +1,185 @@
 #!/usr/bin/make -f
 # -*- makefile -*-
-# Makefile for MRPT Debian package.
+# Debian rules for MRPT 3.x (colcon-based modular build).
 
 include /usr/share/dpkg/architecture.mk
 
-# Required to avoid hardening-no-bindnow lintian message:
-export DEB_BUILD_MAINT_OPTIONS = hardening=+all,optimize=+lto
+# Hardening. Required to avoid hardening-no-bindnow lintian message.
+# NOTE: optimize=+lto is intentionally NOT enabled: GCC's LTO miscompiles
+# exception unwinding across thread boundaries in some translation units
+# here, causing spurious SIGSEGV/abort in mrpt_maps/mrpt_nav unit tests
+# (CGenericPointsMap.FieldKeysValidAfterCreatingThreadExits and
+# CNavigatorManualSequence.executes_programmed_command_at_correct_time).
+# Confirmed by rebuilding both test binaries with LTO disabled: all tests
+# pass. Re-enable once this GCC/binutils LTO bug is understood/fixed.
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
-# default: dont build expensive caller graphs with dot in the documentation pkg
-export MRPT_genCALLERGRAPHS=NO
+# Export CFLAGS/CXXFLAGS/LDFLAGS so colcon's per-package cmake picks them up
+# from the environment at configure time (CMake initializes its flags from
+# these environment variables):
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
 
-# For multiarch support:
-DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
-DEB_TARGET_MULTIARCH ?= $(shell dpkg-architecture -qDEB_TARGET_MULTIARCH)
-#DEB_HOST_ARCH_OS ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+DEB_HOST_ARCH      ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 
-# SSE options
-ifeq ($(DEB_HOST_ARCH),amd64)
-CMAKE_ARCH_FLAGS = -DMRPT_AUTODETECT_SIMD=OFF -DENABLE_SSE2=ON -DENABLE_SSE3=ON
-else
-CMAKE_ARCH_FLAGS = -DMRPT_AUTODETECT_SIMD=OFF
+STAGING = $(CURDIR)/debian/tmp
+# colcon installs here during the build phase; dh_prep wipes debian/tmp between
+# build and install, so we must stage outside debian/tmp and copy in later:
+COLCON_INSTALL = $(CURDIR)/colcon-install
+
+# Use our own colcon defaults (disables upstream symlink-install):
+export COLCON_DEFAULTS_FILE = $(CURDIR)/debian/colcon-defaults.yaml
+
+# Number of parallel package builds, honoring DEB_BUILD_OPTIONS=parallel=N:
+NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+ifeq ($(NUMJOBS),)
+NUMJOBS = 1
 endif
 
-# Avoid memory exhaustion on build farms for mips* archs
+# SSE/SIMD: do not enforce any special flags (portable build).
+# Avoid native tuning. Enable LGPLv3 parts. Kinect/freenect off.
+COLCON_CMAKE_ARGS = \
+	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
+	-DCMAKE_INSTALL_LIBDIR=lib/$(DEB_HOST_MULTIARCH) \
+	-DMRPT_PYTHON_INSTALL_DIR=lib/python3/dist-packages \
+	-DMRPT_WITH_KINECT=OFF \
+	-DMRPT_AUTODETECT_SIMD=OFF \
+	-DCMAKE_INSTALL_RPATH= \
+	-DBUILD_TESTING=ON
+
+# Avoid memory exhaustion on build farms for mips* archs:
 ifneq (,$(findstring mips,$(DEB_HOST_ARCH)))
-# Avoid LTO in python module:
-CMAKE_ARCH_FLAGS += -DMRPT_PYBIND11_WITH_LTO=OFF
-# Minimize debug symbols:
+COLCON_CMAKE_ARGS += -DMRPT_PYBIND11_WITH_LTO=OFF
 export DEB_CXXFLAGS_MAINT_APPEND += -g1
 endif
 
-# Debug info from the cmake scripts
-export VERBOSE = 1
-
-# Exact version, needed for the Built-Using field:
-robotofontversion := $(shell dpkg-query -W -f '$${Version}' fonts-roboto-fontface)
-mrptversion2digits := $(shell find debian -name "libmrpt-nanogui?.*.install" | sed 's/^.*[^0-9]\([0-9]*\.[0-9]*\)\..*$$/\1/')
-
-CMAKE_FLAGS = \
-	-DMRPT_ALLOW_LGPLV3=ON \
-	-DMRPT_WITH_KINECT=OFF \
-	-DMRPT_TUNE_NATIVE=OFF \
-	$(CMAKE_ARCH_FLAGS)
-
-export PYBUILD_SYSTEM=cmake
-export PYBUILD_CONFIGURE_ARGS=$(CMAKE_FLAGS)
-
 %:
-	dh $@ --buildsystem=pybuild
+	dh $@
+
+# Exact version of fonts-roboto-fontface, needed for the Built-Using field of
+# the vendored nanogui library (which embeds the Roboto font):
+robotofontversion := $(shell dpkg-query -W -f '$${Version}' fonts-roboto-fontface 2>/dev/null)
 
 execute_before_dh_gencontrol:
-	echo "Using $(robotofontversion) as fonts-roboto-fontface version for debian/libmrpt-nanogui$(mrptversion2digits).substvars"
-	echo 'fonts-roboto-fontface:version=$(robotofontversion)' >> debian/libmrpt-nanogui$(mrptversion2digits).substvars
+	echo 'fonts-roboto-fontface:version=$(robotofontversion)' >> debian/libmrpt-nanogui3.1.substvars
 
-override_dh_auto_build-indep:
-	# Build doc targets:
-	# For both, arch dependent and independent targets, build "all".
-	# This is to prevent future "make install" or "make test" to fail due to
-	# not built targets.
-	dh_auto_build \
-		man_pages_all \
-		all
+# colcon configures+builds+installs each module; there is no top-level CMake
+# project, so the standard dh cmake/autotools steps are replaced.
+override_dh_auto_configure:
 
-	# clean useless doxygen files:
-	find $(CURDIR)/doc/ -name '*.md5' | xargs -I FIL rm FIL
+override_dh_auto_clean:
+	rm -rf build log $(COLCON_INSTALL) $(CURDIR)/debian/tmp
 
-execute_after_dh_auto_test:
-	# After running the python tests, we can strip the rpath of pymrpt:
-	find . -name "pymrpt.*.so" | xargs -I FIL chrpath --delete FIL
+# Build + (merge-)install the whole colcon workspace into COLCON_INSTALL. This
+# runs in the build phase; the staging-into-debian/tmp happens at install time.
+#
+# The build is wrapped in `setarch -R` (ADDR_NO_RANDOMIZE) to make it
+# reproducible. Without it, GCC's DWARF location-list emission is seeded by
+# ASLR-randomized pointer values, so .debug_info/.debug_loclists (and hence the
+# GNU build-id hashed over the unstripped image) differ run-to-run even with an
+# identical source tree, build path and -j. The functional .text and all
+# allocated sections are already byte-identical; only the discarded debug info
+# varied. Disabling ASLR yields bit-identical libraries and stable build-ids
+# (verified: two builds of libmrpt_math.so then match exactly).
+override_dh_auto_build:
+	setarch $(DEB_HOST_GNU_CPU) -R \
+	colcon build \
+		--base-paths modules apps \
+		--install-base $(COLCON_INSTALL) \
+		--parallel-workers $(NUMJOBS) \
+		--packages-ignore mrpt_examples_cpp mrpt_examples_py \
+		--cmake-args $(COLCON_CMAKE_ARGS)
 
-execute_after_dh_auto_install:
-	# Manually merge the different pymrpt*.so files from:
-	# - debian/tmp/usr/lib/python3.*/{mrpt,mrpt-2.11.3.dist-info}
-	# into: 
-	# - debian/tmp/usr/lib/python3/dist-packages/*
-	#
-	mkdir -p debian/tmp/usr/lib/python3/dist-packages/
-	cp -rv debian/tmp/usr/lib/python3.*/mrpt* debian/tmp/usr/lib/python3/dist-packages/
-	rm -fr debian/tmp/usr/lib/python3.*/mrpt*
+# Run each package's unit tests under colcon, inside a virtual X server
+# (some GUI/unit tests need a display). Verbose console output is forced so
+# failures are diagnosable from build-farm logs. colcon test itself does not
+# fail the build on test failures, so colcon test-result --verbose is used
+# to turn any failure into a build failure, printing the failing cases.
+#
+# Each module's CTest-registered Python binding test only prepends *its own*
+# python_staging dir to PYTHONPATH (see mrpt_add_python_binding_test() in
+# mrpt_cmake_functions.cmake); it expects sibling modules (e.g. mrpt.rtti,
+# mrpt.serialization) to already be reachable via PYTHONPATH set up by a
+# colcon environment hook. No such hook is actually installed, so cross-module
+# imports fail with "No module named 'mrpt.<other>'" unless we add the merged
+# install tree's Python path ourselves. Since CMAKE_INSTALL_RPATH is forced
+# empty above, the installed pybind .so files also need LD_LIBRARY_PATH to
+# find their dependent libmrpt_*.so at import time.
+override_dh_auto_test:
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	PYTHONPATH=$(COLCON_INSTALL)/lib/python3/dist-packages \
+	LD_LIBRARY_PATH=$(COLCON_INSTALL)/lib/$(DEB_HOST_MULTIARCH) \
+	xvfb-run -a colcon test \
+		--base-paths modules apps \
+		--install-base $(COLCON_INSTALL) \
+		--parallel-workers $(NUMJOBS) \
+		--merge-install \
+		--packages-ignore mrpt_examples_cpp mrpt_examples_py \
+		--event-handlers console_direct+
+	colcon test-result --verbose
+endif
+
+# dh_prep has just wiped debian/tmp, so we populate it here from the colcon
+# install tree, then drop colcon bookkeeping, strip RPATHs and add the example
+# sources and man pages.
+override_dh_auto_install:
+	mkdir -p $(STAGING)/usr
+	cp -a $(COLCON_INSTALL)/. $(STAGING)/usr/
+	# Remove colcon/ament bookkeeping files that must not be shipped:
+	rm -f $(STAGING)/usr/setup.* $(STAGING)/usr/local_setup.* \
+	      $(STAGING)/usr/COLCON_IGNORE $(STAGING)/usr/_local_setup_util_*.py \
+	      $(STAGING)/usr/.colcon_install_layout
+	find $(STAGING)/usr/share -maxdepth 2 -type d -name hook -exec rm -rf {} + 2>/dev/null || true
+	find $(STAGING)/usr -name 'package.sh'  -delete 2>/dev/null || true
+	find $(STAGING)/usr -name 'package.bash' -delete 2>/dev/null || true
+	find $(STAGING)/usr -name 'package.zsh' -delete 2>/dev/null || true
+	find $(STAGING)/usr -name 'package.ps1' -delete 2>/dev/null || true
+	find $(STAGING)/usr -name 'package.dsv' -delete 2>/dev/null || true
+	find $(STAGING)/usr -name 'package.xml' -delete 2>/dev/null || true
+	rm -rf $(STAGING)/usr/share/colcon-core
+	# Strip RPATH/RUNPATH from all ELF objects (libraries land in standard dirs):
+	find $(STAGING)/usr -type f \( -name '*.so' -o -name '*.so.*' \) \
+		-exec chrpath --delete {} + 2>/dev/null || true
+	find $(STAGING)/usr/bin -maxdepth 1 -type f \
+		-exec chrpath --delete {} + 2>/dev/null || true
+	# Generate app man pages from the POD sources (the upstream all_man_pages
+	# CMake project lives under the colcon-ignored doc/ tree). Only emit a man
+	# page when the corresponding binary was actually installed.
+	mkdir -p $(STAGING)/usr/share/man/man1
+	for pod in doc/man-pages/pod/*.pod; do \
+		app=$$(basename $$pod .pod); \
+		if [ -x "$(STAGING)/usr/bin/$$app" ]; then \
+			pod2man --center="Mobile Robot Programming Toolkit - MRPT" \
+				--section=1 --name="$$app" "$$pod" \
+				> "$(STAGING)/usr/share/man/man1/$$app.1"; \
+		fi; \
+	done
+	# Drop GUI launcher resources (.desktop/.metainfo) for apps whose binary
+	# was not built in this configuration. Some upstream .desktop/.metainfo
+	# files are stale: e.g. camera-calib and kinect-stereo-calib have no
+	# corresponding target anywhere under apps/mrpt_apps_gui in MRPT 3.x
+	# (those GUI tools were dropped/not yet re-ported in the 3.x apps
+	# restructuring; this is unrelated to OpenCV, which nothing depends on
+	# any more).
+	# NOTE: debian/mrpt-apps.install ships these straight from the source
+	# tree (share/applications, share/metainfo), not from $(STAGING), so
+	# the orphans must be removed there -- dh_install (which reads from the
+	# source tree) runs after this target, later in the binary sequence:
+	for desktop in $(CURDIR)/share/applications/*.desktop; do \
+		bin=$$(sed -n 's/^Exec=\([^ ]*\).*/\1/p' "$$desktop" | head -n1); \
+		if [ -n "$$bin" ] && [ ! -x "$(STAGING)/usr/bin/$$bin" ]; then \
+			id=$$(basename "$$desktop" .desktop); \
+			echo "Dropping orphan desktop launcher: $$desktop (binary $$bin not built)"; \
+			rm -f "$$desktop" "$(CURDIR)/share/metainfo/org.mrpt.$$id.metainfo.xml"; \
+		fi; \
+	done
+
+# Ship the commented C++ example sources in mrpt-doc (see debian/mrpt-doc.examples),
+# excluding the colcon marker file:
+override_dh_installexamples:
+	dh_installexamples -p mrpt-doc -XCOLCON_IGNORE
+
+# dh_install with merge-install: list (but do not fail on) unpackaged files.
+override_dh_missing:
+	dh_missing --list-missing

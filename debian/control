@@ -1,52 +1,63 @@
 Source: mrpt
 Section: science
-Priority: optional
 Maintainer: Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>
-Rules-Requires-Root: no
-Build-Depends: debhelper-compat (= 13),
-	dh-sequence-python3, chrpath,
-	cmake,
-	doxygen-latex,
-	doxygen,
-	libglut-dev,
-	ghostscript,
-	graphviz,
-	libassimp-dev,
-	libavcodec-dev, libavformat-dev, libavutil-dev, libswscale-dev,
-	libdc1394-dev [linux-any],
-	libeigen3-dev,
-	libfreenect-dev,
-	libftdi1-dev,
-	libglfw3-dev,
-	libglu1-mesa-dev,
-	libicu-dev,
-	libjpeg-dev,
-	libjsoncpp-dev,
-	libnanoflann-dev,
-	liboctomap-dev,
-	libopencv-dev,
-	libopenni2-dev,
-	libpcap-dev,
-	libqt5opengl5-dev,
-	libsimpleini-dev,
-	libsuitesparse-dev,
-	libtinyxml2-dev,
-	libudev-dev [linux-any],
-	libusb-1.0-0-dev [linux-any],
-	libwxgtk3.2-dev,
-	libxrandr-dev,
-	libxxf86vm-dev,
-	qtbase5-dev,
-	zlib1g-dev,
-	libgtest-dev,
-	fonts-roboto-fontface,
-	libfyaml-dev,
-	pybind11-dev,
-	python3-all-dev,
-	python3-pip,
-	python3-setuptools,
-	libzstd-dev
-Standards-Version: 4.6.2
+Build-Depends: dpkg-dev (>= 1.22.5), debhelper-compat (= 13),
+ dh-sequence-python3,
+ cmake,
+ chrpath,
+ pkgconf,
+ perl,
+ colcon,
+ python3-colcon-cmake,
+ python3-colcon-defaults,
+ python3-colcon-ros,
+ python3-colcon-recursive-crawl,
+ python3-colcon-package-information,
+ python3-colcon-package-selection,
+ python3-colcon-parallel-executor,
+ python3-colcon-output,
+ python3-colcon-library-path,
+ python3-colcon-metadata,
+ libeigen3-dev,
+ libglfw3-dev,
+ libgl-dev,
+ libglu1-mesa-dev,
+ libxrandr-dev,
+ libxxf86vm-dev,
+ libassimp-dev,
+ libcli11-dev,
+ libzstd-dev,
+ libwxgtk3.2-dev,
+ wx-common,
+ qtbase5-dev,
+ libqt5opengl5-dev,
+ libsimpleini-dev,
+ libicu-dev,
+ libnanoflann-dev,
+ libexprtk-dev,
+ libfyaml-dev,
+ libtinyxml2-dev,
+ liboctomap-dev,
+ zlib1g-dev,
+ libgtest-dev,
+ libglew-dev,
+ fonts-roboto-fontface,
+ pybind11-dev,
+ python3-all-dev,
+ python3-numpy,
+ python3-setuptools,
+ libavcodec-dev,
+ libavformat-dev,
+ libavutil-dev,
+ libswscale-dev,
+ libdc1394-dev [linux-any],
+ libopenni2-dev,
+ libpcap-dev,
+ libusb-1.0-0-dev [linux-any],
+ libftdi1-dev,
+ xauth,
+ xvfb
+Standards-Version: 4.7.4
 Homepage: https://www.mrpt.org/
 Vcs-Git: https://salsa.debian.org/robotics-team/mrpt.git
 Vcs-Browser: https://salsa.debian.org/robotics-team/mrpt
@@ -56,41 +67,7 @@ Description: Mobile Robot Programming Toolkit
  implement algorithms in the fields of Simultaneous Localization and Mapping
  (SLAM), computer vision, and motion planning (obstacle avoidance).
 
-Package: mrpt-doc
-Section: doc
-Architecture: all
-Multi-Arch: foreign
-Depends: ${misc:Depends},
-	libjs-jquery
-Description: ${source:Synopsis} - examples
- ${source:Extended-Description}
- .
- Commented C++ examples for MRPT libraries.
-
-Package: libmrpt-apps2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - apps library
- ${source:Extended-Description}
- .
- Library wrapping several MRPT front-end applications.
- This package provides the binary library file.
-
-Package: libmrpt-apps-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-apps2.15 (= ${binary:Version}),
-         libmrpt-slam-dev, libmrpt-gui-dev, libmrpt-tclap-dev
-Description: ${source:Synopsis} - apps development package
- ${source:Extended-Description}
- .
- Library wrapping several MRPT front-end applications.
- This package provides headers and libraries for development.
-
-Package: libmrpt-bayes2.15
+Package: libmrpt-bayes3.1
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -98,23 +75,23 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: ${source:Synopsis} - bayes library
  ${source:Extended-Description}
  .
- Particle filtering and Kalman filter (EKF) algorithms.
- This package provides the binary library file.
+ Runtime shared library of the MRPT bayes module.
 
 Package: libmrpt-bayes-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-bayes2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-math-dev, libmrpt-config-dev
-Description: ${source:Synopsis} - bayes development package
+Depends: ${misc:Depends},
+         libmrpt-bayes3.1 (= ${binary:Version}),
+         libmrpt-common-dev,
+         libmrpt-config-dev,
+         libmrpt-math-dev
+Description: ${source:Synopsis} - bayes development files
  ${source:Extended-Description}
  .
- Particle filtering and Kalman filter (EKF) algorithms.
- This package provides headers and libraries for development.
+ Headers, CMake config and the development symlink for the MRPT bayes module.
 
-
-Package: libmrpt-comms2.15
+Package: libmrpt-comms3.1
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -122,22 +99,22 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: ${source:Synopsis} - comms library
  ${source:Extended-Description}
  .
- Communication utilities: serial port, sockets, nodelets.
- This package provides the binary library file.
+ Runtime shared library of the MRPT comms module.
 
 Package: libmrpt-comms-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-comms2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-io-dev
-Description: ${source:Synopsis} - comms development package
+Depends: ${misc:Depends},
+         libmrpt-comms3.1 (= ${binary:Version}),
+         libmrpt-common-dev,
+         libmrpt-io-dev
+Description: ${source:Synopsis} - comms development files
  ${source:Extended-Description}
  .
- Communication utilities: serial port, sockets, nodelets.
- This package provides headers and libraries for development.
+ Headers, CMake config and the development symlink for the MRPT comms module.
 
-Package: libmrpt-config2.15
+Package: libmrpt-config3.1
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -145,22 +122,22 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: ${source:Synopsis} - config library
  ${source:Extended-Description}
  .
- Configuration files utilities, providing an extension of the INI file format.
- This package provides the binary library file.
+ Runtime shared library of the MRPT config module.
 
 Package: libmrpt-config-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-config2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-core-dev,libmrpt-system-dev,libmrpt-expr-dev
-Description: ${source:Synopsis} - config development package
+Depends: ${misc:Depends},
+         libmrpt-config3.1 (= ${binary:Version}),
+         libmrpt-common-dev,
+         libmrpt-expr-dev
+Description: ${source:Synopsis} - config development files
  ${source:Extended-Description}
  .
- Configuration files utilities, providing an extension of the INI file format.
- This package provides headers and libraries for development.
+ Headers, CMake config and the development symlink for the MRPT config module.
 
-Package: libmrpt-containers2.15
+Package: libmrpt-containers3.1
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -168,22 +145,23 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: ${source:Synopsis} - containers library
  ${source:Extended-Description}
  .
- A C++17 YAML class, and many other generic C++ container classes.
- This package provides the binary library file.
+ Runtime shared library of the MRPT containers module.
 
 Package: libmrpt-containers-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-containers2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-core-dev
-Description: ${source:Synopsis} - containers development package
+Depends: ${misc:Depends},
+         libmrpt-containers3.1 (= ${binary:Version}),
+         libmrpt-common-dev,
+         libmrpt-typemeta-dev,
+         libmrpt-core-dev
+Description: ${source:Synopsis} - containers development files
  ${source:Extended-Description}
  .
- A C++17 YAML class, and many other generic C++ container classes.
- This package provides headers and libraries for development.
+ Headers, CMake config and dev symlink for MRPT containers module.
 
-Package: libmrpt-core2.15
+Package: libmrpt-core3.1
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -191,22 +169,21 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: ${source:Synopsis} - core library
  ${source:Extended-Description}
  .
- Core functionality for all MRPT libraries.
- This package provides the binary library file.
+ Runtime shared library of the MRPT core module.
 
 Package: libmrpt-core-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-core2.15 (= ${binary:Version}),
+Depends: ${misc:Depends},
+         libmrpt-core3.1 (= ${binary:Version}),
          libmrpt-common-dev
-Description: ${source:Synopsis} - core development package
+Description: ${source:Synopsis} - core development files
  ${source:Extended-Description}
  .
- Core functionality for all MRPT libraries.
- This package provides headers and libraries for development.
+ Headers, CMake config and the development symlink for the MRPT core module.
 
-Package: libmrpt-expr2.15
+Package: libmrpt-expr3.1
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -214,22 +191,22 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: ${source:Synopsis} - expr library
  ${source:Extended-Description}
  .
- A wrapper on the expr library for dynamic mathematical expression evaluation.
- This package provides the binary library file.
+ Runtime shared library of the MRPT expr module.
 
 Package: libmrpt-expr-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-expr2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-core-dev
-Description: ${source:Synopsis} - expr development package
+Depends: ${misc:Depends},
+         libmrpt-expr3.1 (= ${binary:Version}),
+         libmrpt-common-dev,
+         libmrpt-system-dev
+Description: ${source:Synopsis} - expr development files
  ${source:Extended-Description}
  .
- A wrapper on the expr library for dynamic mathematical expression evaluation.
- This package provides headers and libraries for development.
+ Headers, CMake config and the development symlink for the MRPT expr module.
 
-Package: libmrpt-graphs2.15
+Package: libmrpt-graphs3.1
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -237,22 +214,24 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: ${source:Synopsis} - graphs library
  ${source:Extended-Description}
  .
- Generic graph containers and algorithms (Dijkstra, visitors, etc.).
- This package provides the binary library file.
+ Runtime shared library of the MRPT graphs module.
 
 Package: libmrpt-graphs-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-graphs2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-opengl-dev,libmrpt-poses-dev
-Description: ${source:Synopsis} - graphs development package
+Depends: ${misc:Depends},
+         libmrpt-graphs3.1 (= ${binary:Version}),
+         libmrpt-common-dev,
+         libmrpt-poses-dev,
+         libmrpt-io-dev,
+         libmrpt-viz-dev
+Description: ${source:Synopsis} - graphs development files
  ${source:Extended-Description}
  .
- Generic graph containers and algorithms (Dijkstra, visitors, etc.).
- This package provides headers and libraries for development.
+ Headers, CMake config and the development symlink for the MRPT graphs module.
 
-Package: libmrpt-graphslam2.15
+Package: libmrpt-graphslam3.1
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -260,22 +239,22 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: ${source:Synopsis} - graphslam library
  ${source:Extended-Description}
  .
- Graph-SLAM implementations for pose networks.
- This package provides the binary library file.
+ Runtime shared library of the MRPT graphslam module.
 
 Package: libmrpt-graphslam-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-graphslam2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-gui-dev,libmrpt-slam-dev
-Description: ${source:Synopsis} - graphslam development package
+Depends: ${misc:Depends},
+         libmrpt-graphslam3.1 (= ${binary:Version}),
+         libmrpt-slam-dev,
+         libmrpt-gui-dev
+Description: ${source:Synopsis} - graphslam development files
  ${source:Extended-Description}
  .
- Graph-SLAM implementations for pose networks.
- This package provides headers and libraries for development.
+ Headers, CMake config and dev symlink for MRPT graphslam module.
 
-Package: libmrpt-gui2.15
+Package: libmrpt-gui3.1
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -283,10 +262,518 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: ${source:Synopsis} - gui library
  ${source:Extended-Description}
  .
- GUI utilities for displaying 2D and 3D graphics.
- This package provides the binary library file.
+ Runtime shared library of the MRPT gui module.
 
-Package: libmrpt-nanogui2.15
+Package: libmrpt-gui-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-gui3.1 (= ${binary:Version}),
+         libmrpt-opengl-dev,
+         libeigen3-dev,
+         libglfw3-dev
+Description: ${source:Synopsis} - gui development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and the development symlink for the MRPT gui module.
+
+Package: libmrpt-hwdrivers3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - hwdrivers library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT hwdrivers module.
+
+Package: libmrpt-hwdrivers-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-hwdrivers3.1 (= ${binary:Version}),
+         libmrpt-comms-dev,
+         libmrpt-maps-dev,
+         libmrpt-viz-dev
+Description: ${source:Synopsis} - hwdrivers development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and dev symlink for MRPT hwdrivers module.
+
+Package: libmrpt-img3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - img library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT img module.
+
+Package: libmrpt-img-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-img3.1 (= ${binary:Version}),
+         libmrpt-common-dev,
+         libmrpt-io-dev,
+         libmrpt-config-dev,
+         libmrpt-math-dev
+Description: ${source:Synopsis} - img development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and the development symlink for the MRPT img module.
+
+Package: libmrpt-imgui3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - imgui library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT imgui module.
+
+Package: libmrpt-imgui-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-imgui3.1 (= ${binary:Version}),
+         libmrpt-opengl-dev
+Description: ${source:Synopsis} - imgui development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and the development symlink for the MRPT imgui module.
+
+Package: libmrpt-io3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - io library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT io module.
+
+Package: libmrpt-io-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-io3.1 (= ${binary:Version}),
+         libmrpt-common-dev,
+         libmrpt-system-dev
+Description: ${source:Synopsis} - io development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and the development symlink for the MRPT io module.
+
+Package: libmrpt-kinematics3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - kinematics library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT kinematics module.
+
+Package: libmrpt-kinematics-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-kinematics3.1 (= ${binary:Version}),
+         libmrpt-common-dev,
+         libmrpt-viz-dev
+Description: ${source:Synopsis} - kinematics development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and dev symlink for MRPT kinematics module.
+
+Package: libmrpt-libapps-cli3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - libapps_cli library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT libapps_cli module.
+
+Package: libmrpt-libapps-cli-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-libapps-cli3.1 (= ${binary:Version}),
+         libmrpt-hwdrivers-dev,
+         libmrpt-slam-dev,
+         libmrpt-topography-dev,
+         libcli11-dev
+Description: ${source:Synopsis} - libapps_cli development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and dev symlink for MRPT libapps_cli module.
+
+Package: libmrpt-libapps-gui3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - libapps_gui library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT libapps_gui module.
+
+Package: libmrpt-libapps-gui-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-libapps-gui3.1 (= ${binary:Version}),
+         libmrpt-libapps-cli-dev,
+         libmrpt-gui-dev
+Description: ${source:Synopsis} - libapps_gui development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and dev symlink for MRPT libapps_gui module.
+
+Package: libmrpt-maps3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - maps library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT maps module.
+
+Package: libmrpt-maps-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-maps3.1 (= ${binary:Version}),
+         libmrpt-obs-dev,
+         libmrpt-graphs-dev
+Description: ${source:Synopsis} - maps development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and the development symlink for the MRPT maps module.
+
+Package: libmrpt-math3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - math library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT math module.
+
+Package: libmrpt-math-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-math3.1 (= ${binary:Version}),
+         libmrpt-common-dev,
+         libmrpt-system-dev,
+         libmrpt-serialization-dev,
+         libmrpt-random-dev
+Description: ${source:Synopsis} - math development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and the development symlink for the MRPT math module.
+
+Package: libmrpt-nav3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - nav library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT nav module.
+
+Package: libmrpt-nav-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-nav3.1 (= ${binary:Version}),
+         libmrpt-maps-dev,
+         libmrpt-kinematics-dev,
+         libmrpt-viz-dev
+Description: ${source:Synopsis} - nav development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and the development symlink for the MRPT nav module.
+
+Package: libmrpt-obs3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - obs library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT obs module.
+
+Package: libmrpt-obs-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-obs3.1 (= ${binary:Version}),
+         libmrpt-common-dev,
+         libmrpt-viz-dev,
+         libmrpt-tfest-dev
+Description: ${source:Synopsis} - obs development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and the development symlink for the MRPT obs module.
+
+Package: libmrpt-opengl3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - opengl library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT opengl module.
+
+Package: libmrpt-opengl-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-opengl3.1 (= ${binary:Version}),
+         libmrpt-viz-dev,
+         libmrpt-poses-dev,
+         libmrpt-img-dev,
+         libgl-dev,
+         libglu1-mesa-dev
+Description: ${source:Synopsis} - opengl development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and the development symlink for the MRPT opengl module.
+
+Package: libmrpt-poses3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - poses library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT poses module.
+
+Package: libmrpt-poses-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-poses3.1 (= ${binary:Version}),
+         libmrpt-common-dev,
+         libmrpt-bayes-dev
+Description: ${source:Synopsis} - poses development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and the development symlink for the MRPT poses module.
+
+Package: libmrpt-random3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - random library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT random module.
+
+Package: libmrpt-random-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-random3.1 (= ${binary:Version}),
+         libmrpt-common-dev
+Description: ${source:Synopsis} - random development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and the development symlink for the MRPT random module.
+
+Package: libmrpt-rtti3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - rtti library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT rtti module.
+
+Package: libmrpt-rtti-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-rtti3.1 (= ${binary:Version}),
+         libmrpt-common-dev,
+         libmrpt-typemeta-dev,
+         libmrpt-core-dev
+Description: ${source:Synopsis} - rtti development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and the development symlink for the MRPT rtti module.
+
+Package: libmrpt-serialization3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - serialization library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT serialization module.
+
+Package: libmrpt-serialization-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-serialization3.1 (= ${binary:Version}),
+         libmrpt-common-dev,
+         libmrpt-rtti-dev
+Description: ${source:Synopsis} - serialization development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and dev symlink for MRPT serialization module.
+
+Package: libmrpt-slam3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - slam library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT slam module.
+
+Package: libmrpt-slam-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-slam3.1 (= ${binary:Version}),
+         libmrpt-maps-dev,
+         libmrpt-topography-dev
+Description: ${source:Synopsis} - slam development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and the development symlink for the MRPT slam module.
+
+Package: libmrpt-system3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - system library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT system module.
+
+Package: libmrpt-system-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-system3.1 (= ${binary:Version}),
+         libmrpt-common-dev,
+         libmrpt-containers-dev
+Description: ${source:Synopsis} - system development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and the development symlink for the MRPT system module.
+
+Package: libmrpt-tfest3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - tfest library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT tfest module.
+
+Package: libmrpt-tfest-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-tfest3.1 (= ${binary:Version}),
+         libmrpt-common-dev,
+         libmrpt-poses-dev
+Description: ${source:Synopsis} - tfest development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and the development symlink for the MRPT tfest module.
+
+Package: libmrpt-topography3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - topography library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT topography module.
+
+Package: libmrpt-topography-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-topography3.1 (= ${binary:Version}),
+         libmrpt-common-dev,
+         libmrpt-math-dev
+Description: ${source:Synopsis} - topography development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and dev symlink for MRPT topography module.
+
+Package: libmrpt-viz3.1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ${source:Synopsis} - viz library
+ ${source:Extended-Description}
+ .
+ Runtime shared library of the MRPT viz module.
+
+Package: libmrpt-viz-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-viz3.1 (= ${binary:Version}),
+         libmrpt-common-dev,
+         libmrpt-poses-dev,
+         libmrpt-img-dev
+Description: ${source:Synopsis} - viz development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and the development symlink for the MRPT viz module.
+
+Package: libmrpt-nanogui3.1
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -295,610 +782,577 @@ Built-Using: fonts-roboto-fontface (= ${fonts-roboto-fontface:version})
 Description: ${source:Synopsis} - nanogui library
  ${source:Extended-Description}
  .
- Fork of the nanogui library for use into MRPT GUI classes.
- This package provides the binary library file.
-
-Package: libmrpt-gui-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-gui2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-opengl-dev, libmrpt-nanogui-dev
-Description: ${source:Synopsis} - gui development package
- ${source:Extended-Description}
- .
- GUI utilities for displaying 2D and 3D graphics.
- This package provides headers and libraries for development.
+ Runtime shared library (vendored nanogui fork used by MRPT GUI classes).
 
 Package: libmrpt-nanogui-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-nanogui2.15 (= ${binary:Version}),
+Depends: ${misc:Depends},
+         libmrpt-nanogui3.1 (= ${binary:Version}),
+         libmrpt-gui-dev,
          libglfw3-dev
-Description: ${source:Synopsis} - nanogui development package
+Description: ${source:Synopsis} - nanogui development files
  ${source:Extended-Description}
  .
- Fork of the nanogui library for use into MRPT GUI classes.
- This package provides headers and libraries for development.
-
-Package: libmrpt-hwdrivers2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - hwdrivers library
- ${source:Extended-Description}
- .
- Classes to interface several sensors usually used in robotics.
- This package provides the binary library file.
-
-Package: libmrpt-hwdrivers-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-hwdrivers2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-comms-dev, libmrpt-gui-dev,
-         libmrpt-maps-dev, libmrpt-vision-dev
-Description: ${source:Synopsis} - hwdrivers development package
- ${source:Extended-Description}
- .
- Classes to interface several sensors usually used in robotics.
- This package provides headers and libraries for development.
-
-Package: libmrpt-img2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - img library
- ${source:Extended-Description}
- .
- A wrapper and extension to opencv image containers.
- This package provides the binary library file.
-
-Package: libmrpt-img-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-img2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-io-dev, libmrpt-math-dev,
-         libmrpt-config-dev
-Description: ${source:Synopsis} - img development package
- ${source:Extended-Description}
- .
- A wrapper and extension to opencv image containers.
- This package provides headers and libraries for development.
-
-Package: libmrpt-io2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - io library
- ${source:Extended-Description}
- .
- Classes for file I/O.
- This package provides the binary library file.
-
-Package: libmrpt-io-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-io2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-system-dev
-Description: ${source:Synopsis} - io development package
- ${source:Extended-Description}
- .
- Classes for file I/O.
- This package provides headers and libraries for development.
-
-Package: libmrpt-kinematics2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - kinematics library
- ${source:Extended-Description}
- .
- Classes representing robotic arm and mobile robot kinematics.
- This package provides the binary library file.
-
-Package: libmrpt-kinematics-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-kinematics2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-opengl-dev
-Description: ${source:Synopsis} - kinematics development package
- ${source:Extended-Description}
- .
- Classes representing robotic arm and mobile robot kinematics.
- This package provides headers and libraries for development.
-
-Package: libmrpt-maps2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - maps library
- ${source:Extended-Description}
- .
- Different metric map classes used in mobile robotics.
- This package provides the binary library file.
-
-Package: libmrpt-maps-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-maps2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-obs-dev, libmrpt-graphs-dev
-Description: ${source:Synopsis} - maps development package
- ${source:Extended-Description}
- .
- Different metric map classes used in mobile robotics.
- This package provides headers and libraries for development.
-
-Package: libmrpt-math2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - math library
- ${source:Extended-Description}
- .
- Geometry and mathematical utilities, tailored to mobile robotics.
- This package provides the binary library file.
-
-Package: libmrpt-math-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-math2.15 (= ${binary:Version}),
-         libsuitesparse-dev, libeigen3-dev, libmrpt-serialization-dev,
-         libmrpt-random-dev, libmrpt-system-dev, libnanoflann-dev,
-         libmrpt-common-dev
-Description: ${source:Synopsis} - math development package
- ${source:Extended-Description}
- .
- Geometry and mathematical utilities, tailored to mobile robotics.
- This package provides headers and libraries for development.
-
-Package: libmrpt-nav2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - nav library
- ${source:Extended-Description}
- .
- Autonomous navigation algorithms for mobile robots.
- This package provides the binary library file.
-
-Package: libmrpt-nav-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-nav2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-kinematics-dev, libmrpt-maps-dev
-Description: ${source:Synopsis} - nav development package
- ${source:Extended-Description}
- .
- Autonomous navigation algorithms for mobile robots.
- This package provides headers and libraries for development.
-
-Package: libmrpt-obs2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - obs library
- ${source:Extended-Description}
- .
- Classes representing different kinds of sensor observations in robotics.
- This package provides the binary library file.
-
-Package: libmrpt-obs-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-obs2.15 (= ${binary:Version}),
-        libmrpt-common-dev, libmrpt-opengl-dev, libmrpt-tfest-dev
-Description: ${source:Synopsis} - obs development package
- ${source:Extended-Description}
- .
- Classes representing different kinds of sensor observations in robotics.
- This package provides headers and libraries for development.
-
-Package: libmrpt-opengl2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - opengl library
- ${source:Extended-Description}
- .
- Graphic primitives and 3D rendering engine tailored for robotics applications.
- This package provides the binary library file.
-
-Package: libmrpt-opengl-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-opengl2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-poses-dev, libmrpt-img-dev
-Description: ${source:Synopsis} - opengl development package
- ${source:Extended-Description}
- .
- Graphic primitives and 3D rendering engine tailored for robotics applications.
- This package provides headers and libraries for development.
-
-Package: libmrpt-poses2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - poses library
- ${source:Extended-Description}
- .
- C++ classes to work with 2D and 3D poses (SE(2), SE(3)), including
- probabilistic distributions over them and Lie group utilities.
- This package provides the binary library file.
-
-Package: libmrpt-poses-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-poses2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-bayes-dev
-Description: ${source:Synopsis} - poses development package
- ${source:Extended-Description}
- .
- C++ classes to work with 2D and 3D poses (SE(2), SE(3)), including
- probabilistic distributions over them and Lie group utilities.
- This package provides headers and libraries for development.
-
-Package: libmrpt-random2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - random library
- ${source:Extended-Description}
- .
- Portable pseudorandom generators and probability distribution utilities.
- This package provides the binary library file.
-
-Package: libmrpt-random-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-random2.15 (= ${binary:Version}),
-         libmrpt-common-dev
-Description: ${source:Synopsis} - random development package
- ${source:Extended-Description}
- .
- Portable pseudorandom generators and probability distribution utilities.
- This package provides headers and libraries for development.
-
-Package: libmrpt-rtti2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - rtti library
- ${source:Extended-Description}
- .
- Portable RTTI library.
- This package provides the binary library file.
-
-Package: libmrpt-rtti-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-rtti2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-core-dev, libmrpt-typemeta-dev
-Description: ${source:Synopsis} - rtti development package
- ${source:Extended-Description}
- .
- Portable RTTI library.
- This package provides headers and libraries for development.
-
-Package: libmrpt-serialization2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - serialization library
- ${source:Extended-Description}
- .
- A portable, efficient C++ serialization library suitable for binary and
- plain-text storage formats.
- This package provides the binary library file.
-
-Package: libmrpt-serialization-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-serialization2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-rtti-dev
-Description: ${source:Synopsis} - serialization development package
- ${source:Extended-Description}
- .
- A portable, efficient C++ serialization library suitable for binary and
- plain-text storage formats.
- This package provides headers and libraries for development.
-
-Package: libmrpt-slam2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - slam library
- ${source:Extended-Description}
- .
- A collection of SLAM algorithms for mobile robot mapping.
- This package provides the binary library file.
-
-Package: libmrpt-slam-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-slam2.15 (= ${binary:Version}),
-        libmrpt-common-dev, libmrpt-maps-dev, libmrpt-vision-dev
-Description: ${source:Synopsis} - slam development package
- ${source:Extended-Description}
- .
- A collection of SLAM algorithms for mobile robot mapping.
- This package provides headers and libraries for development.
-
-Package: libmrpt-system2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - system library
- ${source:Extended-Description}
- .
- OS-abstraction layer for other MRPT libraries.
- This package provides the binary library file.
-
-Package: libmrpt-system-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-system2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-typemeta-dev, libmrpt-containers-dev
-Description: ${source:Synopsis} - system development package
- ${source:Extended-Description}
- .
- OS-abstraction layer for other MRPT libraries.
- This package provides headers and libraries for development.
-
-Package: libmrpt-tclap-dev
-Section: libdevel
-Architecture: all
-Multi-Arch: foreign
-Depends: ${misc:Depends}, libmrpt-common-dev
-Description: ${source:Synopsis} - tclap development package
- ${source:Extended-Description}
- .
- Forked version of the tclap library for use in mrpt applications.
- This package provides a header-only  library.
-
-Package: libmrpt-tfest2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - tfest library
- ${source:Extended-Description}
- .
- TransFormation ESTimation (tfest) algorithms to reconstruct SE(2) or SE(3)
- poses from sets of pairwise point correspondences.
- This package provides the binary library file.
-
-Package: libmrpt-tfest-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-tfest2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-poses-dev
-Description: ${source:Synopsis} - tfest development package
- ${source:Extended-Description}
- .
- TransFormation ESTimation (tfest) algorithms to reconstruct SE(2) or SE(3)
- poses from sets of pairwise point correspondences.
- This package provides headers and libraries for development.
-
-Package: libmrpt-topography2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - topography library
- ${source:Extended-Description}
- .
- Utilities to transform between different geographic coordinate systems.
- This package provides the binary library file.
-
-Package: libmrpt-topography-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-topography2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-obs-dev
-Description: ${source:Synopsis} - topography development package
- ${source:Extended-Description}
- .
- Utilities to transform between different geographic coordinate systems.
- This package provides headers and libraries for development.
-
-Package: libmrpt-typemeta-dev
-Section: libdevel
-Architecture: all
-Multi-Arch: foreign
-Depends: ${misc:Depends}, libmrpt-common-dev
-Description: ${source:Synopsis} - typemeta development package
- ${source:Extended-Description}
- .
- C++17 metaprogramming utilities: constexpr string manipulation, build-time
- types to text conversion, etc.
- This package provides a header-only  library.
-
-Package: libmrpt-vision2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - vision library
- ${source:Extended-Description}
- .
- Computer vision algorithms.
- This package provides the binary library file.
-
-Package: libmrpt-vision-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-vision2.15 (= ${binary:Version}),
-         libmrpt-common-dev, libmrpt-obs-dev
-Description: ${source:Synopsis} - vision development package
- ${source:Extended-Description}
- .
- Computer vision algorithms.
- This package provides headers and libraries for development.
-
-Package: libmrpt-vision-lgpl2.15
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: ${source:Synopsis} - vision-lgpl library
- ${source:Extended-Description}
- .
- Bundle-adjustment implementation.
- This package provides the binary library file.
-
-Package: libmrpt-vision-lgpl-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: ${misc:Depends},libmrpt-vision-lgpl2.15 (= ${binary:Version}),
-         libmrpt-vision-dev
-Description: ${source:Synopsis} - vision-lgpl development package
- ${source:Extended-Description}
- .
- Bundle-adjustment implementation.
- This package provides headers and libraries for development.
+ Development files for the vendored nanogui fork.
 
 Package: libmrpt-common-dev
 Section: libdevel
-Architecture: any
+Architecture: all
 Multi-Arch: foreign
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, cmake
 Description: ${source:Synopsis} - common development files
  ${source:Extended-Description}
  .
- This package provides CMake configuration files and common headers.
+ CMake helper scripts and common headers shared by all MRPT modules.
+
+Package: libmrpt-typemeta-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libmrpt-common-dev
+Description: ${source:Synopsis} - typemeta development files
+ ${source:Extended-Description}
+ .
+ Headers, CMake config and the development symlink for the MRPT typemeta module.
+
+Package: libmrpt-data-dev
+Section: libdevel
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: ${source:Synopsis} - data CMake config
+ ${source:Extended-Description}
+ .
+ CMake config exposing the path to MRPT example datasets and config files.
+
+Package: python3-mrpt-bayes
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-config,
+         python3-mrpt-math
+Description: ${source:Synopsis} - Python 3 bindings for mrpt bayes
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT bayes module.
+
+Package: python3-mrpt-comms
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-io
+Description: ${source:Synopsis} - Python 3 bindings for mrpt comms
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT comms module.
+
+Package: python3-mrpt-config
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-expr
+Description: ${source:Synopsis} - Python 3 bindings for mrpt config
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT config module.
+
+Package: python3-mrpt-containers
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version})
+Description: ${source:Synopsis} - Python 3 bindings for mrpt containers
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT containers module.
+
+Package: python3-mrpt-core
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends}
+Description: ${source:Synopsis} - Python 3 bindings for mrpt core
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT core module.
+
+Package: python3-mrpt-expr
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-system
+Description: ${source:Synopsis} - Python 3 bindings for mrpt expr
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT expr module.
+
+Package: python3-mrpt-graphs
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-io,
+         python3-mrpt-poses,
+         python3-mrpt-rtti,
+         python3-mrpt-serialization,
+         python3-mrpt-viz
+Description: ${source:Synopsis} - Python 3 bindings for mrpt graphs
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT graphs module.
+
+Package: python3-mrpt-gui
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-opengl,
+         python3-mrpt-viz
+Description: ${source:Synopsis} - Python 3 bindings for mrpt gui
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT gui module.
+
+Package: python3-mrpt-img
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-config,
+         python3-mrpt-io,
+         python3-mrpt-math,
+         python3-mrpt-rtti,
+         python3-mrpt-serialization,
+         python3-numpy
+Description: ${source:Synopsis} - Python 3 bindings for mrpt img
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT img module.
+
+Package: python3-mrpt-io
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-system
+Description: ${source:Synopsis} - Python 3 bindings for mrpt io
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT io module.
+
+Package: python3-mrpt-kinematics
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-math,
+         python3-mrpt-viz
+Description: ${source:Synopsis} - Python 3 bindings for mrpt kinematics
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT kinematics module.
+
+Package: python3-mrpt-maps
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-graphs,
+         python3-mrpt-obs,
+         python3-mrpt-poses,
+         python3-mrpt-rtti,
+         python3-mrpt-serialization
+Description: ${source:Synopsis} - Python 3 bindings for mrpt maps
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT maps module.
+
+Package: python3-mrpt-math
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-random,
+         python3-mrpt-rtti,
+         python3-mrpt-serialization,
+         python3-mrpt-system,
+         python3-numpy
+Description: ${source:Synopsis} - Python 3 bindings for mrpt math
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT math module.
+
+Package: python3-mrpt-nav
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-kinematics,
+         python3-mrpt-maps,
+         python3-mrpt-math,
+         python3-mrpt-poses,
+         python3-mrpt-viz
+Description: ${source:Synopsis} - Python 3 bindings for mrpt nav
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT nav module.
+
+Package: python3-mrpt-obs
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-poses,
+         python3-mrpt-rtti,
+         python3-mrpt-serialization,
+         python3-mrpt-tfest,
+         python3-mrpt-viz
+Description: ${source:Synopsis} - Python 3 bindings for mrpt obs
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT obs module.
+
+Package: python3-mrpt-opengl
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-viz,
+         python3-mrpt-poses,
+         python3-mrpt-img
+Description: ${source:Synopsis} - Python 3 bindings for mrpt opengl
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT opengl module.
+
+Package: python3-mrpt-poses
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-math,
+         python3-mrpt-rtti,
+         python3-mrpt-serialization
+Description: ${source:Synopsis} - Python 3 bindings for mrpt poses
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT poses module.
+
+Package: python3-mrpt-random
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version})
+Description: ${source:Synopsis} - Python 3 bindings for mrpt random
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT random module.
+
+Package: python3-mrpt-rtti
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version})
+Description: ${source:Synopsis} - Python 3 bindings for mrpt rtti
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT rtti module.
+
+Package: python3-mrpt-serialization
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-rtti
+Description: ${source:Synopsis} - Python 3 bindings for mrpt serialization
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT serialization module.
+
+Package: python3-mrpt-slam
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-maps,
+         python3-mrpt-obs,
+         python3-mrpt-poses,
+         python3-mrpt-rtti,
+         python3-mrpt-serialization,
+         python3-mrpt-topography
+Description: ${source:Synopsis} - Python 3 bindings for mrpt slam
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT slam module.
+
+Package: python3-mrpt-system
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-containers
+Description: ${source:Synopsis} - Python 3 bindings for mrpt system
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT system module.
+
+Package: python3-mrpt-tfest
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-math,
+         python3-mrpt-poses
+Description: ${source:Synopsis} - Python 3 bindings for mrpt tfest
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT tfest module.
+
+Package: python3-mrpt-topography
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-math
+Description: ${source:Synopsis} - Python 3 bindings for mrpt topography
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT topography module.
+
+Package: python3-mrpt-viz
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-img,
+         python3-mrpt-math,
+         python3-mrpt-poses,
+         python3-mrpt-rtti,
+         python3-mrpt-serialization
+Description: ${source:Synopsis} - Python 3 bindings for mrpt viz
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT viz module.
+
+Package: python3-mrpt
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${misc:Depends}, python3-mrpt-bayes (= ${binary:Version}),
+         python3-mrpt-comms (= ${binary:Version}),
+         python3-mrpt-config (= ${binary:Version}),
+         python3-mrpt-containers (= ${binary:Version}),
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-expr (= ${binary:Version}),
+         python3-mrpt-graphs (= ${binary:Version}),
+         python3-mrpt-gui (= ${binary:Version}),
+         python3-mrpt-img (= ${binary:Version}),
+         python3-mrpt-io (= ${binary:Version}),
+         python3-mrpt-kinematics (= ${binary:Version}),
+         python3-mrpt-maps (= ${binary:Version}),
+         python3-mrpt-math (= ${binary:Version}),
+         python3-mrpt-nav (= ${binary:Version}),
+         python3-mrpt-obs (= ${binary:Version}),
+         python3-mrpt-opengl (= ${binary:Version}),
+         python3-mrpt-poses (= ${binary:Version}),
+         python3-mrpt-random (= ${binary:Version}),
+         python3-mrpt-rtti (= ${binary:Version}),
+         python3-mrpt-serialization (= ${binary:Version}),
+         python3-mrpt-slam (= ${binary:Version}),
+         python3-mrpt-system (= ${binary:Version}),
+         python3-mrpt-tfest (= ${binary:Version}),
+         python3-mrpt-topography (= ${binary:Version}),
+         python3-mrpt-viz (= ${binary:Version})
+Description: ${source:Synopsis} - Python 3 bindings (metapackage)
+ ${source:Extended-Description}
+ .
+ This metapackage installs the Python 3 bindings for all MRPT modules.
+
+Package: mrpt-apps
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: mrpt-common (= ${source:Version})
+Description: ${source:Synopsis} - console and GUI applications
+ ${source:Extended-Description}
+ .
+ A set of console and GUI robotics applications built on MRPT
+ (rawlog-grabber, RawLogViewer, SceneViewer3D, icp-slam, pf-localization,
+ camera-calib, navlog-viewer, and many more).
+
+Package: mrpt-common
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: ${source:Synopsis} - example datasets and config files
+ ${source:Extended-Description}
+ .
+ Example datasets and configuration files used by several MRPT applications.
+
+Package: mrpt-doc
+Section: doc
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}, libjs-jquery
+Description: ${source:Synopsis} - documentation and examples
+ ${source:Extended-Description}
+ .
+ HTML documentation and commented C++ examples for the MRPT libraries.
 
 Package: libmrpt-dev
 Section: libdevel
 Architecture: all
 Multi-Arch: foreign
 Depends: ${misc:Depends},
-         libmrpt-bayes-dev (>= ${binary:Version}),
-         libmrpt-comms-dev (>= ${binary:Version}),
-         libmrpt-config-dev (>= ${binary:Version}),
-         libmrpt-containers-dev (>= ${binary:Version}),
-         libmrpt-core-dev (>= ${binary:Version}),
-         libmrpt-expr-dev (>= ${binary:Version}),
-         libmrpt-graphs-dev (>= ${binary:Version}),
-         libmrpt-graphslam-dev (>= ${binary:Version}),
-         libmrpt-gui-dev (>= ${binary:Version}),
-         libmrpt-nanogui-dev (>= ${binary:Version}),
-         libmrpt-hwdrivers-dev (>= ${binary:Version}),
-         libmrpt-img-dev (>= ${binary:Version}),
-         libmrpt-io-dev (>= ${binary:Version}),
-         libmrpt-kinematics-dev (>= ${binary:Version}),
-         libmrpt-maps-dev (>= ${binary:Version}),
-         libmrpt-math-dev (>= ${binary:Version}),
-         libmrpt-nav-dev (>= ${binary:Version}),
-         libmrpt-obs-dev (>= ${binary:Version}),
-         libmrpt-opengl-dev (>= ${binary:Version}),
-         libmrpt-poses-dev (>= ${binary:Version}),
-         libmrpt-random-dev (>= ${binary:Version}),
-         libmrpt-rtti-dev (>= ${binary:Version}),
-         libmrpt-serialization-dev (>= ${binary:Version}),
-         libmrpt-slam-dev (>= ${binary:Version}),
-         libmrpt-system-dev (>= ${binary:Version}),
-         libmrpt-tclap-dev (>= ${binary:Version}),
-         libmrpt-tfest-dev (>= ${binary:Version}),
-         libmrpt-topography-dev (>= ${binary:Version}),
-         libmrpt-typemeta-dev (>= ${binary:Version}),
-         libmrpt-vision-dev (>= ${binary:Version}),
-         libmrpt-vision-lgpl-dev (>= ${binary:Version}),
-         libmrpt-apps-dev (>= ${binary:Version})
-Description: ${source:Synopsis} - Metapackage: all dev packages
+         libmrpt-bayes-dev (>= ${source:Version}),
+         libmrpt-bayes-dev (<< ${source:Version}.1~),
+         libmrpt-comms-dev (>= ${source:Version}),
+         libmrpt-comms-dev (<< ${source:Version}.1~),
+         libmrpt-config-dev (>= ${source:Version}),
+         libmrpt-config-dev (<< ${source:Version}.1~),
+         libmrpt-containers-dev (>= ${source:Version}),
+         libmrpt-containers-dev (<< ${source:Version}.1~),
+         libmrpt-core-dev (>= ${source:Version}),
+         libmrpt-core-dev (<< ${source:Version}.1~),
+         libmrpt-expr-dev (>= ${source:Version}),
+         libmrpt-expr-dev (<< ${source:Version}.1~),
+         libmrpt-graphs-dev (>= ${source:Version}),
+         libmrpt-graphs-dev (<< ${source:Version}.1~),
+         libmrpt-graphslam-dev (>= ${source:Version}),
+         libmrpt-graphslam-dev (<< ${source:Version}.1~),
+         libmrpt-gui-dev (>= ${source:Version}),
+         libmrpt-gui-dev (<< ${source:Version}.1~),
+         libmrpt-hwdrivers-dev (>= ${source:Version}),
+         libmrpt-hwdrivers-dev (<< ${source:Version}.1~),
+         libmrpt-img-dev (>= ${source:Version}),
+         libmrpt-img-dev (<< ${source:Version}.1~),
+         libmrpt-imgui-dev (>= ${source:Version}),
+         libmrpt-imgui-dev (<< ${source:Version}.1~),
+         libmrpt-io-dev (>= ${source:Version}),
+         libmrpt-io-dev (<< ${source:Version}.1~),
+         libmrpt-kinematics-dev (>= ${source:Version}),
+         libmrpt-kinematics-dev (<< ${source:Version}.1~),
+         libmrpt-libapps-cli-dev (>= ${source:Version}),
+         libmrpt-libapps-cli-dev (<< ${source:Version}.1~),
+         libmrpt-libapps-gui-dev (>= ${source:Version}),
+         libmrpt-libapps-gui-dev (<< ${source:Version}.1~),
+         libmrpt-maps-dev (>= ${source:Version}),
+         libmrpt-maps-dev (<< ${source:Version}.1~),
+         libmrpt-math-dev (>= ${source:Version}),
+         libmrpt-math-dev (<< ${source:Version}.1~),
+         libmrpt-nav-dev (>= ${source:Version}),
+         libmrpt-nav-dev (<< ${source:Version}.1~),
+         libmrpt-obs-dev (>= ${source:Version}),
+         libmrpt-obs-dev (<< ${source:Version}.1~),
+         libmrpt-opengl-dev (>= ${source:Version}),
+         libmrpt-opengl-dev (<< ${source:Version}.1~),
+         libmrpt-poses-dev (>= ${source:Version}),
+         libmrpt-poses-dev (<< ${source:Version}.1~),
+         libmrpt-random-dev (>= ${source:Version}),
+         libmrpt-random-dev (<< ${source:Version}.1~),
+         libmrpt-rtti-dev (>= ${source:Version}),
+         libmrpt-rtti-dev (<< ${source:Version}.1~),
+         libmrpt-serialization-dev (>= ${source:Version}),
+         libmrpt-serialization-dev (<< ${source:Version}.1~),
+         libmrpt-slam-dev (>= ${source:Version}),
+         libmrpt-slam-dev (<< ${source:Version}.1~),
+         libmrpt-system-dev (>= ${source:Version}),
+         libmrpt-system-dev (<< ${source:Version}.1~),
+         libmrpt-tfest-dev (>= ${source:Version}),
+         libmrpt-tfest-dev (<< ${source:Version}.1~),
+         libmrpt-topography-dev (>= ${source:Version}),
+         libmrpt-topography-dev (<< ${source:Version}.1~),
+         libmrpt-viz-dev (>= ${source:Version}),
+         libmrpt-viz-dev (<< ${source:Version}.1~),
+         libmrpt-nanogui-dev (>= ${source:Version}),
+         libmrpt-nanogui-dev (<< ${source:Version}.1~),
+         libmrpt-common-dev (>= ${source:Version}),
+         libmrpt-common-dev (<< ${source:Version}.1~),
+         libmrpt-typemeta-dev (>= ${source:Version}),
+         libmrpt-typemeta-dev (<< ${source:Version}.1~),
+         libmrpt-data-dev (>= ${source:Version}),
+         libmrpt-data-dev (<< ${source:Version}.1~)
+Description: ${source:Synopsis} - metapackage for all development files
  ${source:Extended-Description}
  .
- This metapackage install all mrpt -dev packages.
-
-Package: mrpt-common
-Architecture: all
-Multi-Arch: foreign
-Depends: ${misc:Depends}
-Description: ${source:Synopsis} - Example datasets and files
- ${source:Extended-Description}
- .
- This package provides example datasets and configuration files for several
- MRPT applications.
-
-Package: mrpt-apps
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Recommends: mrpt-common (= ${source:Version})
-Description: ${source:Synopsis} - Console and GUI applications
- ${source:Extended-Description}
- .
- This package provides a set of console and GUI applications:
- .
-  - rawlog-grabber: Record datasets from robotic sensors.
-  - RawLogViewer: Robotic dataset viewer and manipulator.
-  - ReactiveNavigationDemo: Obstacle avoidance GUI demo.
-  - SceneViewer3D: GUI viewer of MRPT 3D scenes.
-  - camera-calib: Interactive camera calibration tool.
-  - icp-slam
-  - kf-slam
-  - graph-slam
-  - 2d-slam-demo: GUI didactic robotic SLAM demo.
-  - map-partition
-  - observations2map: Converts simplemaps into metric maps.
-  - pf-localization: Particle filter localization (Monte Carlo localization).
-  - ro-localization
-  - rbpf-slam: Rao-Blackwellized Particle Filter for SLAM.
-  - simul-landmarks
-  - simul-beacons
-  - simul-gridmap
-  - GridmapNavSimul
-  - grid-matching
-  - rawlog-edit
-  - navlog-viewer: GUI viewer of navigation logs.
-  - features-matching: Computer vision demo.
-  - kinect-icp-slam: Example 3D mapping with Xbox Kinect
-  - kinect-view: Example 3D mapping with Xbox Kinect
-  - robotic-arm-kinematics: GUI for design of robot arms with
-     Denavit-Hartenberg parameters.
-  - velodyne-view: Live display/grabbing of Velodyne scanners.
-  - 3d-rotation-converter: A GUI tool to convert between different SO(3)
-     rotation parameterizations (quaternions, Euler angles, etc.)
-
-Package: python3-pymrpt
-Section: python
-Architecture: any
-Multi-Arch: allowed
-Depends: ${misc:Depends}, ${python3:Depends}, ${shlibs:Depends}
-Description: Python wrapper for MRPT
- ${source:Extended-Description}
- .
- This package contains a Python 3 wrapper for the C++ MRPT libraries.
+ This metapackage installs all MRPT -dev packages.

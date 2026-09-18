@@ -1,3 +1,4 @@
-usr/lib/*/libmrpt-nanogui.so
-usr/lib/*/cmake/mrpt-nanogui/*
+usr/lib/*/libmrpt_nanogui.so
 usr/include/mrpt/nanogui/
+usr/include/nanogui/
+usr/lib/*/mrpt_nanogui/cmake/

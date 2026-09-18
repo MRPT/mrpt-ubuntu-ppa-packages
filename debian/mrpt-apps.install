@@ -1,6 +1,6 @@
 usr/bin/*
-usr/share/man/*
-usr/share/applications/*
-usr/share/metainfo/*
-usr/share/pixmaps/*
-usr/share/mime/packages/*
+usr/share/man/man1/*
+share/applications/*.desktop usr/share/applications
+share/pixmaps/* usr/share/pixmaps
+share/mime/packages/* usr/share/mime/packages
+share/metainfo/* usr/share/metainfo

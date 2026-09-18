@@ -1,0 +1,7 @@
+# Colcon defaults used for the Debian build (referenced via COLCON_DEFAULTS_FILE
+# in debian/rules). It deliberately overrides the upstream colcon_defaults.yaml,
+# whose "symlink-install: true" would symlink installed files back into the
+# build tree and break the binary packages.
+build:
+  merge-install: true
+  symlink-install: false

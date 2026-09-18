@@ -1,3 +1,5 @@
-usr/lib/*/libmrpt-gui.so
-usr/lib/*/cmake/mrpt-gui/*
+usr/lib/*/libmrpt_gui.so
 usr/include/mrpt/gui/
+usr/include/mrpt/gui.h
+usr/include/mrpt/3rdparty/mathplot/
+usr/lib/*/mrpt_gui/cmake/

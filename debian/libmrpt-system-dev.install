@@ -1,3 +1,3 @@
-usr/lib/*/libmrpt-system.so
-usr/lib/*/cmake/mrpt-system/*
+usr/lib/*/libmrpt_system.so
 usr/include/mrpt/system/
+usr/lib/*/mrpt_system/cmake/

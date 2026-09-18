@@ -1,3 +1,4 @@
-usr/lib/*/libmrpt-obs.so
-usr/lib/*/cmake/mrpt-obs/*
+usr/lib/*/libmrpt_obs.so
 usr/include/mrpt/obs/
+usr/include/mrpt/obs.h
+usr/lib/*/mrpt_obs/cmake/

@@ -1,4 +1,388 @@
-mrpt (1:2.10.0+ds-1) unstable; urgency=medium
+mrpt (1:3.1.2+ds-1) unstable; urgency=medium
+
+  * New upstream version 3.1.2+ds
+  * Remove debian/patches already integrated upstream
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sun, 12 Jul 2026 10:41:12 +0200
+
+mrpt (1:3.0.5+ds-1) unstable; urgency=medium
+
+  * New upstream version 3.0.5+ds
+  * debian/patches: remove now obsolete patches
+  * debian: port packaging to MRPT 3.x modular colcon build
+  * debian/tests/control: ship an explicit autopkgtest overriding autodep8's
+    auto-generated python3 test. autodep8 derives the import name from the
+    binary package name ("python3-mrpt-bayes" -> "import mrpt_bayes"), which
+    never works: the pybind11 extensions install as the "mrpt" namespace
+    package, so the real import is "import mrpt.bayes".
+  * debian/control: drop redundant Priority field (defaults to optional),
+    drop redundant Rules-Requires-Root: no field (now the dpkg default), and
+    bump Standards-Version to 4.7.4 (no changes needed)
+  * Remove the prebuilt test binary modules/mrpt_img/tests/generate_test_data
+    from the source tree and keep it listed in debian/copyright Files-Excluded
+    (fixes source-contains-prebuilt-binary and source-ships-excluded-file)
+  * debian/control: add python3-numpy to the runtime Depends of
+    python3-mrpt-math and python3-mrpt-img. Their __init__.py modules do a
+    top-level "import numpy"
+  * debian/control: make each python3-mrpt-* package directly depend on every
+    sibling module its __init__.py imports at load time.
+  * debian/rules: wrap the colcon build in "setarch -R" (ADDR_NO_RANDOMIZE)
+    for reproducibility. Without it, ASLR-seeded GCC DWARF location-list
+    emission made .debug_info/.debug_loclists -- and hence the GNU build-id --
+    differ run-to-run despite an identical source tree, build path and -j,
+    breaking debrebuild.
+  * debian/control: fix not-binnmuable-all-depends-any on libmrpt-dev by
+    replacing the strict (= ${source:Version}) pin on its arch:any -dev
+    dependencies with a (>= ${source:Version}), (<< ${source:Version}.1~)
+    range, as recommended by lintian
+  * debian/copyright: update cmake module file patterns to their new
+    per-module paths, and drop entries for files removed upstream
+  * debian/copyright: normalize license stanza formatting and use the
+    canonical "Expat" identifier instead of "MIT"
+  * debian/rules: remove now obsolete -D cmake symbols
+  * debian/rules: enable unit tests via "colcon test" under xvfb-run, with
+    verbose console output, failing the build on test failures
+  * debian/control: add xvfb and xauth build dependencies for running the
+    test suite headlessly
+  * debian/rules: pass -DBUILD_TESTING=ON to colcon's cmake-args; without
+    it no test binaries/registrations are generated and colcon test-result
+    reports "0 tests"
+  * debian/rules: export PYTHONPATH/LD_LIBRARY_PATH pointing at the merged
+    colcon install tree when running colcon test, fixing Python binding
+    tests
+  * debian/rules: drop optimize=+lto from DEB_BUILD_MAINT_OPTIONS; GCC's LTO
+    miscompiles exception unwinding across thread boundaries here, causing
+    spurious test crashes in mrpt_maps and mrpt_nav
+  * debian/control, debian/copyright: unembed exprtk.hpp, building against
+    the system libexprtk-dev (Closes: #1094437)
+  * debian/patches: add 0001-Fix-ambiguous-operator-on-i386-array_string-string_
+    fixing an i386-only FTBFS in mrpt_typemeta's test suite for platforms
+    where ptrdiff_t==int
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sun, 21 Jun 2026 20:59:42 +0200
+
+mrpt (1:2.15.14+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.15.14+ds
+  * Upstream renamed ini2yaml app (Closes: #1133167)
+  * Fix g++16 build errors (Closes: #1133562)
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Tue, 21 Apr 2026 10:11:35 +0200
+
+mrpt (1:2.15.10+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.15.10+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sat, 14 Feb 2026 10:58:20 +0100
+
+mrpt (1:2.15.9+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.15.9+ds
+  * d/patches: Remove patches already merged upstream.
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Fri, 13 Feb 2026 18:29:49 +0100
+
+mrpt (1:2.15.8+ds-2) unstable; urgency=medium
+
+  * d/patches: Add fix to FTBFS in big endian (Closes: #1127741)
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Thu, 12 Feb 2026 17:53:45 +0100
+
+mrpt (1:2.15.8+ds-1) unstable; urgency=medium
+
+  * d/patches: Add patch to fix build error in pybind
+  * d/control: Remove t64 dh substitution symbols
+  * d/control: Update Debian policy standards
+  * d/watch: Updated to v5
+  * d/control: Remove useless optional "Priority" field
+  * d/control: Remove superfluous Rules-Requires-Root
+  * d/control: add new build dependency libzstd-dev
+  * New upstream version 2.15.8+ds
+
+ -- Jose Luis Blanco-Claraco <joseluisblancoc@gmail.com>  Mon, 09 Feb 2026 22:28:31 +0100
+
+mrpt (1:2.15.5+ds-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * source only upload
+
+ -- Jochen Sprickerhof <jspricke@debian.org>  Tue, 13 Jan 2026 09:40:57 +0100
+
+mrpt (1:2.15.5+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.15.5+ds (Closes: #1124612)
+  * d/copyright: Update copyright year
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sat, 10 Jan 2026 09:51:51 +0100
+
+mrpt (1:2.15.4+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.15.4+ds
+  * Remove 2 patches integrated upstream
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Fri, 09 Jan 2026 19:29:46 +0100
+
+mrpt (1:2.15.2+ds-2) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Timo Röhling <roehling@debian.org>  Tue, 25 Nov 2025 10:16:09 +0100
+
+mrpt (1:2.15.2+ds-1) experimental; urgency=medium
+
+  * d/control: Update Debian policy to 4.7.2
+  * New upstream version 2.15.2+ds
+  * d/*.install: Renamed 2.14 to 2.15
+  * d/control: Remove ROS1 packages (moved upstream to another repository)
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Thu, 20 Nov 2025 00:14:52 +0100
+
+mrpt (1:2.14.15+ds-2) unstable; urgency=medium
+
+  * Fix FTBFS installing pymrpt (Closes: #1120444)
+  * d/rules: remove 'execute_after_dh_auto_install', now not needed.
+  * Simplify and fix python3-pymrpt.install
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sun, 09 Nov 2025 23:13:48 +0100
+
+mrpt (1:2.14.15+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.14.15+ds
+  * Extend d/patch to include another problematic file.
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Mon, 29 Sep 2025 08:41:13 +0200
+
+mrpt (1:2.14.14+ds-2) unstable; urgency=medium
+
+  * Add patch as a workaround to segfault (Closes: 1115155)
+  * d/copyright: Fix Lintian warning old-fsf-address-in-copyright-file
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sat, 27 Sep 2025 23:08:01 +0200
+
+mrpt (1:2.14.14+ds-1) unstable; urgency=medium
+
+  * Remove d/patches, now integrated upstream
+  * Fix unit test crashes (Closes: #1115155)
+  * New upstream version 2.14.14+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sat, 27 Sep 2025 15:34:20 +0200
+
+mrpt (1:2.14.13+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.14.13+ds
+  * Fix FTBFS with ffmpeg 8.0 (Closes: #1115064)
+  * Harden unit tests (Closes: #1115155)
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sat, 27 Sep 2025 03:09:30 +0200
+
+mrpt (1:2.14.7+ds-2) unstable; urgency=medium
+
+  * Fix FTBFS due to wrong variable name not detected by old gcc (Closes: #1114214)
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sun, 07 Sep 2025 23:55:46 +0200
+
+mrpt (1:2.14.7+ds-1) unstable; urgency=medium
+
+  * Fix d/copyright warning on trailing /
+  * New upstream version 2.14.7+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Tue, 10 Dec 2024 23:12:19 +0100
+
+mrpt (1:2.14.0+ds-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * source only upload after NEW
+
+ -- Jochen Sprickerhof <jspricke@debian.org>  Tue, 24 Sep 2024 14:11:30 +0200
+
+mrpt (1:2.14.0+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.14.0+ds
+  * Update to 2.14 version
+  * Add libtbb-dev as build-dep and as depends of one -dev package
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Wed, 18 Sep 2024 23:28:29 +0200
+
+mrpt (1:2.13.8+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.13.8+ds
+  * Remove all d/patches (already integrated upstream)
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sat, 07 Sep 2024 22:35:19 +0200
+
+mrpt (1:2.13.7+ds-2) unstable; urgency=medium
+
+  * Fix format of lintian overrides
+  * Remove trailing spaces in d/changelog & d/rules (lintian --pedantic)
+  * Add d/patch to fix arm64 unit test crash in build farm
+  * Add d/patch to fix KLT failing unit tests
+  * lintian-override: sources under python/* has long lines from pybind11
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sat, 31 Aug 2024 17:10:54 +0200
+
+mrpt (1:2.13.7+ds-1) unstable; urgency=medium
+
+  * Mark libmrpt-common-dev as "Architecture: all"
+  * Remove now useless sections from d/copyright
+  * Add d/mrpt-common.lintian-overrides for false positives
+  * Update Debian policy
+  * Remove mrpt-detectors (removed upstream)
+  * Update d/copyright
+  * New upstream version 2.13.7+ds (Closes: #1077432)
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Thu, 22 Aug 2024 13:22:38 +0200
+
+mrpt (1:2.12.0+ds-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * upload to unstable
+
+ -- Jochen Sprickerhof <jspricke@debian.org>  Tue, 19 Mar 2024 08:34:20 +0100
+
+mrpt (1:2.12.0+ds-1) experimental; urgency=medium
+
+  * New upstream version 2.12.0+ds (Closes: #1067021)
+  * Bump soname and remove t64 postfix
+  * Remove "d/patches/*" since they were applied upstream.
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sun, 17 Mar 2024 13:09:00 +0100
+
+mrpt (1:2.11.10+ds-2) unstable; urgency=medium
+
+  * Add d/patch to fix FTBFS (Closes: #1066207)
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Thu, 14 Mar 2024 01:43:48 +0100
+
+mrpt (1:2.11.10+ds-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Rename libraries for 64-bit time_t transition.  Closes: #1064188
+
+ -- Steve Langasek <vorlon@debian.org>  Fri, 01 Mar 2024 08:03:30 +0000
+
+mrpt (1:2.11.10+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.11.10+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Tue, 20 Feb 2024 00:02:41 +0100
+
+mrpt (1:2.11.9+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.11.9+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sun, 11 Feb 2024 19:10:01 +0100
+
+mrpt (1:2.11.8+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.11.8+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Wed, 07 Feb 2024 01:04:38 +0100
+
+mrpt (1:2.11.7+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.11.7+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Thu, 25 Jan 2024 23:46:48 +0100
+
+mrpt (1:2.11.6+ds-1) unstable; urgency=medium
+
+  * copyright year update
+  * d/rules changes to merge all pymrpt python versions under /usr/lib/python3/
+  * New upstream version 2.11.6+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sun, 14 Jan 2024 00:11:48 +0100
+
+mrpt (1:2.11.3+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.11.3+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Wed, 22 Nov 2023 22:22:53 +0100
+
+mrpt (1:2.11.2+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.11.2+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Wed, 25 Oct 2023 17:22:50 +0200
+
+mrpt (1:2.11.1+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.11.1+ds
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Mon, 23 Oct 2023 16:14:21 +0200
+
+mrpt (1:2.11.0+ds-1) experimental; urgency=medium
+
+  * New upstream version 2.11.0+ds
+  * Update d/copyright for new upstream files
+  * Update d/control and d/*.install to version 2.11
+  * Delete d/patches (already integrated upstream)
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Thu, 19 Oct 2023 12:47:15 +0200
+
+mrpt (1:2.10.2+ds-3) unstable; urgency=medium
+
+  * d/control and d/rules: do not build ".ps" files, reduce build-deps (Closes: #1048970)
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Thu, 12 Oct 2023 17:48:56 +0200
+
+mrpt (1:2.10.2+ds-2) unstable; urgency=medium
+
+  * Add patch to fix FTBFS in python wrapper (armhf, etc.)
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Thu, 05 Oct 2023 16:52:28 +0200
+
+mrpt (1:2.10.2+ds-1) unstable; urgency=medium
+
+  * New upstream version 2.10.2+ds
+  * Remove d/patches, already integrated upstream.
+  * Fix FTBFS with suitesparse 7.2.0 (Closes: #1053468)
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Thu, 05 Oct 2023 00:17:50 +0200
+
+mrpt (1:2.10.1+ds-3) unstable; urgency=medium
+
+  * Skip CFBORender tests on riscv. (Closes: #1051848)
+  * d/rules: Fix tests not being invoked.
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sun, 01 Oct 2023 23:43:53 +0200
+
+mrpt (1:2.10.1+ds-2) unstable; urgency=medium
+
+  * Build depend on dh-sequence-python3 instead of dh-python
+  * python3-pymrpt: dont install the direct_url.json file
+  * python3-pymrpt: marked as multi-arch "allowed"
+  * d/rules: moved to pybuild system
+  * d/control: build depend on python3-all-dev
+  * d/rules: simplify, remove redundant rules
+
+ -- Jose Luis Blanco-Claraco <joseluisblancoc@gmail.com>  Sat, 16 Sep 2023 19:02:09 +0200
+
+mrpt (1:2.10.1+ds-1) unstable; urgency=medium
+
+  * d/rules: add --with-python3 to dh
+  * d/control: drop manual dependency on 'python3'
+  * New upstream version 2.10.1+ds
+  * Remove patches (integrated upstream)
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Thu, 10 Aug 2023 09:21:51 +0200
+
+mrpt (1:2.10.0+ds-3) unstable; urgency=medium
+
+  * Add a patch to fix FTBFS if bfd is present but iberty-dev is not
+    (Closes: #1041165)
+  * Add patch to prevent memory exhaustion on MIPSEL builds and to
+    run lto in parallel.
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Tue, 18 Jul 2023 19:49:00 +0200
+
+mrpt (1:2.10.0+ds-2) unstable; urgency=medium
+
+  * Team upload.
+  * Upload to unstable.
+
+ -- Timo Röhling <roehling@debian.org>  Thu, 13 Jul 2023 23:35:17 +0200
+
+mrpt (1:2.10.0+ds-1) experimental; urgency=medium
 
   * update install files and d/control for 2.10 version
   * Add new python3-pymrpt package
@@ -7,6 +391,7 @@ mrpt (1:2.10.0+ds-1) unstable; urgency=medium
   * Fix build errors with gcc-13 (Closes: #1037783)
   * d/control: Remove obsolete Breaks/Replace entries
   * d/control: Fix wrong package name (Closes: #1035446)
+  * d/control: Update Standards-Version to 4.6.2
   * Removed the binary and "-dev" packages for mrpt-hmtslam (library
     deleted upstream).
   * New upstream version 2.10.0+ds

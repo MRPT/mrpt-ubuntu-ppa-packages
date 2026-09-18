@@ -1,0 +1,36 @@
+# Explicit autopkgtest, overriding autodep8's auto-generated python3 test.
+#
+# autodep8 derives the importable module name from the binary package name,
+# i.e. "python3-mrpt-bayes" -> "import mrpt_bayes", which never works here:
+# the pybind11 extensions install as the "mrpt" namespace package, so the
+# real import is "import mrpt.bayes". We also only build the bindings against
+# the default python3 interpreter (no multi-version pybuild), so we test only
+# that interpreter rather than every registered python3 runtime.
+Test-Command: py=$(py3versions -d) ; echo "Importing all mrpt.* modules with $py" ; $py -c "import mrpt.bayes, mrpt.comms, mrpt.config, mrpt.containers, mrpt.core, mrpt.expr, mrpt.graphs, mrpt.gui, mrpt.img, mrpt.io, mrpt.kinematics, mrpt.maps, mrpt.math, mrpt.nav, mrpt.obs, mrpt.opengl, mrpt.poses, mrpt.random, mrpt.rtti, mrpt.serialization, mrpt.slam, mrpt.system, mrpt.tfest, mrpt.topography, mrpt.viz; print('all mrpt.* modules imported OK')"
+Depends: python3-all,
+ python3-mrpt-bayes,
+ python3-mrpt-comms,
+ python3-mrpt-config,
+ python3-mrpt-containers,
+ python3-mrpt-core,
+ python3-mrpt-expr,
+ python3-mrpt-graphs,
+ python3-mrpt-gui,
+ python3-mrpt-img,
+ python3-mrpt-io,
+ python3-mrpt-kinematics,
+ python3-mrpt-maps,
+ python3-mrpt-math,
+ python3-mrpt-nav,
+ python3-mrpt-obs,
+ python3-mrpt-opengl,
+ python3-mrpt-poses,
+ python3-mrpt-random,
+ python3-mrpt-rtti,
+ python3-mrpt-serialization,
+ python3-mrpt-slam,
+ python3-mrpt-system,
+ python3-mrpt-tfest,
+ python3-mrpt-topography,
+ python3-mrpt-viz
+Restrictions: allow-stderr

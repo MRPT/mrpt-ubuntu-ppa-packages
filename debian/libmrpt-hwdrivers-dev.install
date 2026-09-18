@@ -1,3 +1,3 @@
-usr/lib/*/libmrpt-hwdrivers.so
-usr/lib/*/cmake/mrpt-hwdrivers/*
+usr/lib/*/libmrpt_hwdrivers.so
 usr/include/mrpt/hwdrivers/
+usr/lib/*/mrpt_hwdrivers/cmake/

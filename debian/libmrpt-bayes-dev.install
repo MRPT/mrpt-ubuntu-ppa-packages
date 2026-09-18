@@ -1,3 +1,4 @@
-usr/lib/*/libmrpt-bayes.so
-usr/lib/*/cmake/mrpt-bayes/*
+usr/lib/*/libmrpt_bayes.so
 usr/include/mrpt/bayes/
+usr/include/mrpt/bayes.h
+usr/lib/*/mrpt_bayes/cmake/

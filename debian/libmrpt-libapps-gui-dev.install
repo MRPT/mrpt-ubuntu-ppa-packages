@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt_libapps_gui.so
+usr/include/mrpt/apps_gui/
+usr/lib/*/mrpt_libapps_gui/cmake/

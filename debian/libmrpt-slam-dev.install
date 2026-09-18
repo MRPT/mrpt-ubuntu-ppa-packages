@@ -1,3 +1,3 @@
-usr/lib/*/libmrpt-slam.so
-usr/lib/*/cmake/mrpt-slam/*
+usr/lib/*/libmrpt_slam.so
 usr/include/mrpt/slam/
+usr/lib/*/mrpt_slam/cmake/
