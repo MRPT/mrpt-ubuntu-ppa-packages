@@ -20,7 +20,7 @@ import re
 import sys
 import glob
 
-SOVER = "3.1"  # SOVERSION = MAJOR.MINOR
+SOVER = "3.2"  # SOVERSION = MAJOR.MINOR
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DEBIAN = os.path.normpath(os.path.join(HERE, ".."))
@@ -29,7 +29,7 @@ DEBIAN = os.path.normpath(os.path.join(HERE, ".."))
 MRPT_SRC = sys.argv[1] if len(sys.argv) > 1 else os.path.expanduser("~/code/mrpt")
 
 # --- module classification (from the installed colcon tree) ----------------
-# Modules that build a shared library libmrpt_<m>.so -> libmrpt-<m>3.1 + -dev
+# Modules that build a shared library libmrpt_<m>.so -> libmrpt-<m>3.2 + -dev
 LIB_MODULES = [
     "bayes", "comms", "config", "containers", "core", "expr", "graphs",
     "graphslam", "gui", "hwdrivers", "img", "imgui", "io", "kinematics",
