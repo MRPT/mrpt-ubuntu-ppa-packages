@@ -22,13 +22,39 @@ Target PPAs (replacing the old `ppa:joseluisblancoc/mrpt` / `mrpt-stable`):
 - `ppa:joseluisblancoc/mrpt3-develop` — https://launchpad.net/~joseluisblancoc/+archive/ubuntu/mrpt3-develop (created)
 - `ppa:joseluisblancoc/mrpt3-stable` — not created yet
 
-**Open items before the cutover is live:**
-1. Create the `mrpt3-stable` PPA on Launchpad, then push the `cron-scripts`
-   branch (its commit retargets both jobs and drops jammy). Pushing it before
-   the PPA exists means a rejected upload every 12h.
-2. Re-enable the `run_mrpt-develop.sh` line in `mrptppa`'s crontab (it is
-   commented out "disabled for 3.0!!"). Only the server account can do this.
-3. `mrpt3-stable` cannot be fed from `master` yet — see "master vs develop".
+### Open items (as of 2026-09-19)
+
+**Committed locally but deliberately NOT pushed** — all three would change
+what the live 12-hourly job publishes, so they were held pending the PPA
+cutover:
+
+- `noble` and `resolute`: 2 commits each ahead of `origin` — the SOVERSION
+  3.1→3.2 rename, and the `libmrpt-imgui-vendor-dev` package. Pushing these
+  while the master job still points at the *old* `mrpt-stable` PPA would
+  publish 3.2-named packages there, and the imgui-vendor package makes the
+  build fail against today's `master` (see "master vs develop").
+- `cron-scripts`: 1 commit ahead — retargets both jobs to the mrpt3 PPAs and
+  drops the jammy builds. Must not be pushed before `mrpt3-stable` exists.
+
+Note `origin/noble` and `origin/resolute` already carry the first port commit
+(3.x packaging at SOVER 3.1), so the live pipeline is *already* on 3.x
+packaging. The next master run therefore builds MRPT with it.
+
+**To do:**
+1. Create the `mrpt3-stable` PPA on Launchpad, then push `cron-scripts`
+   together with the two distro branches.
+2. Re-enable the `run_mrpt-develop.sh` line in `mrptppa`'s crontab (still
+   commented out, "disabled for 3.0!!"). Only the server account can do this.
+3. `mrpt3-stable` cannot be fed from `master` until a release tag includes
+   `mrpt_imgui_vendor` — see "master vs develop".
+4. Finish the local build validation. A full `noble` build of tag 3.1.4 with
+   the ported packaging **passed** (`dpkg-buildpackage -b`, `nocheck`). The
+   equivalent run against `develop` with the SOVER-3.2 + imgui-vendor
+   packaging got through build-dep resolution and 10 modules before being
+   stopped, so it never reached `dh_install` — the `libmrpt-imgui-vendor-dev`
+   file globs are still unverified. Re-run it (recipe below) and check the
+   `dh_missing --list-missing` output for unpackaged `mrpt_imgui_vendor`
+   files. `resolute` has had no full build yet.
 
 ## Versioning rules that bite
 
