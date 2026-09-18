@@ -57,7 +57,7 @@ if [ "$CURSHA" != "$LASTSHA" ]; then
     # Build PPA and uploads:
     GITBRANCH=master
     TMPDIR=/tmp/mrpt-$GITBRANCH
-    PPA_URL=ppa:joseluisblancoc/mrpt-stable
+    PPA_URL=ppa:joseluisblancoc/mrpt3-stable
 
     rm -fr $TMPDIR
     mkdir $TMPDIR
@@ -65,10 +65,6 @@ if [ "$CURSHA" != "$LASTSHA" ]; then
 
     git clone https://github.com/MRPT/mrpt-ubuntu-ppa-packages.git
     cd mrpt-ubuntu-ppa-packages
-
-    # u22.04 jammy:
-    ./build-mrpt-deb-pkg.sh  -s -g $GITBRANCH -d jammy
-    (cd $HOME/mrpt_release && dput $PPA_URL *.changes)
 
     # u24.04 noble:
     ./build-mrpt-deb-pkg.sh  -s -g $GITBRANCH -d noble
