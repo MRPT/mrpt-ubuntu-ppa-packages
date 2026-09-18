@@ -343,11 +343,26 @@ Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
          libmrpt-imgui3.2 (= ${binary:Version}),
+         libmrpt-imgui-vendor-dev (= ${binary:Version}),
          libmrpt-opengl-dev
 Description: ${source:Synopsis} - imgui development files
  ${source:Extended-Description}
  .
  Headers, CMake config and the development symlink for the MRPT imgui module.
+
+Package: libmrpt-imgui-vendor-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         libglfw3-dev,
+         libgl-dev
+Description: ${source:Synopsis} - vendored ImGui/ImPlot development files
+ ${source:Extended-Description}
+ .
+ Static archive, headers and CMake config of the ImGui/ImPlot code vendored by
+ MRPT. This library is static by design: upstream Dear ImGui carries no
+ SOVERSION and makes no ABI stability promise, so every consumer links it in.
 
 Package: libmrpt-io3.2
 Section: libs
@@ -1308,6 +1323,8 @@ Depends: ${misc:Depends},
          libmrpt-img-dev (<< ${source:Version}.1~),
          libmrpt-imgui-dev (>= ${source:Version}),
          libmrpt-imgui-dev (<< ${source:Version}.1~),
+         libmrpt-imgui-vendor-dev (>= ${source:Version}),
+         libmrpt-imgui-vendor-dev (<< ${source:Version}.1~),
          libmrpt-io-dev (>= ${source:Version}),
          libmrpt-io-dev (<< ${source:Version}.1~),
          libmrpt-kinematics-dev (>= ${source:Version}),

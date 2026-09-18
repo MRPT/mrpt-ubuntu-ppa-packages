@@ -1,0 +1,3 @@
+usr/lib/*/libmrpt_imgui_vendor.a
+usr/include/mrpt/imgui_vendor/
+usr/lib/*/mrpt_imgui_vendor/cmake/
