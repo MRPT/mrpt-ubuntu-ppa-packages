@@ -4,31 +4,73 @@ Builds and publishes `.deb` packages of MRPT to Launchpad PPAs. This repo
 (github.com/MRPT/mrpt-ubuntu-ppa-packages) only holds the packaging glue; the
 actual MRPT source is pulled from github.com/MRPT/mrpt at build time.
 
-## Status (2026-09): mid-migration from MRPT 2.x to 3.x
+## Status (2026-09): MRPT 3.x packaging ported, publish cutover pending
 
-MRPT 3.x switched to a modular, colcon-orchestrated build (see
-`~/code/mrpt-salsa/agents.md` for MRPT 3.x itself). **Nothing in this repo
-has been ported yet** — every `debian/` branch here still packages MRPT 2.x
-(plain CMake, package names like `libmrpt-core2.15`). This is why the nightly
-develop-branch cron job on the publish server is currently disabled (see
-below). Porting these branches to the 3.x colcon build is the main open task.
+`noble` and `resolute` now carry MRPT 3.x packaging (colcon build,
+`libmrpt-*3.2` binary packages). The previous MRPT 2.x state of each is
+preserved verbatim on `noble-mrpt2.x` / `resolute-mrpt2.x`. `jammy` is
+untouched and stays 2.x: MRPT 3.x targets **Ubuntu 24.04 (noble) and 26.04
+(resolute) only**. The other distro branches are EOL leftovers.
 
-`~/code/mrpt-salsa/debian/` is a **working, up-to-date reference**: it's the
-Debian-unstable (salsa) packaging already ported to MRPT 3.x colcon builds
-(package names like `libmrpt-core3.1`). Use it as the template when porting
-this repo's `debian/` branches — the module list, `.install` files,
-`colcon-defaults.yaml` override, and `debian/rules` colcon invocation should
-transfer with adaptation (this repo builds via plain `debuild`/PPA, not
-`gbp buildpackage`; no `salsa`-specific bits).
+The 3.x packaging was seeded from `~/code/mrpt-salsa/debian/` (the Debian
+unstable/salsa tree, already ported to the colcon build) and is kept as close
+to it as possible, so future syncs stay a clean merge — including `Vcs-Git`,
+`watch` and `upstream/`, which the 2.x branches also carried. Deltas are
+deliberate and few; see "Ubuntu-specific deltas" below.
 
-New target PPAs (replacing the old `ppa:joseluisblancoc/mrpt` /
-`mrpt-stable`):
+Target PPAs (replacing the old `ppa:joseluisblancoc/mrpt` / `mrpt-stable`):
 - `ppa:joseluisblancoc/mrpt3-develop` — https://launchpad.net/~joseluisblancoc/+archive/ubuntu/mrpt3-develop (created)
 - `ppa:joseluisblancoc/mrpt3-stable` — not created yet
 
-Target distros going forward: **Ubuntu 24.04 (noble) and 26.04 (resolute)
-only.** Older distro branches (bionic/focal/jammy/impish/kinetic/lunar/
-mantic) are legacy/EOL and not in scope for mrpt3.
+**Open items before the cutover is live:**
+1. Create the `mrpt3-stable` PPA on Launchpad, then push the `cron-scripts`
+   branch (its commit retargets both jobs and drops jammy). Pushing it before
+   the PPA exists means a rejected upload every 12h.
+2. Re-enable the `run_mrpt-develop.sh` line in `mrptppa`'s crontab (it is
+   commented out "disabled for 3.0!!"). Only the server account can do this.
+3. `mrpt3-stable` cannot be fed from `master` yet — see "master vs develop".
+
+## Versioning rules that bite
+
+**SOVERSION is `MAJOR.MINOR`** (`mrpt_cmake_functions.cmake`), so the
+binary package names carry it: MRPT 3.2.x ships `libmrpt-math3.2`, etc. When
+upstream bumps the minor version, the distro branches must be bumped in
+lockstep: rename every `debian/libmrpt-*<old>.install`, and replace the
+`libmrpt-*<old>` names in `debian/control` and `debian/rules`. Do **not**
+blanket-replace the version string: `debian/copyright` and `debian/changelog`
+contain unrelated `3.1`/`3.2` strings (license text, history). Match on
+`libmrpt-[a-z0-9_-]*<old>` instead. This mirrors how the 2.x branches were
+maintained (a single SOVER per branch, bumped as upstream moved).
+
+**`debian/scripts/gen-packaging.py` is a one-shot bootstrapper, not a
+regenerator.** Its output has drifted behind the hand-maintained
+`debian/control`: re-running it drops `libexprtk-dev`/`xvfb`/`xauth`, reverts
+`Standards-Version` and re-adds fields removed for lintian. Never wire it into
+the build pipeline; edit `debian/control` by hand.
+
+**master vs develop.** `master` is currently the 3.2.0 tag, but
+`mrpt_imgui_vendor` was added on `develop` *after* that tag. The packaging
+ships that module (`libmrpt-imgui-vendor-dev`), and `dh_install` fails when an
+`.install` glob matches nothing — so these branches build `develop` but not
+today's `master`. `mrpt3-stable` must wait for a release tag that includes
+`mrpt_imgui_vendor`.
+
+## Ubuntu-specific deltas from the salsa tree
+
+- **noble drops `libexprtk-dev`** from `Build-Depends`: Ubuntu 24.04 has no
+  such package (26.04 does). `modules/mrpt_expr/CMakeLists.txt` falls back to
+  the bundled `exprtk.hpp`, which *is* present here — `make_release.sh` ships
+  it as an ordinary tracked file, and only Debian's `+ds` repack strips it.
+  `resolute` keeps the build-dep and is otherwise the salsa tree verbatim.
+- **`libmrpt-imgui-vendor-dev`** is added on top of salsa: `mrpt_imgui_vendor`
+  builds a *static* archive by design (Dear ImGui has no SOVERSION or ABI
+  promise), so the `.a`, the vendored headers and the module CMake config must
+  be shipped or `find_package(mrpt_imgui)` breaks for users. The blanket
+  "static archives are never shipped" rule was removed from
+  `debian/not-installed` accordingly.
+- `debian/copyright`'s `Files-Excluded` is left untouched. It only drives
+  `uscan`/`mk-origtargz` repacking, which this pipeline never runs, so it is
+  inert here even though the PPA tarball does contain some of those files.
 
 ## Repo layout: one git branch per Ubuntu distro
 
@@ -37,12 +79,15 @@ This repo intentionally keeps unrelated history per branch:
 - **`main`** — the build driver: `build-mrpt-deb-pkg.sh`, `docker/` (local
   test containers for building against Debian sid/experimental), this file,
   `README.md`. No `debian/` directory here.
-- **`bionic`, `focal`, `jammy`, `jammy2`, `noble`, `resolute`, `impish`,
-  `kinetic`, `lunar`, `mantic`** — each contains *only* a `debian/` directory:
-  the full Debian packaging recipe (`control`, `rules`, `changelog`,
-  per-package `.install` files, `copyright`, `watch`) for that specific
-  Ubuntu codename. `jammy`/`noble`/`resolute` are the currently relevant
-  ones; the rest are old EOL-distro packagings kept for history.
+- **`noble`, `resolute`** — the live MRPT 3.x packaging, one branch per
+  supported Ubuntu release. Each contains *only* a `debian/` directory.
+- **`noble-mrpt2.x`, `resolute-mrpt2.x`** — the MRPT 2.x packaging those two
+  branches held before the port, kept for reference. They are ancestors of the
+  3.x branches, so the 3.x commits were plain fast-forwards and no history was
+  rewritten or force-pushed.
+- **`bionic`, `focal`, `jammy`, `jammy2`, `impish`, `kinetic`, `lunar`,
+  `mantic`** — MRPT 2.x packaging for now-EOL (or, for `jammy`, out-of-scope)
+  Ubuntu releases, kept for history.
 - **`cron-scripts`** — the two scripts (`run_mrpt-develop.sh`,
   `run_mrpt-master.sh`) that the publish server runs on a schedule.
 - **`docker-deployment`** — older Docker-based build experiment (superseded
@@ -116,16 +161,22 @@ mrptppa`), so anything not listed here needs the user to check directly as
 #00 */12 * * * /home/mrptppa/cron/run_mrpt-develop.sh  # disabled for 3.0!!
 50 */12 * * * /home/mrptppa/cron/run_mrpt-master.sh
 ```
-- **`run_mrpt-develop.sh` is commented out** — the nightly/twice-daily
-  `develop`-branch build (old target: `ppa:joseluisblancoc/mrpt`, looping
-  over `jammy`/`noble`/`resolute`) is **off** because it doesn't work against
-  MRPT 3.x yet. Re-enabling this (pointed at the new `mrpt3-develop` PPA) is
-  the main goal of the migration.
-- **`run_mrpt-master.sh` still runs every 12h** (`:50`), building the
-  `master` branch and uploading to `ppa:joseluisblancoc/mrpt-stable` for
-  `jammy`/`noble`/`resolute`. Since `master` in the MRPT repo is presumably
-  still pre-3.x (or only just transitioning), confirm what this is currently
-  actually publishing before repurposing it for `mrpt3-stable`.
+- **`run_mrpt-develop.sh` is commented out** — the twice-daily `develop`
+  build is off, disabled when MRPT went 3.x. Re-enabling it (now pointed at
+  `mrpt3-develop`) is the main goal of the migration, and requires editing
+  this crontab as the `mrptppa` account.
+- **`run_mrpt-master.sh` runs every 12h** (`:50`), building `master`.
+
+On the `cron-scripts` branch both scripts have been retargeted to
+`mrpt3-develop` / `mrpt3-stable` with the jammy builds dropped. **Pushing that
+branch takes effect on the server within one run**, because each script ends
+by `git pull`-ing its own branch and `~/cron/*.sh` are symlinks into that
+checkout. Do not push it before the `mrpt3-stable` PPA exists, or every run
+uploads into a non-existent PPA and gets rejected.
+
+Note the scripts only rebuild when the upstream SHA differs from the cached
+one, so whether a push has an immediate effect depends on whether
+`master`/`develop` moved since `.mrpt*-ppa.sha` was written.
 
 Both cron scripts share the same shape: lockfile guard → `git pull` the
 source checkout → skip if SHA unchanged → `git clone` a fresh copy of
@@ -134,18 +185,49 @@ source checkout → skip if SHA unchanged → `git clone` a fresh copy of
 `origin` too so branch updates here take effect immediately) → build +
 `dput` per distro → update SHA cache → clean up → self-update.
 
-## Local test containers (`docker/`, on `main`)
+## Testing a branch locally before publishing
 
-`Dockerfile.sid` / `Dockerfile.exp` build Debian sid/experimental images with
-MRPT 2.x-era build deps installed (`rebuild-docker-images.sh` builds both).
-`test-mrpt-salsa-build*.sh` mount `~/code/mrpt-salsa` and run
-`gbp buildpackage` inside — these are for testing the salsa/Debian packaging,
-not this repo's PPA packaging directly, but useful to validate a ported
-`debian/` tree builds before pushing it to a distro branch here. The
-build-dep list in both Dockerfiles is stale (2.x-era); it will need updating
-to match `~/code/mrpt-salsa/debian/control`'s `Build-Depends` (colcon,
-`libcli11-dev`, `libexprtk-dev`, `libzstd-dev`, `libglew-dev`, `xvfb`,
-`xauth`, etc.) once the 3.x port starts.
+The PPA only uploads *source* packages; Launchpad builds the binaries. To
+reproduce what a Launchpad builder does, assemble the same tree
+`make_release.sh` would ship and build it in a stock Ubuntu container. Do not
+use `~/code/mrpt-salsa` as the source: it is the `+ds` repacked tree, so it is
+missing the bundled `exprtk.hpp`, libfyaml and googletest that real PPA
+tarballs carry. Use a clean upstream checkout instead:
+
+```bash
+git -C ~/code/mrpt worktree add --detach /tmp/src <tag-or-origin/develop>
+cd /tmp/src
+# Exactly the submodules make_release.sh exports (EXTERNAL_MODS). nanoflann,
+# simpleini and zlib are deliberately NOT exported: the build uses the system
+# libnanoflann-dev / libsimpleini-dev / zlib1g-dev instead.
+for m in modules/mrpt_gui/3rdparty/nanogui 3rdparty/googletest \
+         modules/mrpt_containers/3rdparty/libfyaml 3rdparty/rplidar_sdk \
+         modules/mrpt_imgui_vendor/3rdparty/{imgui,implot,portable-file-dialogs,IconFontCppHeaders}; do
+  git submodule update --init "$m"
+done
+(cd modules/mrpt_gui/3rdparty/nanogui && git submodule update --init ext/nanovg)
+rm -rf debian && git -C <this-repo> archive <branch> debian | tar -x -C .
+
+docker run --rm --security-opt seccomp=unconfined -v /tmp:/build ubuntu:noble bash -c '
+  apt-get update -qq
+  apt-get install -y -qq --no-install-recommends devscripts equivs build-essential fakeroot
+  cd /build/src
+  mk-build-deps -i -t "apt-get -y -qq --no-install-recommends" debian/control
+  DEB_BUILD_OPTIONS="nocheck parallel=$(nproc)" dpkg-buildpackage -b -us -uc'
+```
+
+Notes: `--security-opt seccomp=unconfined` is needed because `debian/rules`
+wraps the build in `setarch -R`, which Docker's default seccomp profile
+blocks. Mount a *parent* directory, since `dpkg-buildpackage` writes the
+`.deb`s next to the source tree and they are otherwise lost with `--rm`.
+`nocheck` skips the (long) test suite; drop it for a full run. Running just
+`mk-build-deps` is already a fast, useful check that `Build-Depends` resolves
+on that Ubuntu release.
+
+The older `docker/` helpers on `main` (`Dockerfile.sid`, `Dockerfile.exp`,
+`test-mrpt-salsa-build*.sh`) target Debian sid/experimental with a stale
+MRPT 2.x-era build-dep list, and test the salsa tree via `gbp buildpackage`
+rather than this repo's packaging.
 
 ## Instructions for AI agents
 
