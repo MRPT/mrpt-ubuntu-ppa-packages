@@ -62,7 +62,7 @@ endif
 robotofontversion := $(shell dpkg-query -W -f '$${Version}' fonts-roboto-fontface 2>/dev/null)
 
 execute_before_dh_gencontrol:
-	echo 'fonts-roboto-fontface:version=$(robotofontversion)' >> debian/libmrpt-nanogui3.1.substvars
+	echo 'fonts-roboto-fontface:version=$(robotofontversion)' >> debian/libmrpt-nanogui3.2.substvars
 
 # colcon configures+builds+installs each module; there is no top-level CMake
 # project, so the standard dh cmake/autotools steps are replaced.

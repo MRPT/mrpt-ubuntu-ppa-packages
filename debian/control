@@ -66,7 +66,7 @@ Description: Mobile Robot Programming Toolkit
  implement algorithms in the fields of Simultaneous Localization and Mapping
  (SLAM), computer vision, and motion planning (obstacle avoidance).
 
-Package: libmrpt-bayes3.1
+Package: libmrpt-bayes3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -81,7 +81,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-bayes3.1 (= ${binary:Version}),
+         libmrpt-bayes3.2 (= ${binary:Version}),
          libmrpt-common-dev,
          libmrpt-config-dev,
          libmrpt-math-dev
@@ -90,7 +90,7 @@ Description: ${source:Synopsis} - bayes development files
  .
  Headers, CMake config and the development symlink for the MRPT bayes module.
 
-Package: libmrpt-comms3.1
+Package: libmrpt-comms3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -105,7 +105,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-comms3.1 (= ${binary:Version}),
+         libmrpt-comms3.2 (= ${binary:Version}),
          libmrpt-common-dev,
          libmrpt-io-dev
 Description: ${source:Synopsis} - comms development files
@@ -113,7 +113,7 @@ Description: ${source:Synopsis} - comms development files
  .
  Headers, CMake config and the development symlink for the MRPT comms module.
 
-Package: libmrpt-config3.1
+Package: libmrpt-config3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -128,7 +128,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-config3.1 (= ${binary:Version}),
+         libmrpt-config3.2 (= ${binary:Version}),
          libmrpt-common-dev,
          libmrpt-expr-dev
 Description: ${source:Synopsis} - config development files
@@ -136,7 +136,7 @@ Description: ${source:Synopsis} - config development files
  .
  Headers, CMake config and the development symlink for the MRPT config module.
 
-Package: libmrpt-containers3.1
+Package: libmrpt-containers3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -151,7 +151,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-containers3.1 (= ${binary:Version}),
+         libmrpt-containers3.2 (= ${binary:Version}),
          libmrpt-common-dev,
          libmrpt-typemeta-dev,
          libmrpt-core-dev
@@ -160,7 +160,7 @@ Description: ${source:Synopsis} - containers development files
  .
  Headers, CMake config and dev symlink for MRPT containers module.
 
-Package: libmrpt-core3.1
+Package: libmrpt-core3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -175,14 +175,14 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-core3.1 (= ${binary:Version}),
+         libmrpt-core3.2 (= ${binary:Version}),
          libmrpt-common-dev
 Description: ${source:Synopsis} - core development files
  ${source:Extended-Description}
  .
  Headers, CMake config and the development symlink for the MRPT core module.
 
-Package: libmrpt-expr3.1
+Package: libmrpt-expr3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -197,7 +197,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-expr3.1 (= ${binary:Version}),
+         libmrpt-expr3.2 (= ${binary:Version}),
          libmrpt-common-dev,
          libmrpt-system-dev
 Description: ${source:Synopsis} - expr development files
@@ -205,7 +205,7 @@ Description: ${source:Synopsis} - expr development files
  .
  Headers, CMake config and the development symlink for the MRPT expr module.
 
-Package: libmrpt-graphs3.1
+Package: libmrpt-graphs3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -220,7 +220,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-graphs3.1 (= ${binary:Version}),
+         libmrpt-graphs3.2 (= ${binary:Version}),
          libmrpt-common-dev,
          libmrpt-poses-dev,
          libmrpt-io-dev,
@@ -230,7 +230,7 @@ Description: ${source:Synopsis} - graphs development files
  .
  Headers, CMake config and the development symlink for the MRPT graphs module.
 
-Package: libmrpt-graphslam3.1
+Package: libmrpt-graphslam3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -245,7 +245,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-graphslam3.1 (= ${binary:Version}),
+         libmrpt-graphslam3.2 (= ${binary:Version}),
          libmrpt-slam-dev,
          libmrpt-gui-dev
 Description: ${source:Synopsis} - graphslam development files
@@ -253,7 +253,7 @@ Description: ${source:Synopsis} - graphslam development files
  .
  Headers, CMake config and dev symlink for MRPT graphslam module.
 
-Package: libmrpt-gui3.1
+Package: libmrpt-gui3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -268,7 +268,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-gui3.1 (= ${binary:Version}),
+         libmrpt-gui3.2 (= ${binary:Version}),
          libmrpt-opengl-dev,
          libeigen3-dev,
          libglfw3-dev
@@ -277,7 +277,7 @@ Description: ${source:Synopsis} - gui development files
  .
  Headers, CMake config and the development symlink for the MRPT gui module.
 
-Package: libmrpt-hwdrivers3.1
+Package: libmrpt-hwdrivers3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -292,7 +292,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-hwdrivers3.1 (= ${binary:Version}),
+         libmrpt-hwdrivers3.2 (= ${binary:Version}),
          libmrpt-comms-dev,
          libmrpt-maps-dev,
          libmrpt-viz-dev
@@ -301,7 +301,7 @@ Description: ${source:Synopsis} - hwdrivers development files
  .
  Headers, CMake config and dev symlink for MRPT hwdrivers module.
 
-Package: libmrpt-img3.1
+Package: libmrpt-img3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -316,7 +316,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-img3.1 (= ${binary:Version}),
+         libmrpt-img3.2 (= ${binary:Version}),
          libmrpt-common-dev,
          libmrpt-io-dev,
          libmrpt-config-dev,
@@ -326,7 +326,7 @@ Description: ${source:Synopsis} - img development files
  .
  Headers, CMake config and the development symlink for the MRPT img module.
 
-Package: libmrpt-imgui3.1
+Package: libmrpt-imgui3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -341,14 +341,14 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-imgui3.1 (= ${binary:Version}),
+         libmrpt-imgui3.2 (= ${binary:Version}),
          libmrpt-opengl-dev
 Description: ${source:Synopsis} - imgui development files
  ${source:Extended-Description}
  .
  Headers, CMake config and the development symlink for the MRPT imgui module.
 
-Package: libmrpt-io3.1
+Package: libmrpt-io3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -363,7 +363,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-io3.1 (= ${binary:Version}),
+         libmrpt-io3.2 (= ${binary:Version}),
          libmrpt-common-dev,
          libmrpt-system-dev
 Description: ${source:Synopsis} - io development files
@@ -371,7 +371,7 @@ Description: ${source:Synopsis} - io development files
  .
  Headers, CMake config and the development symlink for the MRPT io module.
 
-Package: libmrpt-kinematics3.1
+Package: libmrpt-kinematics3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -386,7 +386,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-kinematics3.1 (= ${binary:Version}),
+         libmrpt-kinematics3.2 (= ${binary:Version}),
          libmrpt-common-dev,
          libmrpt-viz-dev
 Description: ${source:Synopsis} - kinematics development files
@@ -394,7 +394,7 @@ Description: ${source:Synopsis} - kinematics development files
  .
  Headers, CMake config and dev symlink for MRPT kinematics module.
 
-Package: libmrpt-libapps-cli3.1
+Package: libmrpt-libapps-cli3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -409,7 +409,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-libapps-cli3.1 (= ${binary:Version}),
+         libmrpt-libapps-cli3.2 (= ${binary:Version}),
          libmrpt-hwdrivers-dev,
          libmrpt-slam-dev,
          libmrpt-topography-dev,
@@ -419,7 +419,7 @@ Description: ${source:Synopsis} - libapps_cli development files
  .
  Headers, CMake config and dev symlink for MRPT libapps_cli module.
 
-Package: libmrpt-libapps-gui3.1
+Package: libmrpt-libapps-gui3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -434,7 +434,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-libapps-gui3.1 (= ${binary:Version}),
+         libmrpt-libapps-gui3.2 (= ${binary:Version}),
          libmrpt-libapps-cli-dev,
          libmrpt-gui-dev
 Description: ${source:Synopsis} - libapps_gui development files
@@ -442,7 +442,7 @@ Description: ${source:Synopsis} - libapps_gui development files
  .
  Headers, CMake config and dev symlink for MRPT libapps_gui module.
 
-Package: libmrpt-maps3.1
+Package: libmrpt-maps3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -457,7 +457,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-maps3.1 (= ${binary:Version}),
+         libmrpt-maps3.2 (= ${binary:Version}),
          libmrpt-obs-dev,
          libmrpt-graphs-dev
 Description: ${source:Synopsis} - maps development files
@@ -465,7 +465,7 @@ Description: ${source:Synopsis} - maps development files
  .
  Headers, CMake config and the development symlink for the MRPT maps module.
 
-Package: libmrpt-math3.1
+Package: libmrpt-math3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -480,7 +480,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-math3.1 (= ${binary:Version}),
+         libmrpt-math3.2 (= ${binary:Version}),
          libmrpt-common-dev,
          libmrpt-system-dev,
          libmrpt-serialization-dev,
@@ -490,7 +490,7 @@ Description: ${source:Synopsis} - math development files
  .
  Headers, CMake config and the development symlink for the MRPT math module.
 
-Package: libmrpt-nav3.1
+Package: libmrpt-nav3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -505,7 +505,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-nav3.1 (= ${binary:Version}),
+         libmrpt-nav3.2 (= ${binary:Version}),
          libmrpt-maps-dev,
          libmrpt-kinematics-dev,
          libmrpt-viz-dev
@@ -514,7 +514,7 @@ Description: ${source:Synopsis} - nav development files
  .
  Headers, CMake config and the development symlink for the MRPT nav module.
 
-Package: libmrpt-obs3.1
+Package: libmrpt-obs3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -529,7 +529,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-obs3.1 (= ${binary:Version}),
+         libmrpt-obs3.2 (= ${binary:Version}),
          libmrpt-common-dev,
          libmrpt-viz-dev,
          libmrpt-tfest-dev
@@ -538,7 +538,7 @@ Description: ${source:Synopsis} - obs development files
  .
  Headers, CMake config and the development symlink for the MRPT obs module.
 
-Package: libmrpt-opengl3.1
+Package: libmrpt-opengl3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -553,7 +553,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-opengl3.1 (= ${binary:Version}),
+         libmrpt-opengl3.2 (= ${binary:Version}),
          libmrpt-viz-dev,
          libmrpt-poses-dev,
          libmrpt-img-dev,
@@ -564,7 +564,7 @@ Description: ${source:Synopsis} - opengl development files
  .
  Headers, CMake config and the development symlink for the MRPT opengl module.
 
-Package: libmrpt-poses3.1
+Package: libmrpt-poses3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -579,7 +579,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-poses3.1 (= ${binary:Version}),
+         libmrpt-poses3.2 (= ${binary:Version}),
          libmrpt-common-dev,
          libmrpt-bayes-dev
 Description: ${source:Synopsis} - poses development files
@@ -587,7 +587,7 @@ Description: ${source:Synopsis} - poses development files
  .
  Headers, CMake config and the development symlink for the MRPT poses module.
 
-Package: libmrpt-random3.1
+Package: libmrpt-random3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -602,14 +602,14 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-random3.1 (= ${binary:Version}),
+         libmrpt-random3.2 (= ${binary:Version}),
          libmrpt-common-dev
 Description: ${source:Synopsis} - random development files
  ${source:Extended-Description}
  .
  Headers, CMake config and the development symlink for the MRPT random module.
 
-Package: libmrpt-rtti3.1
+Package: libmrpt-rtti3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -624,7 +624,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-rtti3.1 (= ${binary:Version}),
+         libmrpt-rtti3.2 (= ${binary:Version}),
          libmrpt-common-dev,
          libmrpt-typemeta-dev,
          libmrpt-core-dev
@@ -633,7 +633,7 @@ Description: ${source:Synopsis} - rtti development files
  .
  Headers, CMake config and the development symlink for the MRPT rtti module.
 
-Package: libmrpt-serialization3.1
+Package: libmrpt-serialization3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -648,7 +648,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-serialization3.1 (= ${binary:Version}),
+         libmrpt-serialization3.2 (= ${binary:Version}),
          libmrpt-common-dev,
          libmrpt-rtti-dev
 Description: ${source:Synopsis} - serialization development files
@@ -656,7 +656,7 @@ Description: ${source:Synopsis} - serialization development files
  .
  Headers, CMake config and dev symlink for MRPT serialization module.
 
-Package: libmrpt-slam3.1
+Package: libmrpt-slam3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -671,7 +671,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-slam3.1 (= ${binary:Version}),
+         libmrpt-slam3.2 (= ${binary:Version}),
          libmrpt-maps-dev,
          libmrpt-topography-dev
 Description: ${source:Synopsis} - slam development files
@@ -679,7 +679,7 @@ Description: ${source:Synopsis} - slam development files
  .
  Headers, CMake config and the development symlink for the MRPT slam module.
 
-Package: libmrpt-system3.1
+Package: libmrpt-system3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -694,7 +694,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-system3.1 (= ${binary:Version}),
+         libmrpt-system3.2 (= ${binary:Version}),
          libmrpt-common-dev,
          libmrpt-containers-dev
 Description: ${source:Synopsis} - system development files
@@ -702,7 +702,7 @@ Description: ${source:Synopsis} - system development files
  .
  Headers, CMake config and the development symlink for the MRPT system module.
 
-Package: libmrpt-tfest3.1
+Package: libmrpt-tfest3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -717,7 +717,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-tfest3.1 (= ${binary:Version}),
+         libmrpt-tfest3.2 (= ${binary:Version}),
          libmrpt-common-dev,
          libmrpt-poses-dev
 Description: ${source:Synopsis} - tfest development files
@@ -725,7 +725,7 @@ Description: ${source:Synopsis} - tfest development files
  .
  Headers, CMake config and the development symlink for the MRPT tfest module.
 
-Package: libmrpt-topography3.1
+Package: libmrpt-topography3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -740,7 +740,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-topography3.1 (= ${binary:Version}),
+         libmrpt-topography3.2 (= ${binary:Version}),
          libmrpt-common-dev,
          libmrpt-math-dev
 Description: ${source:Synopsis} - topography development files
@@ -748,7 +748,7 @@ Description: ${source:Synopsis} - topography development files
  .
  Headers, CMake config and dev symlink for MRPT topography module.
 
-Package: libmrpt-viz3.1
+Package: libmrpt-viz3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -763,7 +763,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-viz3.1 (= ${binary:Version}),
+         libmrpt-viz3.2 (= ${binary:Version}),
          libmrpt-common-dev,
          libmrpt-poses-dev,
          libmrpt-img-dev
@@ -772,7 +772,7 @@ Description: ${source:Synopsis} - viz development files
  .
  Headers, CMake config and the development symlink for the MRPT viz module.
 
-Package: libmrpt-nanogui3.1
+Package: libmrpt-nanogui3.2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -788,7 +788,7 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
-         libmrpt-nanogui3.1 (= ${binary:Version}),
+         libmrpt-nanogui3.2 (= ${binary:Version}),
          libmrpt-gui-dev,
          libglfw3-dev
 Description: ${source:Synopsis} - nanogui development files
