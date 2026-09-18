@@ -1,6 +1,4 @@
 # Test fixtures are only used by the build-time unit tests, not shipped:
 usr/share/mrpt_data/tests
-# Static archives are not built/shipped:
-usr/lib/*/libmrpt*.a
 # Python bytecode/metadata that dh_python3 handles or that we do not ship:
 usr/lib/python3/dist-packages/mrpt/__pycache__
