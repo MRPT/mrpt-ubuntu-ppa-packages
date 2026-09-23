@@ -19,42 +19,33 @@ to it as possible, so future syncs stay a clean merge — including `Vcs-Git`,
 deliberate and few; see "Ubuntu-specific deltas" below.
 
 Target PPAs (replacing the old `ppa:joseluisblancoc/mrpt` / `mrpt-stable`):
-- `ppa:joseluisblancoc/mrpt3-develop` — https://launchpad.net/~joseluisblancoc/+archive/ubuntu/mrpt3-develop (created)
-- `ppa:joseluisblancoc/mrpt3-stable` — not created yet
+- `ppa:joseluisblancoc/mrpt3-develop` — https://launchpad.net/~joseluisblancoc/+archive/ubuntu/mrpt3-develop (created; first upload landed 2026-09-23)
+- `ppa:joseluisblancoc/mrpt3-stable` — created 2026-09-2x, currently empty
 
-### Open items (as of 2026-09-19)
+### Open items (as of 2026-09-23)
 
-**Committed locally but deliberately NOT pushed** — all three would change
-what the live 12-hourly job publishes, so they were held pending the PPA
-cutover:
+`noble`/`resolute` (SOVERSION 3.2 rename + `libmrpt-imgui-vendor-dev`) and
+`cron-scripts` (retargets both jobs to the mrpt3 PPAs, drops jammy) are all
+now pushed to `origin`. The local build validation (recipe below) confirmed
+the `libmrpt-imgui-vendor-dev` `.install` globs are correct — only the
+module's `LICENSES/*.txt` files come up as unpackaged in `dh_missing`
+(cosmetic, non-fatal). A manual `develop`/`noble` source upload to
+`mrpt3-develop` succeeded end to end on 2026-09-23.
 
-- `noble` and `resolute`: 2 commits each ahead of `origin` — the SOVERSION
-  3.1→3.2 rename, and the `libmrpt-imgui-vendor-dev` package. Pushing these
-  while the master job still points at the *old* `mrpt-stable` PPA would
-  publish 3.2-named packages there, and the imgui-vendor package makes the
-  build fail against today's `master` (see "master vs develop").
-- `cron-scripts`: 1 commit ahead — retargets both jobs to the mrpt3 PPAs and
-  drops the jammy builds. Must not be pushed before `mrpt3-stable` exists.
-
-Note `origin/noble` and `origin/resolute` already carry the first port commit
-(3.x packaging at SOVER 3.1), so the live pipeline is *already* on 3.x
-packaging. The next master run therefore builds MRPT with it.
+The live server checkout (`/home/mrptppa/mrpt-ubuntu-ppa-packages`) had not
+self-updated past its Dec-2025 commit as of that date, so `run_mrpt-master.sh`
+on disk there still points at the legacy `mrpt-stable` PPA — it needs a
+`git pull` there before the retarget takes effect.
 
 **To do:**
-1. Create the `mrpt3-stable` PPA on Launchpad, then push `cron-scripts`
-   together with the two distro branches.
+1. `git pull` the `cron-scripts` checkout on the server so both cron scripts
+   pick up the mrpt3 PPA retarget (currently blocked on manual action: no
+   passwordless access to run non-read-only commands there was granted in
+   session).
 2. Re-enable the `run_mrpt-develop.sh` line in `mrptppa`'s crontab (still
    commented out, "disabled for 3.0!!"). Only the server account can do this.
 3. `mrpt3-stable` cannot be fed from `master` until a release tag includes
    `mrpt_imgui_vendor` — see "master vs develop".
-4. Finish the local build validation. A full `noble` build of tag 3.1.4 with
-   the ported packaging **passed** (`dpkg-buildpackage -b`, `nocheck`). The
-   equivalent run against `develop` with the SOVER-3.2 + imgui-vendor
-   packaging got through build-dep resolution and 10 modules before being
-   stopped, so it never reached `dh_install` — the `libmrpt-imgui-vendor-dev`
-   file globs are still unverified. Re-run it (recipe below) and check the
-   `dh_missing --list-missing` output for unpackaged `mrpt_imgui_vendor`
-   files. `resolute` has had no full build yet.
 
 ## Versioning rules that bite
 
