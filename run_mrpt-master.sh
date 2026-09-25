@@ -5,6 +5,9 @@ set -e
 # to fix gpg ioctl error msg
 export GPG_TTY=$(tty)
 
+# Never block on an interactive git credential prompt: fail instead.
+export GIT_TERMINAL_PROMPT=0
+
 # Lock file preparation:
 LOCKFILE=$HOME/.mrpt-master-ppa.lock
 DO_REMOVE_LOCK=1
@@ -45,7 +48,6 @@ cd $HOME/mrpt-master
 git clean -d -x -f > /dev/null
 git checkout . > /dev/null 2>&1
 git pull > /dev/null  2>&1
-git submodule update --init --recursive > /dev/null
 
 # Check if there are new commit(s)?
 CURSHA=`git rev-parse HEAD`
