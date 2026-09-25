@@ -123,7 +123,9 @@ pointing at github.com/MRPT/mrpt.git:
 ```
 
 1. Adds/uses the `upstream` MRPT remote, checks out `upstream/<GIT_TAG>`
-   (e.g. `develop`, `master`, or a release tag) with submodules.
+   (e.g. `develop`, `master`, or a release tag), and inits only the
+   submodules that checkout's `make_release.sh` exports (parsed from its
+   `EXTERNAL_MODS`, so it follows master/develop differences on its own).
 2. Runs `packaging/make_release.sh` from *that* MRPT checkout to produce a
    signed, reproducible source tarball in `$HOME/mrpt_release/` (this script
    lives in the MRPT source repo itself — see the working copy at
@@ -201,6 +203,10 @@ source checkout → skip if SHA unchanged → `git clone` a fresh copy of
 `build-mrpt-deb-pkg.sh`, but the `-d <distro>` branch is fetched from
 `origin` too so branch updates here take effect immediately) → build +
 `dput` per distro → update SHA cache → clean up → self-update.
+The `~/mrpt*` checkouts are only used for the SHA check (no submodules), and
+both scripts export `GIT_TERMINAL_PROMPT=0`: a GitHub hiccup answering 401
+would otherwise make a manual run stop at a `Username for 'https://github.com'`
+prompt.
 
 ## Testing a branch locally before publishing
 

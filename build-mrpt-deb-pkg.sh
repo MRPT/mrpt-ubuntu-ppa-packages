@@ -63,7 +63,39 @@ fi
 
 git fetch --all
 git checkout upstream/${GIT_TAG}
-git submodule update --init --recursive
+
+# Only fetch the submodules that make_release.sh exports into the tarball
+# (its EXTERNAL_MODS list, read from this upstream version so it never drifts).
+# Cloning every submodule recursively is slow and needlessly exposes the build
+# to GitHub hiccups.
+EXPORTED_SUBMODULES=$(sed -n 's/^\s*EXTERNAL_MODS="\(.*\)"\s*$/\1/p' packaging/make_release.sh)
+EXPORTED_SUBMODULES=$(eval echo "${EXPORTED_SUBMODULES}")  # expand ${MRPT_PKG_EXPORTED_SUBMODULES}
+if [ "$EXPORTED_SUBMODULES" == "" ];
+then
+	echo "Could not parse EXTERNAL_MODS from make_release.sh: fetching all submodules."
+	git submodule update --init --recursive
+else
+	TOP_SUBMODULES=$(git config -f .gitmodules --get-regexp '\.path$' | awk '{print $2}')
+	for MOD in $EXPORTED_SUBMODULES;
+	do
+		if echo "$TOP_SUBMODULES" | grep -qx "$MOD";
+		then
+			git submodule update --init "$MOD"
+		else
+			# Nested submodule (e.g. nanogui/ext/nanovg): init it from its parent,
+			# which comes earlier in the list.
+			PARENT=$(echo "$TOP_SUBMODULES" | while read -r P; do
+				case "$MOD" in "$P"/*) echo "$P" ;; esac
+			done)
+			if [ "$PARENT" == "" ];
+			then
+				echo "Submodule '$MOD' not found in .gitmodules"
+				exit 1
+			fi
+			git -C "$PARENT" submodule update --init "${MOD#"$PARENT"/}"
+		fi
+	done
+fi
 
 if [ $APPEND_SNAPSHOT_NUM == "1" ];
 then
