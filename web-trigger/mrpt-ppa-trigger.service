@@ -1,0 +1,16 @@
+[Unit]
+Description=MRPT PPA manual build trigger (tiny web UI, 127.0.0.1 only)
+After=network.target
+
+[Service]
+Type=simple
+User=mrptppa
+Group=mrptppa
+WorkingDirectory=/home/mrptppa
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/usr/bin/python3 /home/mrptppa/mrpt-ubuntu-ppa-packages/web-trigger/trigger_server.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
