@@ -7,6 +7,16 @@ mrpt (1:3.1.2+ds-1) unstable; urgency=medium
     python3-mrpt-* packages. Its leftover mrpt/__init__.py would
     otherwise turn the mrpt namespace package into a regular one and
     hide modules installed elsewhere.
+  * Add libmrpt-imgui-vendor-dev: static archive, headers and CMake
+    config of the new mrpt_imgui_vendor module (vendored Dear ImGui
+    docking branch, ImPlot, portable-file-dialogs and
+    IconFontCppHeaders). Static by design, since Dear ImGui has no
+    SOVERSION nor ABI stability promise. Required by
+    find_package(mrpt_imgui).
+  * debian/copyright: document the sources vendored by mrpt_imgui_vendor
+    and its embedded Material Symbols font subset, and repack out
+    imgui's prebuilt Windows GLFW libraries and unused bundled TTF
+    fonts.
 
  -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sun, 12 Jul 2026 10:41:12 +0200
 
