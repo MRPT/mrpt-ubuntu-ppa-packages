@@ -20,6 +20,11 @@ LOG_DIR = os.path.join(HOME, "web-trigger", "logs")
 KEEP_LOGS_PER_JOB = 15
 BIND_ADDR = ("127.0.0.1", 8765)
 
+# Apache's ProxyPass strips this before forwarding to us (so our own routing
+# below never sees it), but any link/redirect we hand back to the browser
+# must include it, since the browser has no idea it's being proxied.
+MOUNT_PREFIX = "/mrpt-trigger"
+
 JOBS = {
     "develop": {
         "label": "develop → mrpt3-develop PPA",
@@ -117,7 +122,7 @@ def job_status_html(job):
                 code, _, ts = f.read().strip().partition(" ")
             css = "ok" if code == "0" else "fail"
             status_line += f' &mdash; last run exit code <span class="{css}">{html.escape(code)}</span> ({html.escape(ts)})'
-        log_link = f'<a href="/log?job={job}&file={html.escape(logname)}">view latest log</a>'
+        log_link = f'<a href="{MOUNT_PREFIX}/log?job={job}&file={html.escape(logname)}">view latest log</a>'
     else:
         log_link = "(no log yet)"
 
@@ -127,7 +132,7 @@ def job_status_html(job):
       <h2>{html.escape(cfg['label'])}</h2>
       <p>Status: {status_line}</p>
       <p>Last commit actually built: <code>{html.escape(last_built_sha) or '(none yet)'}</code></p>
-      <form method="post" action="/trigger">
+      <form method="post" action="{MOUNT_PREFIX}/trigger">
         <input type="hidden" name="job" value="{job}">
         <button type="submit" {disabled}>Trigger now</button>
       </form>
@@ -190,7 +195,7 @@ class Handler(BaseHTTPRequestHandler):
             refresh = '<meta http-equiv="refresh" content="3">' if running else ""
             status = '<span class="run">still running…</span>' if running else "<span class=\"ok\">finished</span>"
             body = f"<html><head><title>{html.escape(fname)}</title>{refresh}{PAGE_STYLE}</head><body>"
-            body += f'<p><a href="/">&larr; back</a> &mdash; {html.escape(fname)} &mdash; {status}</p>'
+            body += f'<p><a href="{MOUNT_PREFIX}/">&larr; back</a> &mdash; {html.escape(fname)} &mdash; {status}</p>'
             body += f"<pre>{html.escape(content)}</pre>"
             body += "</body></html>"
             self._send_html(body)
@@ -223,7 +228,7 @@ class Handler(BaseHTTPRequestHandler):
             logname = start_job(job)
 
         self.send_response(303)
-        self.send_header("Location", f"/log?job={job}&file={logname}")
+        self.send_header("Location", f"{MOUNT_PREFIX}/log?job={job}&file={logname}")
         self.end_headers()
 
 
