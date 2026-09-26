@@ -960,6 +960,21 @@ Description: ${source:Synopsis} - Python 3 bindings for mrpt gui
  .
  Python 3 wrapper for the MRPT gui module.
 
+Package: python3-mrpt-hwdrivers
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-config,
+         python3-mrpt-obs
+Description: ${source:Synopsis} - Python 3 bindings for mrpt hwdrivers
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT hwdrivers module.
+
 Package: python3-mrpt-img
 Section: python
 Architecture: any
@@ -987,6 +1002,7 @@ Depends: ${python3:Depends},
          ${shlibs:Depends},
          ${misc:Depends},
          python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-serialization,
          python3-mrpt-system
 Description: ${source:Synopsis} - Python 3 bindings for mrpt io
  ${source:Extended-Description}
@@ -1016,11 +1032,13 @@ Depends: ${python3:Depends},
          ${shlibs:Depends},
          ${misc:Depends},
          python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-config,
          python3-mrpt-graphs,
          python3-mrpt-obs,
          python3-mrpt-poses,
          python3-mrpt-rtti,
-         python3-mrpt-serialization
+         python3-mrpt-serialization,
+         python3-mrpt-viz
 Description: ${source:Synopsis} - Python 3 bindings for mrpt maps
  ${source:Extended-Description}
  .
@@ -1070,6 +1088,9 @@ Depends: ${python3:Depends},
          ${shlibs:Depends},
          ${misc:Depends},
          python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-config,
+         python3-mrpt-img,
+         python3-mrpt-math,
          python3-mrpt-poses,
          python3-mrpt-rtti,
          python3-mrpt-serialization,
@@ -1104,6 +1125,7 @@ Depends: ${python3:Depends},
          ${shlibs:Depends},
          ${misc:Depends},
          python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-bayes,
          python3-mrpt-math,
          python3-mrpt-rtti,
          python3-mrpt-serialization
@@ -1160,12 +1182,14 @@ Depends: ${python3:Depends},
          ${shlibs:Depends},
          ${misc:Depends},
          python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-bayes,
          python3-mrpt-maps,
          python3-mrpt-obs,
          python3-mrpt-poses,
          python3-mrpt-rtti,
          python3-mrpt-serialization,
-         python3-mrpt-topography
+         python3-mrpt-topography,
+         python3-mrpt-viz
 Description: ${source:Synopsis} - Python 3 bindings for mrpt slam
  ${source:Extended-Description}
  .
@@ -1244,6 +1268,7 @@ Depends: ${misc:Depends}, python3-mrpt-bayes (= ${binary:Version}),
          python3-mrpt-expr (= ${binary:Version}),
          python3-mrpt-graphs (= ${binary:Version}),
          python3-mrpt-gui (= ${binary:Version}),
+         python3-mrpt-hwdrivers (= ${binary:Version}),
          python3-mrpt-img (= ${binary:Version}),
          python3-mrpt-io (= ${binary:Version}),
          python3-mrpt-kinematics (= ${binary:Version}),

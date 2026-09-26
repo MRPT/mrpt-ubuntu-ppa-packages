@@ -17,6 +17,9 @@ mrpt (1:3.1.2+ds-1) unstable; urgency=medium
     and its embedded Material Symbols font subset, and repack out
     imgui's prebuilt Windows GLFW libraries and unused bundled TTF
     fonts.
+  * Add python3-mrpt-hwdrivers (Python bindings of the sensor drivers),
+    and make python3-mrpt-{io,maps,obs,poses,slam} depend on the sibling
+    modules their __init__.py now imports.
 
  -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sun, 12 Jul 2026 10:41:12 +0200
 
