@@ -34,9 +34,7 @@ Target PPAs (replacing the old `ppa:joseluisblancoc/mrpt` / `mrpt-stable`):
 `noble`/`resolute` (SOVERSION 3.2 rename + `libmrpt-imgui-vendor-dev`) and
 `cron-scripts` (retargets both jobs to the mrpt3 PPAs, drops jammy) are all
 now pushed to `origin`. The local build validation (recipe below) confirmed
-the `libmrpt-imgui-vendor-dev` `.install` globs are correct — only the
-module's `LICENSES/*.txt` files come up as unpackaged in `dh_missing`
-(cosmetic, non-fatal). A manual `develop`/`noble` source upload to
+the `libmrpt-imgui-vendor-dev` `.install` globs are correct. A manual `develop`/`noble` source upload to
 `mrpt3-develop` succeeded end to end on 2026-09-23.
 
 The live server checkout (`/home/mrptppa/mrpt-ubuntu-ppa-packages`) had not
@@ -88,12 +86,9 @@ today's `master`. `mrpt3-stable` must wait for a release tag that includes
   the bundled `exprtk.hpp`, which *is* present here — `make_release.sh` ships
   it as an ordinary tracked file, and only Debian's `+ds` repack strips it.
   `resolute` keeps the build-dep and is otherwise the salsa tree verbatim.
-- **`libmrpt-imgui-vendor-dev`** is added on top of salsa: `mrpt_imgui_vendor`
-  builds a *static* archive by design (Dear ImGui has no SOVERSION or ABI
-  promise), so the `.a`, the vendored headers and the module CMake config must
-  be shipped or `find_package(mrpt_imgui)` breaks for users. The blanket
-  "static archives are never shipped" rule was removed from
-  `debian/not-installed` accordingly.
+- `libmrpt-imgui-vendor-dev` (the *static* `mrpt_imgui_vendor` archive,
+  headers and CMake config; static by design, as Dear ImGui has no SOVERSION
+  or ABI promise) is no longer a delta: salsa ships it too.
 - `debian/copyright`'s `Files-Excluded` is left untouched. It only drives
   `uscan`/`mk-origtargz` repacking, which this pipeline never runs, so it is
   inert here even though the PPA tarball does contain some of those files.
