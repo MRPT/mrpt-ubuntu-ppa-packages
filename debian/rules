@@ -82,8 +82,9 @@ override_dh_auto_clean:
 # allocated sections are already byte-identical; only the discarded debug info
 # varied. Disabling ASLR yields bit-identical libraries and stable build-ids
 # (verified: two builds of libmrpt_math.so then match exactly).
+# No architecture argument: setarch rejects some GNU CPU names (powerpc64le).
 override_dh_auto_build:
-	setarch $(DEB_HOST_GNU_CPU) -R \
+	setarch -R \
 	colcon build \
 		--base-paths modules apps \
 		--install-base $(COLCON_INSTALL) \
