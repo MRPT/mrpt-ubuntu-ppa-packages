@@ -2,6 +2,11 @@ mrpt (1:3.1.2+ds-1) unstable; urgency=medium
 
   * New upstream version 3.1.2+ds
   * Remove debian/patches already integrated upstream
+  * debian/control: python3-mrpt-core Breaks/Replaces python3-pymrpt,
+    the monolithic MRPT 2.x Python package superseded by the per-module
+    python3-mrpt-* packages. Its leftover mrpt/__init__.py would
+    otherwise turn the mrpt namespace package into a regular one and
+    hide modules installed elsewhere.
 
  -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sun, 12 Jul 2026 10:41:12 +0200
 
