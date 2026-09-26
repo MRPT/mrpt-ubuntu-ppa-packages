@@ -20,6 +20,8 @@ Files-Excluded: 3rdparty/glew
               3rdparty/rplidar_sdk/workspaces
               3rdparty/rplidar_sdk/bonjour.zip
               3rdparty/rplidar_sdk/dll.rar
+              modules/mrpt_imgui_vendor/3rdparty/imgui/examples/libs
+              modules/mrpt_imgui_vendor/3rdparty/imgui/misc/fonts/*.ttf
 
 Files: *
 Copyright: 2005-2026, Jose-Luis Blanco-Claraco
@@ -145,6 +147,49 @@ Copyright: 2015, Daniel Bruce
          2018, Wenzel Jakob
 License: CC-BY-SA-4
 
+Files: modules/mrpt_imgui_vendor/3rdparty/imgui/*
+Copyright: 2014-2026, Omar Cornut
+License: Expat
+
+Files: modules/mrpt_imgui_vendor/3rdparty/imgui/imgui_draw.cpp
+Copyright: 2014-2026, Omar Cornut
+         2004-2005, 2019, 2023, Tristan Grimmer
+         2026, Disco Hello
+Comment: Embeds the ProggyClean and ProggyForever fonts as compressed data,
+ and a public domain decompressor from stb.h by Sean Barrett.
+License: Expat and public-domain-stb
+
+Files: modules/mrpt_imgui_vendor/3rdparty/imgui/imstb_rectpack.h
+     modules/mrpt_imgui_vendor/3rdparty/imgui/imstb_textedit.h
+     modules/mrpt_imgui_vendor/3rdparty/imgui/imstb_truetype.h
+Copyright: 2017, Sean Barrett
+License: public-domain-stb or Expat
+
+Files: modules/mrpt_imgui_vendor/3rdparty/imgui/backends/imgui_impl_opengl3_loader.h
+Copyright: 2013-2020, The Khronos Group Inc.
+Comment: Generated with gl3w_gen.py (public domain). The embedded OpenGL
+ declarations come from the Khronos XML API registry (MIT).
+License: public-domain-gl3w and Expat
+
+Files: modules/mrpt_imgui_vendor/3rdparty/implot/*
+Copyright: 2020-2024, Evan Pezent
+         2025-2026, Breno Cunha Queiroz
+License: Expat
+
+Files: modules/mrpt_imgui_vendor/3rdparty/portable-file-dialogs/*
+Copyright: 2018-2022, Sam Hocevar <sam@hocevar.net>
+License: WTFPL
+
+Files: modules/mrpt_imgui_vendor/3rdparty/IconFontCppHeaders/*
+Copyright: 2017, Juliette Foucaut and Doug Binks
+License: Zlib
+
+Files: modules/mrpt_imgui_vendor/src/embedded_icon_font.cpp
+Copyright: 2026, Google LLC
+Comment: Subset of the Material Symbols Outlined font, embedded as a byte
+ array. Regenerate with modules/mrpt_imgui_vendor/scripts/regenerate_icon_font.py.
+License: Apache-2.0
+
 Files: modules/mrpt_core/include/mrpt/3rdparty/spimpl.h
 Copyright: 2015, Andrey Upadyshev <oliora@gmail.com>
 License: BSL-1.0
@@ -161,6 +206,22 @@ Files: modules/mrpt_maps/include/mrpt/maps/bonxai/bonxai.hpp
 Copyright: 2021-2023, Davide Faconti
            2014-2023, Contributors to the OpenVDB Project
 License: MPL-2.0
+
+License: Apache-2.0
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+ .
+  http://www.apache.org/licenses/LICENSE-2.0
+ .
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ .
+  On Debian systems, the complete text of the Apache License, Version 2.0
+  can be found in "/usr/share/common-licenses/Apache-2.0".
 
 License: BSD-2-clause
   Redistribution and use in source and binary forms, with or without
@@ -1057,6 +1118,21 @@ License: MPL-2.0
     This Source Code Form is "Incompatible With Secondary Licenses", as
     defined by the Mozilla Public License, v. 2.0.
 
+License: WTFPL
+             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+                     Version 2, December 2004
+ .
+  Copyright (C) 2004 Sam Hocevar
+ .
+  Everyone is permitted to copy and distribute verbatim or modified
+  copies of this license document, and changing it is allowed as long
+  as the name is changed.
+ .
+             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+    TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+ .
+   0. You just DO WHAT THE FUCK YOU WANT TO.
+
 License: WXwindows
   wxWindows Library Licence, Version 3.1
   Copyright (C) 1998-2005 Julian Smart, Robert Roebling et al
@@ -1114,6 +1190,30 @@ License: Zlib
   2. Altered source versions must be plainly marked as such, and must not be
    misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
+
+License: public-domain-gl3w
+  This is free and unencumbered software released into the public domain.
+ .
+  Anyone is free to copy, modify, publish, use, compile, sell, or
+  distribute this software, either in source code form or as a compiled
+  binary, for any purpose, commercial or non-commercial, and by any
+  means.
+ .
+  In jurisdictions that recognize copyright laws, the author or authors
+  of this software dedicate any and all copyright interest in the
+  software to the public domain. We make this dedication for the benefit
+  of the public at large and to the detriment of our heirs and
+  successors. We intend this dedication to be an overt act of
+  relinquishment in perpetuity of all present and future rights to this
+  software under copyright law.
+ .
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+  IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+  OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+  OTHER DEALINGS IN THE SOFTWARE.
 
 License: public-domain-stb
   This software is in the public domain. Where that dedication is not

@@ -1,4 +1,6 @@
 # Test fixtures are only used by the build-time unit tests, not shipped:
 usr/share/mrpt_data/tests
+# Third-party license texts of mrpt_imgui_vendor, covered by debian/copyright:
+usr/share/mrpt_imgui_vendor/LICENSES
 # Python bytecode/metadata that dh_python3 handles or that we do not ship:
 usr/lib/python3/dist-packages/mrpt/__pycache__
