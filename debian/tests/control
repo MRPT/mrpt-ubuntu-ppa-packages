@@ -6,7 +6,7 @@
 # real import is "import mrpt.bayes". We also only build the bindings against
 # the default python3 interpreter (no multi-version pybuild), so we test only
 # that interpreter rather than every registered python3 runtime.
-Test-Command: py=$(py3versions -d) ; echo "Importing all mrpt.* modules with $py" ; $py -c "import mrpt.bayes, mrpt.comms, mrpt.config, mrpt.containers, mrpt.core, mrpt.expr, mrpt.graphs, mrpt.gui, mrpt.img, mrpt.io, mrpt.kinematics, mrpt.maps, mrpt.math, mrpt.nav, mrpt.obs, mrpt.opengl, mrpt.poses, mrpt.random, mrpt.rtti, mrpt.serialization, mrpt.slam, mrpt.system, mrpt.tfest, mrpt.topography, mrpt.viz; print('all mrpt.* modules imported OK')"
+Test-Command: py=$(py3versions -d) ; echo "Importing all mrpt.* modules with $py" ; $py -c "import mrpt.bayes, mrpt.comms, mrpt.config, mrpt.containers, mrpt.core, mrpt.expr, mrpt.graphs, mrpt.gui, mrpt.hwdrivers, mrpt.img, mrpt.io, mrpt.kinematics, mrpt.maps, mrpt.math, mrpt.nav, mrpt.obs, mrpt.opengl, mrpt.poses, mrpt.random, mrpt.rtti, mrpt.serialization, mrpt.slam, mrpt.system, mrpt.tfest, mrpt.topography, mrpt.viz; print('all mrpt.* modules imported OK')"
 Depends: python3-all,
  python3-mrpt-bayes,
  python3-mrpt-comms,
@@ -16,6 +16,7 @@ Depends: python3-all,
  python3-mrpt-expr,
  python3-mrpt-graphs,
  python3-mrpt-gui,
+ python3-mrpt-hwdrivers,
  python3-mrpt-img,
  python3-mrpt-io,
  python3-mrpt-kinematics,
