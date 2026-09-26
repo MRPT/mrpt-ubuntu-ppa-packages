@@ -7,8 +7,9 @@ actual MRPT source is pulled from github.com/MRPT/mrpt at build time.
 ## Status (2026-09): MRPT 3.x packaging ported, publish cutover pending
 
 `noble` and `resolute` now carry MRPT 3.x packaging (colcon build,
-`libmrpt-*3.2` binary packages). The previous MRPT 2.x state of each is
-preserved verbatim on `noble-mrpt2.x` / `resolute-mrpt2.x`. `jammy` is
+`libmrpt-*3.3` binary packages, bumped ahead of the 3.3.0 release). The
+previous MRPT 2.x state of each is preserved verbatim on `noble-mrpt2.x` /
+`resolute-mrpt2.x`. `jammy` is
 untouched and stays 2.x: MRPT 3.x targets **Ubuntu 24.04 (noble) and 26.04
 (resolute) only**. The other distro branches are EOL leftovers.
 
@@ -17,6 +18,12 @@ unstable/salsa tree, already ported to the colcon build) and is kept as close
 to it as possible, so future syncs stay a clean merge — including `Vcs-Git`,
 `watch` and `upstream/`, which the 2.x branches also carried. Deltas are
 deliberate and few; see "Ubuntu-specific deltas" below.
+
+**Keep salsa and this repo in sync.** Any packaging change that is not one of
+those deltas (a module, library or Python package added, removed or renamed,
+a SOVERSION bump, `Breaks`/`Replaces`, `debian/tests/control`) must be made in
+salsa `master` *and* in every live distro branch here (`noble`, `resolute`).
+`debian/changelog` is copied verbatim from salsa.
 
 Target PPAs (replacing the old `ppa:joseluisblancoc/mrpt` / `mrpt-stable`):
 - `ppa:joseluisblancoc/mrpt3-develop` — https://launchpad.net/~joseluisblancoc/+archive/ubuntu/mrpt3-develop (created; first upload landed 2026-09-23)
@@ -57,7 +64,9 @@ lockstep: rename every `debian/libmrpt-*<old>.install`, and replace the
 blanket-replace the version string: `debian/copyright` and `debian/changelog`
 contain unrelated `3.1`/`3.2` strings (license text, history). Match on
 `libmrpt-[a-z0-9_-]*<old>` instead. This mirrors how the 2.x branches were
-maintained (a single SOVER per branch, bumped as upstream moved).
+maintained (a single SOVER per branch, bumped as upstream moved). The package
+names must match the upstream version being built: a branch bumped ahead of a
+release mislabels `develop` builds until that release lands.
 
 **`debian/scripts/gen-packaging.py` is a one-shot bootstrapper, not a
 regenerator.** Its output has drifted behind the hand-maintained
