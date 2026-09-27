@@ -92,6 +92,12 @@ override_dh_auto_build:
 		--packages-ignore mrpt_examples_cpp mrpt_examples_py \
 		--cmake-args $(COLCON_CMAKE_ARGS)
 
+# Offscreen OpenGL rendering hangs with this distro's Mesa software renderer
+# on s390x, so the GL-dependent tests are skipped there.
+ifeq ($(DEB_HOST_ARCH),s390x)
+TEST_SKIP_PKGS = mrpt_opengl mrpt_gui
+endif
+
 # Run each package's unit tests under colcon, inside a virtual X server
 # (some GUI/unit tests need a display). Verbose console output is forced so
 # failures are diagnosable from build-farm logs. colcon test itself does not
@@ -117,6 +123,7 @@ ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 		--parallel-workers $(NUMJOBS) \
 		--merge-install \
 		--packages-ignore mrpt_examples_cpp mrpt_examples_py \
+		$(if $(TEST_SKIP_PKGS),--packages-skip $(TEST_SKIP_PKGS)) \
 		--event-handlers console_direct+
 	colcon test-result --verbose
 endif
