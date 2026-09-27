@@ -23,6 +23,10 @@ mrpt (1:3.1.2+ds-1) unstable; urgency=medium
   * debian/control: libmrpt-math-dev now depends on libnanoflann-dev,
     since its public headers include <nanoflann.hpp> and its CMake config
     requires nanoflann.
+  * debian/control: libmrpt-gui-dev now depends on libmrpt-nanogui-dev,
+    since its CMake config requires mrpt_nanogui. Conversely, drop the
+    reverse libmrpt-nanogui-dev -> libmrpt-gui-dev dependency, which is not
+    needed.
 
  -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sun, 12 Jul 2026 10:41:12 +0200
 
