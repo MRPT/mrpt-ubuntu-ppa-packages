@@ -271,6 +271,7 @@ Multi-Arch: same
 Depends: ${misc:Depends},
          libmrpt-gui3.3 (= ${binary:Version}),
          libmrpt-opengl-dev,
+         libmrpt-nanogui-dev,
          libeigen3-dev,
          libglfw3-dev
 Description: ${source:Synopsis} - gui development files
@@ -806,7 +807,8 @@ Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends},
          libmrpt-nanogui3.3 (= ${binary:Version}),
-         libmrpt-gui-dev,
+         libmrpt-common-dev,
+         libeigen3-dev,
          libglfw3-dev
 Description: ${source:Synopsis} - nanogui development files
  ${source:Extended-Description}
