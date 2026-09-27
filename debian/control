@@ -500,7 +500,8 @@ Depends: ${misc:Depends},
          libmrpt-common-dev,
          libmrpt-system-dev,
          libmrpt-serialization-dev,
-         libmrpt-random-dev
+         libmrpt-random-dev,
+         libnanoflann-dev
 Description: ${source:Synopsis} - math development files
  ${source:Extended-Description}
  .

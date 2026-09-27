@@ -20,6 +20,9 @@ mrpt (1:3.1.2+ds-1) unstable; urgency=medium
   * Add python3-mrpt-hwdrivers (Python bindings of the sensor drivers),
     and make python3-mrpt-{io,maps,obs,poses,slam} depend on the sibling
     modules their __init__.py now imports.
+  * debian/control: libmrpt-math-dev now depends on libnanoflann-dev,
+    since its public headers include <nanoflann.hpp> and its CMake config
+    requires nanoflann.
 
  -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sun, 12 Jul 2026 10:41:12 +0200
 
