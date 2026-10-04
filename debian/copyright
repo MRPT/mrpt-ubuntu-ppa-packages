@@ -10,8 +10,8 @@ Files-Excluded: 3rdparty/glew
               modules/mrpt_containers/3rdparty/libfyaml
               modules/mrpt_expr/src/3rdparty/exprtk.hpp
               modules/mrpt_io/3rdparty/zlib
-              modules/mrpt_img/tests/generate_test_data
               modules/mrpt_math/3rdparty/nanoflann
+              modules/mrpt_math/src/CSparse
               modules/mrpt_gui/3rdparty/nanogui/ext/nanovg/example
               modules/mrpt_gui/3rdparty/nanogui/ext/nanovg/obsolete
               modules/mrpt_gui/3rdparty/nanogui/resources/Roboto-*.ttf
@@ -109,6 +109,9 @@ License: WXwindows
 Files: modules/mrpt_system/src/md5.cpp
 Copyright: 1991-1992, RSA Data Security, Inc
          2009, Frank Thilo <thilo@unix-ag.org>
+License: public-domain-misc-fixed
+  Public domain font.  Share and enjoy.
+
 License: rsa-license
 
 Files: 3rdparty/rplidar_sdk/*
@@ -189,6 +192,17 @@ Copyright: 2026, Google LLC
 Comment: Subset of the Material Symbols Outlined font, embedded as a byte
  array. Regenerate with modules/mrpt_imgui_vendor/scripts/regenerate_icon_font.py.
 License: Apache-2.0
+
+Files: modules/mrpt_img/src/stb/*
+Copyright: 2006-2024, Sean Barrett
+         2014-2024, Jeff Roberts, Jorge L Rodriguez
+License: public-domain-stb or Expat
+
+Files: scripts/fonts2cpp/fonts/*
+Copyright: 2006, Markus Kuhn
+Comment: Unicode versions of the X11 misc-fixed bitmap fonts. Each BDF
+ file states: COPYRIGHT "Public domain font.  Share and enjoy."
+License: public-domain-misc-fixed
 
 Files: modules/mrpt_core/include/mrpt/3rdparty/spimpl.h
 Copyright: 2015, Andrey Upadyshev <oliora@gmail.com>
