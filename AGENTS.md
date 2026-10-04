@@ -7,7 +7,7 @@ actual MRPT source is pulled from github.com/MRPT/mrpt at build time.
 ## Status (2026-09): MRPT 3.x packaging ported, publish cutover pending
 
 `noble` and `resolute` now carry MRPT 3.x packaging (colcon build,
-`libmrpt-*3.3` binary packages, bumped ahead of the 3.3.0 release). The
+`libmrpt-*3.4` binary packages, matching the 3.4.0 release). The
 previous MRPT 2.x state of each is preserved verbatim on `noble-mrpt2.x` /
 `resolute-mrpt2.x`. `jammy` is
 untouched and stays 2.x: MRPT 3.x targets **Ubuntu 24.04 (noble) and 26.04
@@ -49,8 +49,8 @@ on disk there still points at the legacy `mrpt-stable` PPA — it needs a
    session).
 2. Re-enable the `run_mrpt-develop.sh` line in `mrptppa`'s crontab (still
    commented out, "disabled for 3.0!!"). Only the server account can do this.
-3. `mrpt3-stable` cannot be fed from `master` until a release tag includes
-   `mrpt_imgui_vendor` — see "master vs develop".
+3. `master` is now the 3.4.0 tag, which includes `mrpt_imgui_vendor`, so
+   `mrpt3-stable` can be fed from it (see "master vs develop").
 
 ## Versioning rules that bite
 
@@ -72,12 +72,10 @@ regenerator.** Its output has drifted behind the hand-maintained
 `Standards-Version` and re-adds fields removed for lintian. Never wire it into
 the build pipeline; edit `debian/control` by hand.
 
-**master vs develop.** `master` is currently the 3.2.0 tag, but
-`mrpt_imgui_vendor` was added on `develop` *after* that tag. The packaging
-ships that module (`libmrpt-imgui-vendor-dev`), and `dh_install` fails when an
-`.install` glob matches nothing — so these branches build `develop` but not
-today's `master`. `mrpt3-stable` must wait for a release tag that includes
-`mrpt_imgui_vendor`.
+**master vs develop.** The packaging ships `mrpt_imgui_vendor`
+(`libmrpt-imgui-vendor-dev`), and `dh_install` fails when an `.install` glob
+matches nothing, so these branches cannot build any tag older than 3.3.0
+(the first release including that module).
 
 ## Ubuntu-specific deltas from the salsa tree
 
