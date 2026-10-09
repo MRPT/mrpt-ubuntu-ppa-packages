@@ -1,38 +1,6 @@
-mrpt (1:3.1.2+ds-1) unstable; urgency=medium
+mrpt (1:3.5.1+ds-1) unstable; urgency=medium
 
-  * New upstream version 3.1.2+ds
-  * Remove debian/patches already integrated upstream
-  * debian/control: python3-mrpt-core Breaks/Replaces python3-pymrpt,
-    the monolithic MRPT 2.x Python package superseded by the per-module
-    python3-mrpt-* packages. Its leftover mrpt/__init__.py would
-    otherwise turn the mrpt namespace package into a regular one and
-    hide modules installed elsewhere.
-  * Add libmrpt-imgui-vendor-dev: static archive, headers and CMake
-    config of the new mrpt_imgui_vendor module (vendored Dear ImGui
-    docking branch, ImPlot, portable-file-dialogs and
-    IconFontCppHeaders). Static by design, since Dear ImGui has no
-    SOVERSION nor ABI stability promise. Required by
-    find_package(mrpt_imgui).
-  * debian/copyright: document the sources vendored by mrpt_imgui_vendor
-    and its embedded Material Symbols font subset, and repack out
-    imgui's prebuilt Windows GLFW libraries and unused bundled TTF
-    fonts.
-  * Add python3-mrpt-hwdrivers (Python bindings of the sensor drivers),
-    and make python3-mrpt-{io,maps,obs,poses,slam} depend on the sibling
-    modules their __init__.py now imports.
-  * debian/control: libmrpt-math-dev now depends on libnanoflann-dev,
-    since its public headers include <nanoflann.hpp> and its CMake config
-    requires nanoflann.
-  * debian/control: libmrpt-gui-dev now depends on libmrpt-nanogui-dev,
-    since its CMake config requires mrpt_nanogui. Conversely, drop the
-    reverse libmrpt-nanogui-dev -> libmrpt-gui-dev dependency, which is not
-    needed.
-
- -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sun, 12 Jul 2026 10:41:12 +0200
-
-mrpt (1:3.0.5+ds-1) unstable; urgency=medium
-
-  * New upstream version 3.0.5+ds
+  * New upstream version 3.5.1+ds
   * debian/patches: remove now obsolete patches
   * debian: port packaging to MRPT 3.x modular colcon build
   * debian/tests/control: ship an explicit autopkgtest overriding autodep8's
@@ -43,9 +11,6 @@ mrpt (1:3.0.5+ds-1) unstable; urgency=medium
   * debian/control: drop redundant Priority field (defaults to optional),
     drop redundant Rules-Requires-Root: no field (now the dpkg default), and
     bump Standards-Version to 4.7.4 (no changes needed)
-  * Remove the prebuilt test binary modules/mrpt_img/tests/generate_test_data
-    from the source tree and keep it listed in debian/copyright Files-Excluded
-    (fixes source-contains-prebuilt-binary and source-ships-excluded-file)
   * debian/control: add python3-numpy to the runtime Depends of
     python3-mrpt-math and python3-mrpt-img. Their __init__.py modules do a
     top-level "import numpy"
@@ -80,11 +45,36 @@ mrpt (1:3.0.5+ds-1) unstable; urgency=medium
     spurious test crashes in mrpt_maps and mrpt_nav
   * debian/control, debian/copyright: unembed exprtk.hpp, building against
     the system libexprtk-dev (Closes: #1094437)
-  * debian/patches: add 0001-Fix-ambiguous-operator-on-i386-array_string-string_
-    fixing an i386-only FTBFS in mrpt_typemeta's test suite for platforms
-    where ptrdiff_t==int
+  * debian/control: python3-mrpt-core Breaks/Replaces python3-pymrpt,
+    the monolithic MRPT 2.x Python package superseded by the per-module
+    python3-mrpt-* packages. Its leftover mrpt/__init__.py would
+    otherwise turn the mrpt namespace package into a regular one and
+    hide modules installed elsewhere.
+  * Add libmrpt-imgui-vendor-dev: static archive, headers and CMake
+    config of the new mrpt_imgui_vendor module (vendored Dear ImGui
+    docking branch, ImPlot, portable-file-dialogs and
+    IconFontCppHeaders). Static by design, since Dear ImGui has no
+    SOVERSION nor ABI stability promise. Required by
+    find_package(mrpt_imgui).
+  * debian/copyright: document the sources vendored by mrpt_imgui_vendor
+    and its embedded Material Symbols font subset, and repack out
+    imgui's prebuilt Windows GLFW libraries and unused bundled TTF
+    fonts.
+  * Add python3-mrpt-hwdrivers (Python bindings of the sensor drivers),
+    and make python3-mrpt-{io,maps,obs,poses,slam} depend on the sibling
+    modules their __init__.py now imports.
+  * debian/control: libmrpt-math-dev now depends on libnanoflann-dev,
+    since its public headers include <nanoflann.hpp> and its CMake config
+    requires nanoflann.
+  * debian/control: libmrpt-gui-dev now depends on libmrpt-nanogui-dev,
+    since its CMake config requires mrpt_nanogui. Conversely, drop the
+    reverse libmrpt-nanogui-dev -> libmrpt-gui-dev dependency, which is not
+    needed.
+  * debian/copyright: document the vendored stb image headers of mrpt_img
+    and the public domain X11 misc-fixed fonts under scripts/fonts2cpp, and
+    repack out the unused bundled CSparse sources
 
- -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Sun, 21 Jun 2026 20:59:42 +0200
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Fri, 09 Oct 2026 08:48:29 +0200
 
 mrpt (1:2.15.14+ds-1) unstable; urgency=medium
 
