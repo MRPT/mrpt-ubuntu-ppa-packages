@@ -212,6 +212,28 @@ Files: modules/mrpt_opengl/src/gltext.cpp
 Copyright: 2005-2013, Edward Rosten, Paul Smith, Tom Drummond, Gerhard Reitmayr, Ethan Eade, Chris Kemp, Georg Klein, Damian Eads
 License: BSD-2-clause
 
+Files: modules/mrpt_maps/3rdparty/cloudini/*
+Copyright: 2025-2026, Davide Faconti
+License: Apache-2.0
+
+Files: modules/mrpt_maps/3rdparty/cloudini/cloudini_lib/include/cloudini_lib/contrib/ankerl/*
+Copyright: 2022, Martin Leitner-Ankerl <martin.ankerl@gmail.com>
+License: Expat
+
+Files: modules/mrpt_maps/3rdparty/cloudini/cloudini_lib/include/cloudini_lib/contrib/nanocdr.hpp
+Copyright: 2025, Davide Faconti
+           2016, Proyectos y Sistemas de Mantenimiento SL (eProsima)
+License: Apache-2.0
+
+Files: modules/mrpt_maps/3rdparty/cloudini/cloudini_lib/cmake/CPM.cmake
+Copyright: 2019-2023, Lars Melchior and contributors
+License: Expat
+
+Files: modules/mrpt_maps/3rdparty/cloudini/cloudini_lib/cmake/FindLZ4.cmake
+       modules/mrpt_maps/3rdparty/cloudini/cloudini_lib/cmake/FindZSTD.cmake
+Copyright: Meta Platforms, Inc. and affiliates.
+License: Apache-2.0
+
 Files: modules/mrpt_maps/include/mrpt/maps/bonxai/serialization.hpp
 Copyright: 2021-2023, Davide Faconti
 License: MPL-2.0
