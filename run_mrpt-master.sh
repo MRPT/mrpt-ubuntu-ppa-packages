@@ -47,7 +47,9 @@ cd $HOME/mrpt-master
 
 git clean -d -x -f > /dev/null
 git checkout . > /dev/null 2>&1
-git pull > /dev/null  2>&1
+# Always follow the remote master branch, whatever the checkout has out.
+git fetch -q origin master
+git checkout -q -f -B master FETCH_HEAD
 
 # Check if there are new commit(s)?
 CURSHA=`git rev-parse HEAD`
