@@ -1,6 +1,6 @@
-mrpt (1:3.5.1+ds-1) unstable; urgency=medium
+mrpt (1:3.6.0+ds-1) unstable; urgency=medium
 
-  * New upstream version 3.5.1+ds
+  * New upstream version 3.6.0+ds
   * debian/patches: remove now obsolete patches
   * debian: port packaging to MRPT 3.x modular colcon build
   * debian/tests/control: ship an explicit autopkgtest overriding autodep8's
@@ -73,8 +73,10 @@ mrpt (1:3.5.1+ds-1) unstable; urgency=medium
   * debian/copyright: document the vendored stb image headers of mrpt_img
     and the public domain X11 misc-fixed fonts under scripts/fonts2cpp, and
     repack out the unused bundled CSparse sources
+  * debian/copyright: document the Cloudini point cloud compression library
+    bundled by mrpt_maps, and add the liblz4-dev build dependency it needs
 
- -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Fri, 09 Oct 2026 08:48:29 +0200
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Wed, 28 Oct 2026 10:16:54 +0100
 
 mrpt (1:2.15.14+ds-1) unstable; urgency=medium
 
