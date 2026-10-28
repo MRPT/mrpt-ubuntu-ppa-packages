@@ -7,7 +7,7 @@ actual MRPT source is pulled from github.com/MRPT/mrpt at build time.
 ## Status (2026-09): MRPT 3.x packaging ported, publish cutover pending
 
 `noble` and `resolute` now carry MRPT 3.x packaging (colcon build,
-`libmrpt-*3.5` binary packages, matching the 3.5.1 release). The
+`libmrpt-*3.6` binary packages, matching the 3.6.0 release). The
 previous MRPT 2.x state of each is preserved verbatim on `noble-mrpt2.x` /
 `resolute-mrpt2.x`. `jammy` is
 untouched and stays 2.x: MRPT 3.x targets **Ubuntu 24.04 (noble) and 26.04
@@ -49,7 +49,7 @@ on disk there still points at the legacy `mrpt-stable` PPA — it needs a
    session).
 2. Re-enable the `run_mrpt-develop.sh` line in `mrptppa`'s crontab (still
    commented out, "disabled for 3.0!!"). Only the server account can do this.
-3. `master` is now at the 3.5.1 release, which includes `mrpt_imgui_vendor`, so
+3. `master` is now at the 3.6.0 release, which includes `mrpt_imgui_vendor`, so
    `mrpt3-stable` can be fed from it (see "master vs develop").
 
 ## Versioning rules that bite
