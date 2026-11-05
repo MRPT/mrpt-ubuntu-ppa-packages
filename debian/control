@@ -28,6 +28,7 @@ Build-Depends: dpkg-dev (>= 1.22.5), debhelper-compat (= 13),
  libcli11-dev,
  libzstd-dev,
  liblz4-dev,
+ libtbb-dev,
  libwxgtk3.2-dev,
  wx-common,
  qtbase5-dev,
@@ -692,7 +693,8 @@ Multi-Arch: same
 Depends: ${misc:Depends},
          libmrpt-slam3.6 (= ${binary:Version}),
          libmrpt-maps-dev,
-         libmrpt-topography-dev
+         libmrpt-topography-dev,
+         libtbb-dev
 Description: ${source:Synopsis} - slam development files
  ${source:Extended-Description}
  .
