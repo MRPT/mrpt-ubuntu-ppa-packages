@@ -951,6 +951,25 @@ Description: ${source:Synopsis} - Python 3 bindings for mrpt graphs
  .
  Python 3 wrapper for the MRPT graphs module.
 
+Package: python3-mrpt-graphslam
+Section: python
+Architecture: any
+Multi-Arch: allowed
+Depends: ${python3:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python3-mrpt-core (= ${binary:Version}),
+         python3-mrpt-graphs,
+         python3-mrpt-gui,
+         python3-mrpt-poses,
+         python3-mrpt-rtti,
+         python3-mrpt-serialization,
+         python3-mrpt-slam
+Description: ${source:Synopsis} - Python 3 bindings for mrpt graphslam
+ ${source:Extended-Description}
+ .
+ Python 3 wrapper for the MRPT graphslam module.
+
 Package: python3-mrpt-gui
 Section: python
 Architecture: any
@@ -1273,6 +1292,7 @@ Depends: ${misc:Depends}, python3-mrpt-bayes (= ${binary:Version}),
          python3-mrpt-core (= ${binary:Version}),
          python3-mrpt-expr (= ${binary:Version}),
          python3-mrpt-graphs (= ${binary:Version}),
+         python3-mrpt-graphslam (= ${binary:Version}),
          python3-mrpt-gui (= ${binary:Version}),
          python3-mrpt-hwdrivers (= ${binary:Version}),
          python3-mrpt-img (= ${binary:Version}),
