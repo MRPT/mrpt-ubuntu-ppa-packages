@@ -1043,6 +1043,7 @@ Depends: ${python3:Depends},
          ${misc:Depends},
          python3-mrpt-core (= ${binary:Version}),
          python3-mrpt-math,
+         python3-mrpt-serialization,
          python3-mrpt-viz
 Description: ${source:Synopsis} - Python 3 bindings for mrpt kinematics
  ${source:Extended-Description}
