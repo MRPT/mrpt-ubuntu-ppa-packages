@@ -41,10 +41,10 @@ LIB_MODULES = [
 HEADER_ONLY = ["common", "typemeta"]
 # Modules that build a pybind11 module -> python3-mrpt-<m>
 PYTHON_MODULES = [
-    "bayes", "comms", "config", "containers", "core", "expr", "graphs", "gui",
-    "img", "io", "kinematics", "maps", "math", "nav", "obs", "opengl", "poses",
-    "random", "rtti", "serialization", "slam", "system", "tfest", "topography",
-    "viz",
+    "bayes", "comms", "config", "containers", "core", "expr", "graphs",
+    "graphslam", "gui", "img", "io", "kinematics", "maps", "math", "nav", "obs",
+    "opengl", "poses", "random", "rtti", "serialization", "slam", "system",
+    "tfest", "topography", "viz",
 ]
 
 # include/mrpt/<ns> directory name when it differs from the short module name
