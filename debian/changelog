@@ -1,3 +1,14 @@
+mrpt (1:3.6.3+ds-1) unstable; urgency=medium
+
+  * New upstream version 3.6.3+ds
+  * debian/control: build with TBB (parallel particle filters);
+    libmrpt-slam-dev depends on libtbb-dev
+  * New binary package python3-mrpt-graphslam (pose-graph optimization
+    Python module)
+  * python3-mrpt-kinematics: depend on python3-mrpt-serialization
+
+ -- Jose Luis Blanco Claraco <joseluisblancoc@gmail.com>  Fri, 13 Nov 2026 18:46:12 +0100
+
 mrpt (1:3.6.0+ds-1) unstable; urgency=medium
 
   * New upstream version 3.6.0+ds
