@@ -41,7 +41,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq \
 	libglu1-mesa-dev \
 	libicu-dev \
 	libjpeg-dev \
-	libjsoncpp-dev \
 	libnanoflann-dev \
 	libnav-msgs-dev \
 	liboctomap-dev \
